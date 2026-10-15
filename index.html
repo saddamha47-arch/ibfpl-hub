@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>IBFPL Asset & Inventory Hub</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>
+:root{--g:#0b3b1e;--gold:#e5b00d;--ind:#4f46e5;--bg:#f1f4f8;--tx:#16202c;--mu:#6b7889;--bd:#dfe5ee}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top)}
+header{background:linear-gradient(135deg,#0b3b1e,#14532d);color:#fff;padding:10px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo{background:#fff;color:var(--g);font-weight:800;border-radius:10px;padding:6px 9px}
+.hb{border:1px solid #ffffff55;background:#ffffff18;color:#fff;border-radius:20px;padding:7px 12px;font:inherit;font-size:14px}.hb.p{background:var(--ind);border-color:var(--ind)}
+nav{background:#0a2f18;display:flex;gap:6px;overflow-x:auto;padding:8px 10px;position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;border:0;background:transparent;color:#d6e6dc;padding:9px 14px;border-radius:20px;font:inherit}nav button.on{background:var(--gold);color:#1b1500;font-weight:700}
+main{padding:12px;max-width:920px;margin:auto}
+.c{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px #1a2a4012}
+h2{margin:0 0 4px;font-size:20px}h3{margin:0 0 8px;font-size:16px}.mu{color:var(--mu)}
+.b{border:1px solid var(--bd);background:#fff;border-radius:12px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer;margin:3px 4px 3px 0}
+.b.p{background:var(--ind);color:#fff;border-color:var(--ind)}.b.g{background:#e8f8ee;color:#0f7a3d;border-color:#9fdcb7}.b.o{background:#fff6dc;color:#9a6a00;border-color:#f1d58a}.b.i{background:#eef1ff;color:#3730a3;border-color:#c7cdfa}.b.r{background:#fde8ec;color:#b4143a;border-color:#f5b3c1}
+.tg{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:700;border:1px solid;margin:2px 4px 2px 0}
+.good{background:#e8f8ee;color:#0f7a3d;border-color:#9fdcb7}.new{background:#e6f6fd;color:#0369a1;border-color:#9bd6f3}.fair{background:#fff6dc;color:#9a6a00;border-color:#f1d58a}.rep{background:#fff0e0;color:#b45309;border-color:#f6c58d}.dmg{background:#fde8ec;color:#b4143a;border-color:#f5b3c1}.adm{background:#f3e8ff;color:#7e22ce;border-color:#d8b4fe}.stf{background:#e0ecff;color:#1d4ed8;border-color:#a9c4fb}.req{background:#ecfdf5;color:#047857;border-color:#a7f3d0}.cod{background:#eceff3;color:#334155;border-color:#d0d7e1;font-family:monospace}
+.alert{background:#fff1f3;border:1px solid #f7b6c3;border-radius:16px;padding:14px;margin-bottom:12px}
+input,select,textarea{font:inherit;width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;margin:3px 0;background:#fff;color:var(--tx)}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:8px}.f .w{grid-column:1/3}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd);cursor:pointer}.row:last-child{border:0}
+.bar{height:8px;border-radius:5px;background:#e7ecf3;margin:4px 0 10px;overflow:hidden}.bar i{display:block;height:100%}
+.kp{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kp div{border:1px solid var(--bd);border-radius:14px;padding:12px}.kp b{font-size:26px;display:block}
+#md{position:fixed;inset:0;background:#0009;display:none;align-items:flex-end;justify-content:center;z-index:20}#md.on{display:flex}
+#bx{background:#fff;width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+img.ph{width:100%;max-height:260px;object-fit:contain;border:1px solid var(--bd);border-radius:14px;background:#fff}
+@media print{header,nav,.np{display:none}}
+</style></head><body>
+<header><span class="logo">PTC</span><b style="flex:1;min-width:120px">IBFPL Hub</b><span id="hu"></span></header>
+<nav id="nv"></nav><main id="mn"></main><div id="md" onclick="if(event.target.id=='md')cl()"><div id="bx"></div></div>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,collection,onSnapshot,doc,setDoc,updateDoc,deleteDoc,getDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// ===== এখানে নিজের Firebase config বসান =====
+const firebaseConfig={apiKey:"AIzaSyDVBSs6yaizsjV-bA3eizVFw8QEeMcUtnI",authDomain:"ibfpl-hub.firebaseapp.com",projectId:"ibfpl-hub",appId:"1:1962186830:web:25d8113e72779f84524b1f"};
+// ============================================
+const ok=!firebaseConfig.apiKey.startsWith("YOUR");let auth,db;
+if(ok){const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app)}
+const er=e=>alert("Not allowed: "+(e.code||e.message));
+window.FB={ok,listen:(c,cb)=>onSnapshot(collection(db,c),s=>cb(s.docs.map(d=>({id:d.id,...d.data()}))),e=>console.warn(c,e.code)),
+get:async(c,id)=>{const s=await getDoc(doc(db,c,id));return s.exists()?s.data():null},
+set:(c,id,d)=>setDoc(doc(db,c,id),d).catch(er),upd:(c,id,d)=>updateDoc(doc(db,c,id),d).catch(er),del:(c,id)=>deleteDoc(doc(db,c,id)).catch(er),
+onAuth:cb=>onAuthStateChanged(auth,cb),signIn:(e,p)=>signInWithEmailAndPassword(auth,e,p),signUp:(e,p)=>createUserWithEmailAndPassword(auth,e,p),signOut:()=>signOut(auth)};
+window.dispatchEvent(new Event("fbready"));
+</script>
+<script>
+const CAT=["Mechanical & Piping","Electrical & Instrumentation","Fire Fighting","Lubricants & Chemicals","Civil & Structural","Safety & PPE","Office & IT","Tools & Spares","Other"],COL=["#8b5cf6","#ec4899","#f59e0b","#10b981","#06b6d4","#ef4444","#3b82f6","#84cc16","#94a3b8"];
+const CON=["New","Good","Fair","Needs Repair","Damaged / Scrap"],CC={New:"new",Good:"good",Fair:"fair","Needs Repair":"rep","Damaged / Scrap":"dmg"},LOC=["Store","RT Parbatipur","RT Saidpur","SV-1 (Banglabandha)","SV-2 (Debnagar)","SV-3 (Kantamoni)","SV-4 (Chandipur)","SV-5 (Sonapukur)"];
+const RC={admin:["adm","Administrator"],staff:["stf","Staff User"],requester:["req","Requester"]};
+let S={users:[],items:[],tx:[],reqs:[],log:[]},me=null,tab="dash",q="",F,pend={};
+const $=s=>document.querySelector(s),E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5),day=()=>new Date().toLocaleString("en-GB");
+const save=()=>draw(),LG=t=>{if(me)F.set("log",uid(),{t:day(),u:me.name,x:t,ts:Date.now()})};
+const can=r=>me&&(r==="req"?true:r==="staff"?me.role!=="requester":me.role==="admin");
+const bal=i=>+i.qty+S.tx.filter(t=>t.i===i.id).reduce((a,t)=>a+(t.k==="in"?+t.n:-t.n),0);
+const unit=i=>i.unit||"pcs",nm=id=>(S.items.find(x=>x.id===id)||{name:"(deleted)"}).name,st=i=>bal(i)<=0?0:bal(i)<=+i.min?1:2;
+const TS=[["dash","Dashboard"],["inv","Items & Stock"],["ast","Assets"],["rq","Requisitions"],["hs","History"],["us","Users"]];
+function cl(){$("#md").classList.remove("on")}function M(h){$("#bx").innerHTML=h;$("#md").classList.add("on")}
+const opt=(a,s)=>a.map(x=>{const v=x.id||x,n=x.name||x;return`<option value="${E(v)}" ${v===s?"selected":""}>${E(n)}</option>`}).join(""),V=id=>$("#"+id).value;
+function draw(){
+$("#hu").innerHTML=me?`<span class="tg ${RC[me.role][0]}">${E(me.name)} · ${RC[me.role][1]}</span><button class="hb" onclick="out()">Logout</button>`:`<button class="hb p" onclick="login()">Log In</button><button class="hb" onclick="reg()">Register</button>`;
+$("#nv").innerHTML=TS.filter(t=>t[0]!=="us"||can("admin")).map(t=>`<button class="${t[0]===tab?"on":""}" onclick="tab='${t[0]}';draw()">${t[1]}</button>`).join("");
+const m=$("#mn");
+if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();
+}
+function dash(){const low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),tot=CAT.map(c=>S.items.filter(i=>i.cat===c).reduce((a,i)=>a+Math.max(0,bal(i)),0)),T=tot.reduce((a,b)=>a+b,0)||1;
+let o=0;const r=62,C=2*Math.PI*r,arc=tot.map((v,k)=>{const l=v/T*C,e=`<circle cx="90" cy="90" r="${r}" fill="none" stroke="${COL[k]}" stroke-width="26" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-o}" transform="rotate(-90 90 90)"/>`;o+=l;return e}).join("");
+const cond=CON.map(c=>`<span class="tg ${CC[c]}">${c}: ${S.items.filter(i=>i.cond===c).length}</span>`).join("");
+const A=S.items.filter(i=>i.type==="Fixed Asset");
+return`${me?"":`<div class="c"><h3>👁 View-Only Mode</h3><p class="mu">Sign in as Admin/Staff to add or edit items, or create a Requester ID to submit requisitions.</p><button class="b" onclick="reg()">Create Requester ID</button><button class="b p" onclick="login()">Sign In / Select Persona</button></div>`}
+<div class="c"><span class="tg good">☁ Live Sync</span><span class="mu"> ${S.items.length} Total SKUs & Assets</span><h2>Inventory & Asset Operations Dashboard</h2><p class="mu">Stock levels, equipment allocations, storage locations and quick actions.</p>
+<button class="b g" onclick="stk('in')">⬇ Stock In</button><button class="b o" onclick="stk('out')">⬆ Stock Out</button><button class="b i" onclick="asg()">👤 Assign Asset</button><button class="b i" onclick="nrq()">📄 New Requisition</button>${can("staff")?`<button class="b p" onclick="ni()">＋ Add Item</button>`:""}</div>
+${low.length?`<div class="alert"><b style="color:#9f1239">⚠ Critical Low Stock Warning</b><br><span class="tg dmg" style="background:#e11d48;color:#fff">${low.length} SKUs Below Threshold</span><div>${low.slice(0,4).map(i=>`<span class="tg cod">${E(i.name)} (${bal(i)}/${i.min} ${unit(i)})</span>`).join("")}</div><button class="b" onclick="tab='inv';draw()">Resolve in Inventory →</button></div>`:""}
+<div class="c"><h3>📋 Inventory by category</h3><svg viewBox="0 0 180 180" style="width:210px;display:block;margin:auto"><circle cx="90" cy="90" r="${r}" fill="none" stroke="#e7ecf3" stroke-width="26"/>${arc}</svg>
+${CAT.map((c,k)=>tot[k]||S.items.length<1?`<div style="display:flex;justify-content:space-between"><span><span class="tg" style="background:${COL[k]};border:0;padding:0;width:10px;height:10px;border-radius:50%"></span> <b>${c}</b></span><span><b>${tot[k]} units</b> <span class="mu">(${Math.round(tot[k]/T*100)}%)</span></span></div><div class="bar"><i style="width:${tot[k]/T*100}%;background:${COL[k]}"></i></div>`:"").join("")}
+<hr style="border:0;border-top:1px solid var(--bd)"><b>Asset & Item Condition Health:</b><div>${cond}</div></div>
+<div class="c"><h3>📦 Assets by category</h3>${CAT.map(c=>{const n=A.filter(i=>i.cat===c).length;return n?`<div style="display:flex;justify-content:space-between"><span>${c}</span><b>${n}</b></div>`:""}).join("")||'<span class="mu">No fixed assets yet.</span>'}</div>`}
+function inv(){const L=S.items.filter(i=>(i.name+i.code+i.cat+i.loc).toLowerCase().includes(q.toLowerCase()));
+return`<div class="c"><h3>Items & Stock Balance</h3><input placeholder="🔍 Search name, code, category…" value="${E(q)}" oninput="q=this.value;draw();$('#mn input').focus()">${can("staff")?`<button class="b p" onclick="ni()">＋ Add Item</button>`:""}<button class="b" onclick="csv()">⬇ CSV</button><button class="b" onclick="print()">🖨 Print</button></div>
+<div class="c">${L.map(i=>`<div class="row" onclick="det('${i.id}')"><span style="flex:1"><span class="tg cod">${E(i.code)}</span><span class="tg ${CC[i.cond]}">${E(i.cond)}</span><br><b>${E(i.name)}</b><br><small class="mu">${E(i.cat)} · 📍${E(i.loc)}</small></span><span style="text-align:right"><b style="font-size:20px">${bal(i)}</b> ${unit(i)}<br><span class="tg ${["dmg","fair","good"][st(i)]}">${["Out","Low","In Stock"][st(i)]}</span></span></div>`).join("")||'<span class="mu">No items.</span>'}</div>`}
+function ast(){const A=S.items.filter(i=>i.type==="Fixed Asset");return`<div class="c"><h3>Fixed Assets & Allocation</h3>${A.map(i=>`<div class="row" onclick="det('${i.id}')"><span><span class="tg cod">${E(i.code)}</span><br><b>${E(i.name)}</b><br><small class="mu">${E(i.cat)} · 📍${E(i.loc)}</small></span><span style="text-align:right"><span class="tg ${CC[i.cond]}">${E(i.cond)}</span><br><small>${i.to?"👤 "+E(i.to):"Unassigned"}</small></span></div>`).join("")||'<span class="mu">No fixed assets. Add item with type "Fixed Asset".</span>'}</div>`}
+function rq(){return`<div class="c"><button class="b p" onclick="nrq()">📄 New Requisition</button></div><div class="c">${[...S.reqs].reverse().map(r=>`<div class="row" style="cursor:default"><span><b>${r.n} × ${E(nm(r.i))}</b><br><small class="mu">${E(r.by)} · ${E(r.p)} · ${E(r.d)}</small></span><span style="text-align:right"><span class="tg ${r.s==="issued"?"good":r.s==="rejected"?"dmg":"fair"}">${r.s}</span>${can("staff")&&r.s==="pending"?`<br><button class="b g" onclick="dec('${r.id}',1)">Issue</button><button class="b r" onclick="dec('${r.id}',0)">Reject</button>`:""}</span></div>`).join("")||'<span class="mu">No requisitions.</span>'}</div>`}
+function hs(){return`<div class="c"><h3>🕘 Activity History</h3>${S.log.slice(0,100).map(l=>`<div class="row" style="cursor:default"><span>${E(l.x)}<br><small class="mu">${E(l.u)} · ${l.t}</small></span></div>`).join("")||'<span class="mu">No activity.</span>'}</div>`}
+function us(){return`<div class="c"><h3>Users</h3>${S.users.map(u=>`<div class="row" style="cursor:default"><span><b>${E(u.name)}</b> <span class="tg ${RC[u.role][0]}">${RC[u.role][1]}</span><br><small class="mu">${E(u.des||"")} · @${E(u.un)}</small></span><span><select onchange="rl('${u.id}',this.value)">${["admin","staff","requester"].map(r=>`<option ${r===u.role?"selected":""}>${r}</option>`).join("")}</select>${u.id!==me.id?`<button class="b r" onclick="du('${u.id}')">Delete</button>`:""}</span></div>`).join("")}</div>`}
+const rl=(id,r)=>{F.upd("users",id,{role:r});LG("Role changed to "+r)},du=id=>{if(confirm("Remove this user profile?"))F.del("users",id)};
+function login(){M(`<h3>🔐 Log In</h3><p class="mu">Email ও password দিয়ে লগইন করুন</p><input id="l1" type="email" placeholder="Email"><input id="l2" type="password" placeholder="Password"><button class="b p" onclick="si()">Sign In</button><button class="b" onclick="reg()">Create Requester ID</button><button class="b" onclick="cl()">View-Only Mode</button>`)}
+async function si(){try{await F.signIn(V("l1"),V("l2"));cl()}catch(e){alert("Login failed: "+e.code)}}
+function reg(){M(`<h3>Create Requester ID</h3><div class="f"><input id="r1" class="w" placeholder="Full name"><input id="r3" class="w" placeholder="Designation / Dept"><input id="r2" class="w" type="email" placeholder="Email"><input id="r4" class="w" type="password" placeholder="Password (min 6)"></div><button class="b p" onclick="mkReq()">Create & Sign In</button>`)}
+async function mkReq(){if(!V("r1")||!V("r2"))return;pend={name:V("r1"),des:V("r3")};try{await F.signUp(V("r2"),V("r4"));cl()}catch(e){alert("Failed: "+e.code)}}
+function out(){F.signOut()}
+function ni(){if(!can("staff"))return alert("Staff/Admin login required");M(`<h3>Add Item / Asset</h3><div class="f"><input id="n1" class="w" placeholder="Item name"><select id="n2">${opt(CAT)}</select><select id="n3"><option>Consumable Stock</option><option>Fixed Asset</option></select><select id="n4">${opt(CON)}</select><input id="n5" type="number" placeholder="Opening qty"><input id="n6" placeholder="Unit (pcs)"><input id="n7" type="number" placeholder="Low-stock threshold"><select id="n8">${opt(LOC)}</select><input id="n9" class="w" placeholder="Google Maps location / address (optional)"><input id="n10" class="w" type="file" accept="image/*"></div><button class="b p" onclick="svI()">Save</button>`)}
+function svI(){if(!V("n1").trim())return;const f=$("#n10").files[0],fin=ph=>{const t=V("n3"),n=S.items.length+1;F.set("items",uid(),{code:"INV-"+(t==="Fixed Asset"?"AST":"MAT")+"-"+String(n).padStart(4,"0"),name:V("n1").trim(),cat:V("n2"),type:t,cond:V("n4"),qty:+V("n5")||0,unit:V("n6"),min:+V("n7")||0,loc:V("n8"),map:V("n9"),ph});LG("Added item "+V("n1"));cl();save()};
+if(!f)return fin("");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,500/im.width),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);fin(c.toDataURL("image/jpeg",.7))};im.src=r.result};r.readAsDataURL(f)}
+function det(id){const i=S.items.find(x=>x.id===id),s=st(i);M(`<span class="tg cod">${E(i.code)}</span><span class="tg new">${E(i.type)}</span><span class="tg ${["dmg","fair","good"][s]}">${["Out of stock","Low stock","In Stock"][s]} (${bal(i)} ${unit(i)})</span><h2>${E(i.name)}</h2><p class="mu">${E(i.cat)} · Condition: <b>${E(i.cond)}</b>${i.to?" · Assigned: <b>"+E(i.to)+"</b>":""}</p>${i.ph?`<h3>Item Photo / Asset Visual</h3><img class="ph" src="${i.ph}">`:""}
+<div class="f" style="margin:10px 0"><div class="c"><small class="mu">Available Stock Balance</small><br><b style="font-size:26px">${bal(i)}</b> ${unit(i)}<br><small class="mu">Initial: ${i.qty}</small></div><div class="c"><small class="mu">Low Stock Threshold</small><br><b style="font-size:26px">${i.min}</b> ${unit(i)}<br><small class="mu">Triggers restock alert</small></div></div>
+<div class="c"><h3>📍 Storage & Facility Location</h3>${E(i.loc)}${i.map?" · "+E(i.map):""}<br><a class="b r" style="display:inline-block;text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.map||("IBFPL "+i.loc))}">Open in Google Maps</a></div>
+<button class="b" onclick="lbl('${i.id}')">🏷 Barcode & Label</button>${can("admin")?`<button class="b r" onclick="di('${i.id}')">Delete</button>`:""}<button class="b" onclick="cl()">Close</button>`)}
+const di=id=>{if(confirm("Delete this item?")){F.del("items",id);LG("Deleted item");cl()}};
+function lbl(id){const i=S.items.find(x=>x.id===id),w=open("","_blank");if(!w)return;let b="";for(let k=0;k<i.code.length*6;k++){const c=i.code.charCodeAt(k%i.code.length)+k*7;b+=`<i style="display:inline-block;height:50px;width:${1+c%3}px;background:#000;margin-right:${1+(c>>2)%3}px"></i>`}
+w.document.write(`<body style="font-family:sans-serif;text-align:center"><h3>PTC · IBFPL</h3><div>${b}</div><h2 style="font-family:monospace">${E(i.code)}</h2><p>${E(i.name)}<br>${E(i.loc)}</p><small>Label id (not scannable barcode)</small><script>print()<\/script>`)}
+function stk(k){if(!can("staff"))return alert("Staff/Admin login required");if(!S.items.length)return alert("Add items first");M(`<h3>${k==="in"?"⬇ Stock In":"⬆ Stock Out"}</h3><select id="s1">${opt(S.items.map(i=>({id:i.id,name:i.code+" · "+i.name+" ("+bal(i)+")"})))}</select><input id="s2" type="number" min="1" placeholder="Quantity"><input id="s3" placeholder="Note / challan / issued to"><button class="b p" onclick="sk('${k}')">Save</button>`)}
+function sk(k){const i=S.items.find(x=>x.id===V("s1")),n=+V("s2");if(n<1)return;if(k==="out"&&n>bal(i))return alert("Not enough stock. Balance: "+bal(i));F.set("tx",uid(),{i:i.id,k,n,note:V("s3"),d:day()});LG((k==="in"?"Stock In ":"Stock Out ")+n+" × "+i.name+(V("s3")?" ("+V("s3")+")":""));cl();save()}
+function asg(){if(!can("staff"))return alert("Staff/Admin login required");const A=S.items.filter(i=>i.type==="Fixed Asset");if(!A.length)return alert("No fixed assets yet");M(`<h3>👤 Assign Asset</h3><select id="g1">${opt(A.map(i=>({id:i.id,name:i.code+" · "+i.name})))}</select><input id="g2" placeholder="Assign to (name / section)"><button class="b p" onclick="sa()">Assign</button>`)}
+function sa(){const i=S.items.find(x=>x.id===V("g1"));F.upd("items",i.id,{to:V("g2")});LG("Assigned "+i.name+" to "+V("g2"));cl();save()}
+function nrq(){if(!me)return login();if(!S.items.length)return alert("No items");M(`<h3>📄 New Requisition</h3><select id="q1">${opt(S.items.map(i=>({id:i.id,name:i.name+" ("+bal(i)+" avail)"})))}</select><input id="q2" type="number" min="1" placeholder="Quantity"><input id="q3" placeholder="Purpose / work order"><button class="b p" onclick="sr()">Submit</button>`)}
+function sr(){if(+V("q2")<1)return;F.set("reqs",uid(),{i:V("q1"),n:+V("q2"),p:V("q3"),by:me.name,d:day(),s:"pending"});LG("Requisition: "+V("q2")+" × "+nm(V("q1")));cl();tab="rq";save()}
+function dec(id,ok){const r=S.reqs.find(x=>x.id===id),i=S.items.find(x=>x.id===r.i);if(ok){if(r.n>bal(i))return alert("Not enough stock");F.set("tx",uid(),{i:i.id,k:"out",n:r.n,note:"Req by "+r.by,d:day()})}F.upd("reqs",r.id,{s:ok?"issued":"rejected"});LG((ok?"Issued ":"Rejected ")+r.n+" × "+i.name);save()}
+function csv(){const t=[["Code","Name","Category","Type","Condition","Location","Balance","Unit","Threshold"],...S.items.map(i=>[i.code,i.name,i.cat,i.type,i.cond,i.loc,bal(i),i.unit,i.min])].map(r=>r.map(x=>'"'+String(x??"").replace(/"/g,'""')+'"').join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+t],{type:"text/csv"}));a.download="ibfpl-stock.csv";a.click()}
+draw();
+window.addEventListener("fbready",()=>{F=window.FB;if(!F.ok){$("#mn").innerHTML='<div class="c"><h3>Firebase setup দরকার</h3><p>ফাইলের শুরুতে firebaseConfig-এ নিজের Firebase তথ্য বসান।</p></div>';return}
+F.listen("items",a=>{S.items=a;draw()});F.listen("tx",a=>{S.tx=a;draw()});let un=[];
+F.onAuth(async u=>{un.forEach(f=>f());un=[];if(!u){me=null;S.users=[];S.reqs=[];S.log=[];draw();return}
+let d=await F.get("users",u.uid);if(!d){d={name:pend.name||u.email,des:pend.des||"",email:u.email,role:"requester"};await F.set("users",u.uid,d)}
+me={id:u.uid,...d};
+un.push(F.listen("users",a=>{S.users=a;const m=a.find(x=>x.id===u.uid);if(m)me={id:u.uid,...m};draw()}),F.listen("reqs",a=>{S.reqs=a;draw()}),F.listen("log",a=>{S.log=a.sort((x,y)=>(y.ts||0)-(x.ts||0));draw()}));draw()});draw()});
+</script></body></html>
