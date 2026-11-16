@@ -1,8 +1,8 @@
 {
  "id": "./",
- "name": "111-IBFPL",
- "short_name": "111-IBFPL",
- "description": "Petroleum Transmission Company PLC — India-Bangladesh Friendship Pipeline asset, inventory, parcel and staff hub",
+ "name": "111",
+ "short_name": "111",
+ "description": "111 Engineering Dashboard",
  "lang": "bn",
  "start_url": "./",
  "scope": "./",

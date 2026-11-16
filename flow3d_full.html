@@ -1,0 +1,481 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IBFPL 3D Flow</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#0d1b2e;color:#fff;font-family:Segoe UI,Arial,sans-serif;overflow:hidden}
+#c{position:fixed;inset:0}#c canvas{width:100%!important;height:100%!important;display:block}
+#hud{position:fixed;left:16px;top:14px;background:rgba(8,20,36,.82);border-left:5px solid #ffd43b;padding:8px 14px;border-radius:6px;max-width:60vw}
+#hud small{display:block;color:#7dd3fc;font-size:11px;letter-spacing:.08em}#hud b{font-size:18px}
+#card{position:fixed;right:16px;top:14px;width:min(34vw,420px);background:rgba(8,20,36,.88);border:1px solid #2c4a6b;border-top:4px solid #ffd43b;border-radius:8px;padding:10px 14px;transition:opacity .4s}
+#card h3{margin:0 0 6px;font-size:15px;color:#ffd43b}#card table{border-collapse:collapse;width:100%}#card td{padding:3px 4px;font-size:12.5px;vertical-align:top;border-top:1px solid #1d3550}#card td:first-child{color:#7dd3fc;white-space:nowrap;padding-right:10px;width:1%}
+#sub{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);width:min(92vw,1100px);text-align:center;font-size:clamp(15px,2.2vw,26px);line-height:1.35;text-shadow:0 2px 6px #000,0 0 3px #000}
+#sub span{background:rgba(0,0,0,.62);padding:3px 12px;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;align-items:center;padding:8px 12px;background:rgba(6,14,26,.92)}
+#bar button,#bar select{background:#16324f;color:#fff;border:1px solid #2c4a6b;border-radius:6px;padding:6px 12px;font-size:14px;cursor:pointer}
+#bar input{flex:1}#tm{font-size:12px;color:#9fb3c8;min-width:90px;text-align:right}
+body.video #bar,body.video #hint{display:none}body.video #sub{bottom:26px}
+#hint{position:fixed;left:16px;bottom:62px;font-size:11px;color:#9fb3c8}
+#brand{position:fixed;right:16px;bottom:62px;font-size:11px;color:#9fb3c8;text-align:right}body.video #brand{bottom:12px}
+</style></head><body>
+<div id="c"></div>
+<div id="hud"><small id="ed"></small><b id="loc"></b></div>
+<div id="card" style="opacity:0"></div>
+<div id="sub"><span id="st"></span></div>
+<div id="hint">Drag = rotate · Wheel = zoom · Space = play/pause</div><div id="brand">IBFPL Hub · 3D flow guide</div>
+<div id="bar"><button id="pp">▶ Play</button><select id="jump"></select><input id="sl" type="range" min="0" max="1000" value="0"><span id="tm"></span><button id="mu">🔊</button></div>
+<script src="three.min.js"></script>
+<script>
+const TL=[{"id": "intro", "start": 2.0, "end": 40.29, "loc": "IBFPL — India–Bangladesh Friendship Pipeline", "card": {"t": "IBFPL at a glance", "rows": [["Product", "HSD (diesel)"], ["Capacity", "1 MMTPA"], ["Pipe", "10.75\" (273 mm OD)"], ["Length", "≈132 km (India 5.245 + Bangladesh 127.069)"], ["Commissioned", "18 March 2023"], ["Funding", "Govt. of India grant (MEA) for the Bangladesh part"], ["EPCM", "Engineers India Limited (EIL)"]]}}, {"id": "route", "start": 41.19, "end": 77.32, "loc": "Route overview", "card": {"t": "Route", "rows": [["1", "SMT Siliguri (NRL) — dispatch"], ["2", "CTMS at the border — custody transfer"], ["3", "SV-01 Banglabandha … SV-05 Sonapukur"], ["4", "RT Parbatipur — receipt, Padma / Meghna / Jamuna tanks"], ["5", "Branch ≈7 km: Saidpur DT → Saidpur RT → PDB oil tank"]]}}, {"id": "pipe_facts", "start": 78.22, "end": 124.87, "loc": "Pipeline facts: size, flow, pressure", "card": {"t": "Pipeline data", "rows": [["Diameter", "10.75\" NB (273.05 mm OD)"], ["Length", "≈132 km"], ["Material", "Carbon steel line pipe (grade: design basis)"], ["Design pressure", "70 kg/cm²g"], ["Design temp", "0–45 °C buried, 0–65 °C above ground"], ["Flow", "1 MMTPA ≈ 114 t/h ≈ 136 m³/h (ρ 0.84)"], ["Line fill", "≈5,270 t (131.5 km)"], ["Cover depth", "Per design basis (not in supplied documents)"]]}}, {"id": "smt", "start": 125.77, "end": 161.41, "loc": "SMT Siliguri — tanks, pumps", "card": {"t": "SMT Siliguri", "rows": [["Inlet", "HSD tanks → header → MOV-1201"], ["Booster pumps", "010-PA-CF-101A/B (1W+1S), ≈132 m³/h, 71 m head (P&ID)"], ["Main line pumps", "010-PA-CF-102A/B (1W+1S)"], ["Sump", "030-TT-00-101 20 m³; sump pump 10 m³/h"], ["Rule", "Rotate duty/standby 60:40"]]}}, {"id": "smt_eq", "start": 162.31, "end": 196.74, "loc": "SMT — pump protection and what to do", "card": {"t": "Protection and response", "rows": [["PALL / PAHH", "Trip the pump (I-1201…1204, I-1401…1404)"], ["BSAH-1201/1401", "Flame detector → trip all pumps"], ["Any booster trip", "Trips main line pumps (I-1407)"], ["LALL-1202", "Trips sump pump (I-1209)"], ["Operator", "Do not restart before finding the cause; check strainer ΔP (>0.5 kg/cm²), suction valves, alarms"]]}}, {"id": "smt2", "start": 197.64, "end": 241.13, "loc": "SMT — pig launcher and ESD", "card": {"t": "ESD — when and what", "rows": [["Press ESD for", "Leak/fire at station; leak, tapping or fire on the line; fire downstream (after consulting CR); earthquake"], ["Result", "All pumps + sump pump trip; MOV-1201 (inlet) and MOV-1503 (outlet) close"], ["Test", "Station ESD tested once a year"]]}}, {"id": "ctms", "start": 242.03, "end": 270.11, "loc": "Border — custody transfer metering", "card": {"t": "CTMS at the border", "rows": [["Meters", "Coriolis FE-1601 / FE-1602 (Micro Motion ELITE per supplied manual)"], ["Transmitters", "TT-1601/1602, PT-1601/1602"], ["Computer", "FQY-1601 dual-stream common flow computer"], ["Display", "FI, FQ, TI, PI, corrected flow and mass"]]}}, {"id": "ctms_eq", "start": 271.01, "end": 315.44, "loc": "CTMS — valves, gas detectors, pigging", "card": {"t": "CTMS devices", "rows": [["SV-2001/2001A", "Closed in normal flow; open for pig passage only"], ["MOV-1601/1602", "Isolate meter runs (closed during pigging)"], ["Gas detectors", "GA/GE-1601A,B,C — 2oo3 voting, Honeywell XNX IR (HC/LEL)"], ["Pig signaller", "XXI-1601"], ["Alarm", "Gas alarm → SMCS / control room"], ["If gas alarm", "Confirm local reading, stop hot work, inform CR, isolate if confirmed"]]}}, {"id": "sv", "start": 316.34, "end": 358.49, "loc": "Underground line and SV stations", "card": {"t": "SV stations", "rows": [["Stations", "SV-01 Banglabandha · SV-02 Debnagar · SV-03 Kantamoni · SV-04 Chandipur · SV-05 Sonapukur"], ["Valves", "Rotork / AUMA MOV (remote from SCADA)"], ["Instruments", "Honeywell STG700 / STT750 transmitters"], ["RTU", "Husky 6049-E70 (ABB / Synergy), DNP3 over OFC"], ["Visit", "CRO visit: 2× per 6 months"]]}}, {"id": "sv_eq", "start": 359.39, "end": 397.5, "loc": "SV stations — checks and emergency action", "card": {"t": "SV emergency actions", "rows": [["Leak / pressure drop", "Close SVs both sides from SCADA; isolate section; monitor hourly"], ["Comms lost", "Operate valve locally (handwheel); report by phone"], ["Weekly (Sun)", "Test MCP and siren, record"], ["Yearly", "Remote operation test of every SV"], ["Seals", "TSV sealed open; record seal breaks"]]}}, {"id": "pig", "start": 398.4, "end": 425.32, "loc": "Pigging", "card": {"t": "Pigging (SOP)", "rows": [["Frequency", "Every 6 months (OISD-138)"], ["Launch / receive", "SMT launcher → RT receiver"], ["Confirm", "Pig signallers at each station"], ["Report", "Joint report within 7 working days, with photos"], ["Delay", "Needs Operations In-charge approval"]]}}, {"id": "branch", "start": 426.22, "end": 467.09, "loc": "Saidpur branch — 8-inch line", "card": {"t": "Saidpur branch", "rows": [["Size/class", "8\" · 600# · API 5L X60 PSL2 · 6.4 mm"], ["Length", "≈7 km (design doc: 5.98 km)"], ["Design", "98 kg/cm²g, −29 to 65 °C; ASME B31.4"], ["Flow", "30 / 60 / 175 m³/h (min/normal/max)"], ["Tap-off", "SV-05 Sonapukur — Saidpur DT"], ["Delivery", "Saidpur RT → PDB oil tank"]]}}, {"id": "rt1", "start": 467.99, "end": 507.37, "loc": "RT Parbatipur — arrival", "card": {"t": "Inlet instruments", "rows": [["SV-2005", "Station inlet isolation"], ["TT-1701", "Temperature (Honeywell STT750 type)"], ["PT-1702 / 1703", "Pressure (Honeywell STG700 / STT750)"], ["MOV-1701", "Rotork / AUMA actuator — field / PLC / SMCS"], ["Design", "70 kg/cm²g · 0–65 °C"]]}}, {"id": "rt2", "start": 508.27, "end": 553.68, "loc": "RT Parbatipur — pig receiver and sump", "card": {"t": "Pig receiver 030-MR-00-101", "rows": [["Maker", "VEE KAY Vikram & Co. LLP"], ["Design", "70 kg/cm²g · 0–65 °C"], ["Signallers", "XXI-1701 / 1702"], ["Relief", "PSV-1701 / 1702 / 1703"], ["Sump tank", "030-TT-00-102 · 20 m³ · 6.6 × 2.2 m"], ["Sump pump", "030-PA-SM-101 · 10 m³/h"], ["Sump level", "Keep 20–80 %"]]}}, {"id": "rt_eq", "start": 554.58, "end": 593.62, "loc": "Pig receiver — safe handling", "card": {"t": "Receiver — do / don't", "rows": [["Before opening", "Isolate · drain · vent · local gauge = 0"], ["Door", "Quick-opening closure — never stand in front"], ["Gas alarm", "Stop work · ventilate · inform CR"], ["Sludge", "Drum, record, dispose per procedure"], ["Sump tank", "Clean every 5 years — no vessel entry"]]}}, {"id": "rt3", "start": 594.52, "end": 633.57, "loc": "Basket filters and gas detectors", "card": {"t": "Filters 030-GN-BK-101A/B", "rows": [["Type", "Basket, 1 working + 1 standby, 40 µm"], ["Design", "70 kg/cm²g · 0–65 °C"], ["DPT", "DPT-1801 / 1802 · DPI / DPAH alarm"], ["Action", "DP high → change over → isolate, drain, clean basket"], ["Gas", "GA/GE-1801A,B,C — 2oo3 (Honeywell XNX IR)"]]}}, {"id": "rt4", "start": 634.47, "end": 681.01, "loc": "Pressure control valve and surge relief", "card": {"t": "Pressure protection", "rows": [["PCV", "PV-1801 (Pladon) + PIC-1803/1804"], ["SRV", "SRV-1801 (Daniel) set 12 kg/cm² → surge tanks"], ["PAHH 2oo3", "PT-1805/1806/1807 → close MOV-1703 (I-1701)"], ["ESD", "Closes MOV-1703 & MOV-1503; trips pumps at SMT"], ["Bypass", "MOV-1801 with inching; PT-1804 readable at the valve"]]}}, {"id": "rt5", "start": 681.91, "end": 734.77, "loc": "Flow metering and flow computer", "card": {"t": "Metering assembly", "rows": [["Meters", "FE-1801 / 1802 Coriolis — Endress+Hauser Promass 300"], ["Transmitters", "TT/TE-1801·1802, PT-1809·1810"], ["Computer", "FQY-1801 dual-stream common (E+H)"], ["Check", "Meter vs tank dip > 1 % → log & report"], ["Reconciliation", "24 h balance; > 20 kL diff → inform In-charge"]]}}, {"id": "rt6", "start": 735.67, "end": 764.64, "loc": "Tank farm — Padma, Meghna, Jamuna", "card": {"t": "Tank farm", "rows": [["Tanks", "Padma · Meghna · Jamuna (HSD)"], ["Control", "MOV per tank — field / PLC / SMCS"], ["Repeated in CR", "Level · high/low alarms · valve status"], ["Records", "Dip before/after each parcel; parcel register"]]}}, {"id": "sd1", "start": 765.54, "end": 795.96, "loc": "Saidpur RT — pig receiver", "card": {"t": "Pig receiver PR-1001", "rows": [["Maker", "Sheyang Xinlian Petro-Chemical Equipment"], ["Size", "14\" × 8\" concentric"], ["Design", "98 kg/cm²g · −29 to 65 °C"], ["Operating", "12–23 kg/cm²g · 22–30 °C"], ["Signallers", "XXI-1003, XXI-1015 + non-intrusive XXS-1002"]]}}, {"id": "sd2", "start": 796.86, "end": 839.8, "loc": "Saidpur — filters and custody metering", "card": {"t": "Filters + metering skid", "rows": [["Filters", "FS-1001A/B (Sparko) · 1W+1S · ΔP 0.1 / 0.5 kg/cm²"], ["Interlock", "PDIAHH → open standby valves, close dirty side (I-103/104)"], ["Meters", "MTR-A / MTR-B Coriolis (Emerson) · ΔP ≤ 0.5"], ["Computer", "FC-1001 metering station computer"], ["Gas", "Flammable gas detector near flow meters"]]}}, {"id": "sd3", "start": 840.7, "end": 885.28, "loc": "Saidpur — pressure regulation skid", "card": {"t": "PRS-1001", "rows": [["Runs", "Run-A / Run-B (1W+1S) — auto takeover"], ["Valves", "PCV-1001 / 1002 · slam-shut E/H-1020 / 1021"], ["Pressure", "Up 12–23 · down ≥ 6 kg/cm²g"], ["Slam-shut", "Fail-closed, ≈ 2 s (final value set by EPC)"], ["Interlocks", "I-110/111/106/112/113/114/116"]]}}, {"id": "sd4", "start": 886.18, "end": 916.09, "loc": "Saidpur — tank and drains", "card": {"t": "Tie-in + drains", "rows": [["Storage", "PDB oil tank manifold (new facility)"], ["CDT-1001", "1500 mm × 6000 mm · 11.5 m³ · underground"], ["Levels", "HHLL 1200 · HLL 1100 · LLL 500 · LLLL 400 mm"], ["Pumps", "SMP-1001 6 m³/h · BP-1001 3 m³/h, 5 kW"], ["Trip", "LALL trips sump pump (I-103)"]]}}, {"id": "cr1", "start": 916.99, "end": 947.49, "loc": "Control room — the nerve centre", "card": {"t": "Control room systems", "rows": [["SCADA", "ABB SCADAvantage v5.6.5"], ["PLC / ESD", "Honeywell Experion PKS Safety Manager"], ["PLC server", "MOXA"], ["PIDS", "Commptel Network (fibre intrusion)"], ["LDS", "Volume balance + pressure wave (APPS)"], ["Flow computers", "Endress+Hauser"]]}}, {"id": "cr2", "start": 948.39, "end": 986.38, "loc": "Control room — SCADA engineer's job", "card": {"t": "SCADA engineer", "rows": [["Watch", "Pressure · temperature · flow · valve status · tank level"], ["Alarms", "Acknowledge daily at 00:00; review log each shift"], ["Pressure drop", "Check neighbouring stations, flow in vs out, call field"], ["Logs", "Hourly SV pressures during PLT shutdown"], ["Report", "Daily status 07:00; monthly by the 5th"]]}}, {"id": "cr3", "start": 987.28, "end": 1033.4, "loc": "Control room — PIDS and leak detection", "card": {"t": "PIDS + LDS", "rows": [["PIDS", "Commptel — fibre sensing; Siliguri 0–5.3 km, Parbatipur 5.3–132 km"], ["PIDS alarm", "Beyond critical duration → inform ROU officer"], ["LDS", "Volume balance threshold → alarm, analyse, record"], ["Leak locate", "Chainage = L1 + (D − td)/2 (celerity ≈ 1 km/s)"], ["Action", "Confirm → isolate section → send patrol"]]}}, {"id": "cr4", "start": 1034.3, "end": 1070.56, "loc": "Control room — ESD PLC and flow computers", "card": {"t": "ESD PLC + flow computer", "rows": [["ESD PLC", "Honeywell Experion PKS Safety Manager"], ["Test", "Station ESD once a year; interlocks every 6 months"], ["Flow computer", "Both runs agree? flow · density · temp · pressure"], ["Each shift", "Lamp / annunciation test; fire panel; charger; UPS; DG status"]]}}, {"id": "pw1", "start": 1071.46, "end": 1112.92, "loc": "Power — grid, HT panel, transformer, LT panel", "card": {"t": "Grid to LT", "rows": [["Incomer", "11 kV PBS / NESCO tap-off"], ["HT panel", "VCB 630 A, relays"], ["Transformer", "11 / 0.415 kV · Dyn11 · ONAN / dry type"], ["LT panel", "Main MCCB 500 A, 415 V"], ["PFI", "190 kVAR (Energex)"], ["Check", "Silica gel blue / pink daily; temp; oil"]]}}, {"id": "pw2", "start": 1113.82, "end": 1153.95, "loc": "Power — generator and AMF panel", "card": {"t": "DG set 250 kVA", "rows": [["Make", "Sterling — Perkins engine, Stamford alternator"], ["AMF", "Auto start on mains failure; auto changeover"], ["Weekly", "Run test; check water in fuel tank; log"], ["Alarm", "Accept → reset → check fuel/coolant/battery → report"], ["PM", "As per OEM schedule"]]}}, {"id": "pw3", "start": 1154.85, "end": 1195.93, "loc": "Power — battery bank, charger and UPS", "card": {"t": "DC and UPS", "rows": [["Charger", "48 V / 450 A float-cum-boost, A & B (Modbus TCP)"], ["Battery", "AGM VRLA bank"], ["UPS", "Hitachi"], ["Stabilizer", "Numax 100 kVA"], ["Check", "Charger alarms: accept and reset · UPS alarm: MUTE only"]]}}, {"id": "pw4", "start": 1196.83, "end": 1227.53, "loc": "Power — HVAC and solar", "card": {"t": "HVAC and solar", "rows": [["HVAC", "Control room + substation, ≈65 kW load"], ["Fire dampers", "Open-feedback to PLC I/O; close on fire"], ["If cooling fails", "Shed non-essential load · call maintenance · monitor temperature"], ["Solar", "Supplements power; reduces DG hours"]]}}, {"id": "pw5", "start": 1228.43, "end": 1265.75, "loc": "Power — fire system and cathodic protection", "card": {"t": "Fire and CP", "rows": [["Detect", "Smoke / heat detectors · MCP · siren · gas/flame"], ["Suppress", "Clean agent (control + electrical rooms) · DCP / CO₂ extinguishers"], ["Weekly", "MCP + siren test (Sunday)"], ["Extinguishers", "Visual monthly · inspection 3-monthly · hydro-test 3 / 5 yr"], ["CP", "TRU-CP ICCP rectifier (Cristron); log potentials"]]}}, {"id": "em1", "start": 1266.65, "end": 1296.27, "loc": "Emergency — ESD", "card": {"t": "ESD steps", "rows": [["1", "Press ESD (field / panel / control room)"], ["2", "Pumps trip · MOV-1201, MOV-1503 close"], ["3", "Inform CR, In-charge, neighbouring stations"], ["4", "Isolate · make safe · assess"], ["5", "Restart only with In-charge approval"]]}}, {"id": "em2", "start": 1297.17, "end": 1331.95, "loc": "Emergency — pipeline leak", "card": {"t": "Leak response", "rows": [["Detect", "Pressure drop · LDS volume balance · PIDS · public report"], ["Confirm", "Check neighbouring stations, flows"], ["Act", "ESD → close SVs both sides → locate leak"], ["Field", "Patrol, cordon, no ignition, inform authorities"], ["Repair", "Depressurise per approved procedure; record volume"]]}}, {"id": "em3", "start": 1332.85, "end": 1373.87, "loc": "Emergency — fire", "card": {"t": "Fire response", "rows": [["Alarm", "2oo3 gas/flame · MCP · siren"], ["Control room", "ESD · alarm · call fire service 102 / 16163 · 999"], ["Team", "Muster point · headcount · small fires only with extinguisher"], ["Isolate", "Close nearest valves · stop pumps"], ["Never", "Open doors onto hydrocarbon fire; restart before clearance"]]}}, {"id": "em4", "start": 1374.77, "end": 1409.73, "loc": "Emergency — power failure", "card": {"t": "Power failure", "rows": [["Auto", "AMF starts DG · UPS/battery bridge the gap"], ["Check", "DG running and loaded · fuel level · battery V · UPS time"], ["Reduce", "Shed non-essential load (HVAC, lighting)"], ["DG fails", "Controlled shutdown · close valves · inform In-charge"], ["Daily", "Emergency lamps check"]]}}, {"id": "end", "start": 1410.63, "end": 1436.3, "loc": "IBFPL — one protected system", "card": {"t": "Remember", "rows": [["1", "Know every tag, interlock and alarm"], ["2", "Check on time — record — report"], ["3", "ESD first when life or plant is at risk"], ["4", "Never bypass a safety device"], ["5", "Stay alert, stay safe"]]}}];const SUB=[[2.0, 8.9, "Welcome to the complete 3D guide to the India–Bangladesh Friendship Pipeline, IBFPL."], [8.9, 15.97, "It carries high speed diesel, HSD, from Siliguri in India to Parbatipur in Bangladesh."], [15.97, 26.16, "The capacity is one million tonnes a year, through a 10.75 inch line of about 132 kilometres, commissioned on 18 March 2023."], [26.16, 40.29, "In this guide we follow the diesel from the first tank to the last, and we explain every station, device, control system, power system and emergency response along the way."], [41.19, 51.02, "The diesel is refined from crude oil at Numaligarh Refinery in Assam, and arrives at the N R L Siliguri Marketing Terminal."], [51.02, 63.57, "From there IBFPL crosses the international border, passes five sectionalizing valve stations, SV-01 to SV-05, and ends at the receipt terminal at Parbatipur."], [63.57, 71.32, "A branch of about seven kilometres leaves SV-05 for Saidpur, where it feeds the power plant tank."], [71.32, 77.32, "The whole line is monitored and controlled from the control rooms by SCADA."], [78.22, 80.23, "Now the pipeline itself."], [80.23, 96.26, "It is a 10.75 inch carbon steel line pipe, designed for 70 kilograms per square centimetre gauge, and for temperatures from zero to 45 degrees underground and zero to 65 degrees above ground."], [96.26, 107.42, "One million tonnes a year averages about 114 tonnes per hour, which is roughly 136 cubic metres per hour at a diesel density of 0.84."], [107.42, 114.47, "When full, the 131 kilometre line holds about 5,270 tonnes of diesel, its line fill."], [114.47, 124.87, "The pipe is buried under cover, with the exact depth set in the design basis, and it is cleaned by pigging every six months."], [125.77, 135.89, "At the Siliguri Marketing Terminal, diesel from the HSD storage tanks enters the inlet header through motor operated valve MOV-1201."], [135.89, 146.16, "Booster pumps, one working and one standby, lift the suction pressure and feed the main line pumps, again one working and one standby."], [146.16, 155.43, "Every pump is protected by low and high pressure trips and by flame detectors, and a sump tank collects drains and vents."], [155.43, 161.41, "Running equipment is rotated in a sixty to forty ratio so that wear is shared."], [162.31, 164.89, "Pump protection works as interlocks."], [164.89, 171.49, "Low suction pressure alarms, PALL, or high discharge pressure, PAHH, trip the affected pump."], [171.49, 178.23, "A flame detector high alarm trips all running pumps, and the sump pump trips on low low level."], [178.23, 181.96, "If any booster pump trips, all main line pumps trip."], [181.96, 196.74, "In an emergency, the operator does not restart a tripped pump until the cause is known: check suction valves, strainer differential pressure, and local panel alarms, then restart per the start-up procedure."], [197.64, 205.14, "Main line pumps raise the pressure and send the diesel through MOV-1503 into the pipeline."], [205.14, 210.8, "A pig launcher injects cleaning pigs into the line every six months."], [210.8, 222.55, "On emergency shutdown, E S D, all running pumps and the sump pump trip, and the station inlet valve MOV-1201 and outlet valve MOV-1503 close."], [222.55, 241.13, "The E S D push button is pressed for product leakage or fire at the station, for an abnormal event on the pipeline such as a leak, tapping or fire, and for fire at the downstream location after consulting the control rooms."], [242.03, 250.92, "At the international border, the Custody Transfer Metering System, C T M S, records every litre handed over from India to Bangladesh."], [250.92, 259.41, "Two Coriolis meters, one working and one standby, with temperature and pressure transmitters, feed a dual stream flow computer."], [259.41, 266.16, "The meter readings are the commercial record of the transfer, so their health is checked every shift."], [266.16, 270.11, "In normal operation all flow passes through the meter runs."], [271.01, 277.61, "Section valves SV-2001 and SV-2001A are tight shut off, full bore ball valves."], [277.61, 292.42, "They stay closed in normal operation so all flow goes through the meters, and they are opened fully only when a pig passes, while MOV-1601 and MOV-1602 are closed temporarily."], [292.42, 299.61, "During pigging, flow measurement is taken from the metering at the dispatch terminal."], [299.61, 315.44, "Infrared hydrocarbon gas detectors, Honeywell XNX type, sit near the meters; two out of three detectors must agree before the station reacts, and a pig signaller confirms the pig passage."], [316.34, 321.45, "From the border the pipeline runs underground to Parbatipur."], [321.45, 334.13, "Five sectionalizing valve stations divide it into sections: SV-01 Banglabandha, SV-02 Debnagar, SV-03 Kantamoni, SV-04 Chandipur and SV-05 Sonapukur."], [334.13, 349.37, "Each station has a motor operated valve, pressure and temperature transmitters, a Husky R T U with PLC, battery backup and fire alarm, and reports to SCADA over fibre optic cable."], [349.37, 358.49, "If a leak is confirmed, SCADA can close the valves on both sides of the affected section to limit the loss."], [359.39, 375.71, "At the stations, routine checks include hourly pressure readings in the logbook during a pipeline shutdown, weekly Sunday tests of manual call points and sirens, and a yearly remote operation test of every sectionalizing valve."], [375.71, 384.34, "If a leak or tapping is suspected, the control room isolates the section by closing the valves on both sides from SCADA."], [384.34, 393.55, "If communication is lost, the valves are operated locally with the actuator handwheel and the station reports by radio or phone."], [393.55, 397.5, "All station sectionalizing valves are kept sealed open."], [398.4, 400.68, "Pigging is done every six months."], [400.68, 406.82, "The pig is launched at Siliguri, pushed by the diesel itself, and received at Parbatipur."], [406.82, 413.38, "It cleans the pipe wall of wax and debris while signallers at each station confirm its passage."], [413.38, 419.53, "The report, signed by both ends, is submitted within seven working days with photographs."], [419.53, 425.32, "During pigging the leak detection system keeps watching pressure and volume balance."], [426.22, 442.86, "About fourteen kilometres before Parbatipur, at SV-05 Sonapukur, a tap off point called Saidpur D T sends diesel through an eight inch, 600 pound class branch to the Saidpur receipt terminal at the power plant."], [442.86, 450.22, "The branch is about seven kilometres in the field; the design document lists 5.98 kilometres."], [450.22, 467.09, "It is a piggable line of API 5L X60 pipe designed for 98 kilograms per square centimetre, controlled and monitored through SCADA, with custody metering, leak detection and cathodic protection at the receiving end."], [467.99, 476.15, "At the Receipt Terminal at Parbatipur, the pipeline enters through valve SV-2005."], [476.15, 490.35, "Temperature transmitter TT-1701 and pressure transmitters PT-1702 and PT-1703 monitor the incoming diesel, with local indicators beside them."], [490.35, 496.39, "Motor operated valve MOV-1701 opens toward the pig receiver."], [496.39, 507.37, "All motor operated valves can be operated from the field, from the PLC and from the SMCS in the control room."], [508.27, 511.35, "The pig receiver catches the pig."], [511.35, 518.53, "It is designed for 70 kilograms per square centimetre and zero to 65 degrees."], [518.53, 525.05, "Pig signallers XXI-1701 and XXI-1702 confirm that the pig has arrived."], [525.05, 544.82, "Thermal relief valves PSV-1701 and PSV-1702 protect the barrel, and drains and vents flow to the underground sump tank of 20 cubic metres, from where the sump pump, 10 cubic metres per hour, transfers the liquid."], [544.82, 553.68, "The sump pump trips on low low level, and sump level is kept between twenty and eighty percent."], [554.58, 558.55, "Safe handling of the pig receiver follows a strict order."], [558.55, 563.99, "First isolate the barrel and check that the pig has arrived on the signallers."], [563.99, 569.92, "Then drain, vent and depressurise, and read the local gauge to confirm zero pressure."], [569.92, 572.77, "Only then open the quick opening closure."], [572.77, 578.91, "Never stand in front of the door, remove the pig with the trolley, and clean the barrel."], [578.91, 587.2, "The sludge is collected for disposal, and the sump tank is cleaned every five years without anyone entering the vessel."], [587.2, 593.62, "A hydrocarbon gas alarm during this work means stop, ventilate, and inform the control room."], [594.52, 603.9, "Diesel then passes duty and standby basket filters, 40 micron, designed for 70 kilograms per square centimetre."], [603.9, 609.9, "Differential pressure transmitters DPT-1801 and DPT-1802 show clogging."], [609.9, 622.83, "When the pressure drop rises, the operator changes over to the standby filter before it becomes high, then isolates, drains, and cleans the dirty basket."], [622.83, 633.57, "Infrared hydrocarbon gas detectors around the filters alarm on a two out of three vote, and the alarm goes to the control room."], [634.47, 646.86, "Pressure control valve PV-1801 keeps the pressure to the storage tanks steady by throttling, with local and remote pressure controllers."], [646.86, 668.81, "If a pressure surge arrives, for example when a pump starts or a valve closes quickly upstream, the surge relief valve SRV-1801, set at 12 kilograms per square centimetre, opens to the surge tanks, and the pipeline surge pressure is limited."], [668.81, 681.01, "Three pressure transmitters, PT-1805, 1806 and 1807, vote two out of three: high high pressure closes MOV-1703 to protect the station."], [681.91, 692.45, "Dual Coriolis meters, FE-1801 and FE-1802, Endress Hauser Promass type, measure mass flow and density directly."], [692.45, 713.8, "With temperature transmitters TT-1801 and 1802 and pressure transmitters PT-1809 and 1810, they send their signals to the dual stream flow computer FQY-1801, which calculates the quantity received in standard volume and mass."], [713.8, 722.43, "The flow computer display shows flow rate, total, temperature, pressure and corrected flow."], [722.43, 734.77, "Meter accuracy is compared with the physical tank dip after each batch, and any variation over one percent is logged and reported."], [735.67, 747.2, "Finally motor operated valves route the diesel to the depot storage tanks of Parbatipur, Padma, Meghna and Jamuna, where each company's parcel is received and stored."], [747.2, 755.26, "Tank level, high and low alarms, and the open or closed status of every tank valve are repeated in the control room."], [755.26, 764.64, "Tank dips and custody records are taken before and after each parcel, and the tank valves are closed as soon as the parcel is complete."], [765.54, 766.65, "Now at Saidpur."], [766.65, 776.62, "The eight inch branch enters the receipt station through a skin type flow tee and motor operated valve MOV-1003 with an extended stem."], [776.62, 792.46, "The pig receiver PR-1001, 14 by 8 inch, designed for 98 kilograms per square centimetre, has intrusive and non-intrusive pig signallers and a quick opening door fitted with a mechanical and pressure safety device."], [792.46, 795.96, "Drains go to the underground closed drain tank."], [796.86, 814.51, "Basket filters FS-1001A and FS-1001B, one working and one standby, change over automatically on high differential pressure, with interlocks that open the standby valves before closing the dirty side."], [814.51, 821.25, "Clean pressure drop is 0.1 and dirty is 0.5 kilograms per square centimetre."], [821.25, 833.23, "The custody metering skid MS-1001 has two Coriolis meter runs, one working and one standby, with flow computer FC-1001, Emerson meters."], [833.23, 839.8, "Flammable gas detectors beside the meters send alarms to the control room."], [840.7, 850.39, "The pressure regulation skid has two runs, with control valves PCV-1001 and PCV-1002, one working and one standby."], [850.39, 856.1, "If the active run shuts down, the standby takes over automatically."], [856.1, 862.9, "Downstream pressure is held at a minimum of six kilograms per square centimetre."], [862.9, 885.28, "Slam shut valves E/H-1020 and E/H-1021, self contained electro-hydraulic valves with accumulators, close within about two seconds on high high pressure or low low pressure, and an ESD closes them before the storage inlet valve, protecting the power plant storage."], [886.18, 894.56, "Finally the diesel flows through the tie-in point and the storage inlet valve into the PDB oil tank at the Saidpur power plant."], [894.56, 906.97, "The closed drain tank, eleven and a half cubic metres, with its vertical submersible sump pump and booster pump, collects drains and vents and returns them to the line or to a road tanker."], [906.97, 912.59, "The sump pump starts manually on high level and trips automatically on low low level."], [912.59, 916.09, "A pressure switch high high closes the storage inlet."], [916.99, 919.54, "The control room is the nerve centre."], [919.54, 922.23, "A big overview wall shows the pipeline."], [922.23, 940.04, "Around it sit the operator desks: the ABB SCADAvantage SCADA, the Honeywell Experion safety PLC for emergency shutdown, the Commptel PIDS for pipeline intrusion detection, the leak detection system, and the flow computers, with a MOXA PLC server in the rack."], [940.04, 947.49, "The shift engineer watches the screens, acknowledges alarms, analyses them, and acts according to procedure."], [948.39, 958.45, "On the SCADA screens the engineer watches line pressures and temperatures, flow rate and totals, pump and valve status, tank levels and alarms."], [958.45, 966.96, "Alarms are acknowledged on the daily schedule at zero hundred hours, and the alarm and event log is reviewed every shift."], [966.96, 975.97, "When a pressure drop appears, the engineer checks the neighbouring stations, compares flow in and flow out, and calls the field."], [975.97, 981.03, "Trends of pressure, flow and temperature show problems before alarms do."], [981.03, 986.38, "Hourly pressure readings of the valve stations are logged during a shutdown."], [987.28, 998.47, "PIDS, the pipeline intrusion detection system, uses the fibre optic cable beside the pipeline to hear digging, vehicles and tapping activity along the route."], [998.47, 1009.81, "Siliguri covers the first five kilometres and Parbatipur covers the rest, and alarms beyond the critical duration must be reported to the right of way officer."], [1009.81, 1017.93, "The leak detection system compares the volume that enters with the volume that leaves, and watches pressure waves."], [1017.93, 1024.13, "If the volume balance crosses its threshold, an alarm is raised, analysed and recorded."], [1024.13, 1033.4, "A leak position can be estimated from the pressure wave arrival times, because the wave travels at about one kilometre per second."], [1034.3, 1046.43, "The Honeywell safety PLC runs the emergency shutdown and interlock logic: it trips pumps, closes valves and starts alarms according to the cause and effect matrix."], [1046.43, 1048.97, "Station ESD is tested once a year."], [1048.97, 1058.57, "The flow computers show flow rate, totals, density, temperature and pressure, and the engineer checks that both meter runs agree."], [1058.57, 1070.56, "Every shift the engineer also tests the lamps and the annunciation panel, and checks the fire alarm panel, the battery charger, the UPS and the generator status."], [1071.46, 1077.18, "Power arrives from the grid at 11 kilovolts through lightning arresters."], [1077.18, 1087.58, "The HT panel with its vacuum circuit breaker protects the line, and the 11 kilovolt to 415 volt transformer steps the voltage down."], [1087.58, 1099.82, "A 415 volt LT panel with a main breaker distributes it, and the power factor correction panel, 190 kilovolt amperes reactive, keeps the power factor high."], [1099.82, 1105.38, "The control room load alone is about 65 kilowatts of air conditioning."], [1105.38, 1112.92, "Transformer silica gel is checked every day: blue is good, pink means it has absorbed moisture."], [1113.82, 1128.23, "If grid power fails, the automatic mains failure panel starts the 250 kilovolt ampere diesel generator, a Sterling set with a Perkins engine and a Stamford alternator, and transfers the load."], [1128.23, 1134.26, "The generator is run once a week, and the fuel tank is checked weekly for water."], [1134.26, 1136.98, "A fuel consumption register is kept."], [1136.98, 1145.5, "If the AMF panel shows an alarm, accept and reset it, check fuel, coolant and battery, and report to maintenance."], [1145.5, 1153.95, "Never leave a failed generator unchecked: the batteries and UPS carry the critical load only for a limited time."], [1154.85, 1164.55, "Two float-cum-boost battery chargers, 48 volts and 450 amperes, keep the AGM battery bank charged and feed the DC loads."], [1164.55, 1176.2, "The Hitachi UPS supplies clean, uninterrupted power to SCADA, PLC and instruments, and a voltage stabilizer protects equipment from low voltage."], [1176.2, 1184.04, "The chargers provide Modbus data to SCADA: battery voltage and current, charger output, and load."], [1184.04, 1192.45, "Each shift, check the charger alarms and reset them, and on the UPS only press mute to silence an alarm."], [1192.45, 1195.93, "Battery voltage and temperature are logged."], [1196.83, 1204.8, "The HVAC system keeps the control room and the electrical room cool, and holds humidity down so electronics last."], [1204.8, 1206.99, "Its load is about 65 kilowatts."], [1206.99, 1210.38, "Fire dampers in the ducts close on a fire alarm."], [1210.38, 1222.02, "If cooling fails, temperatures rise quickly: open doors only if safe, reduce non-essential loads, and call maintenance, because overheated servers and chargers fail."], [1222.02, 1227.53, "A solar system supplies part of the energy and reduces generator running time."], [1228.43, 1239.55, "The fire alarm system has smoke and heat detectors, manual call points and sirens, and a clean agent gas system protects the control and electrical rooms."], [1239.55, 1244.24, "Manual call points and sirens are tested every Sunday and logged."], [1244.24, 1252.11, "Extinguishers are inspected monthly, and tested every three months for dry chemical and carbon dioxide types."], [1252.11, 1265.75, "The cathodic protection rectifier panel, a Cristron impressed current type, protects the buried pipe from corrosion; its potentials are logged and the rectifier output is checked regularly."], [1266.65, 1271.3, "In an emergency such as a leak or fire, press the ESD button."], [1271.3, 1280.81, "All running pumps and the sump pump trip, and the station inlet and outlet valves MOV-1201 and MOV-1503 close within seconds."], [1280.81, 1290.1, "Then inform the control room, the location in-charge, and the neighbouring stations, and keep all other stations on alert."], [1290.1, 1296.27, "Do not restart until the cause is cleared and the in-charge approves the restart."], [1297.17, 1304.96, "A leak shows up as a pressure drop, a volume imbalance on the leak detection system, and perhaps a PIDS alert."], [1304.96, 1317.71, "The control room confirms with the neighbouring stations, locates the leak from the pressure wave times, stops pumping with ESD, and closes the sectionalizing valves on both sides."], [1317.71, 1327.35, "The patrol is sent with the right of way team, the area is cordoned off, ignition sources are removed, and the authorities are informed."], [1327.35, 1331.95, "The leaking section is depressurised under an approved procedure."], [1332.85, 1340.7, "If a flame or gas detector votes two out of three, or a call point is pressed, the alarm sounds."], [1340.7, 1347.48, "The control room presses ESD, which trips pumps and closes inlet and outlet valves."], [1347.48, 1366.11, "The shift team starts the emergency plan: raise the alarm, call the fire service on 102 or 16163, and the national emergency number 999, evacuate to the muster point, and fight a small fire with extinguishers only if it is safe."], [1366.11, 1373.87, "Close the nearest valves, cool nearby equipment, and never open a door onto a hydrocarbon fire."], [1374.77, 1386.21, "On a grid power failure, lights flicker, the AMF panel starts the generator, and the UPS and battery bank keep SCADA, PLC and instruments alive during the gap."], [1386.21, 1396.35, "The engineer checks that the generator has started and taken load, watches the battery voltage and UPS time, and reduces non-essential loads."], [1396.35, 1405.78, "If the generator fails, the batteries give a limited time: start a controlled shutdown, close the valves, and inform the in-charge."], [1405.78, 1409.73, "Emergency lamps give light, and they are checked daily."], [1410.63, 1420.5, "From Siliguri to Parbatipur and Saidpur, every valve, transmitter, pump, detector and control system works together as one protected system."], [1420.5, 1426.78, "Safe operation depends on knowing each tag, each interlock, each alarm and each response."], [1426.78, 1434.46, "Check the equipment on time, record what you see, report every abnormality, and never bypass a safety device."], [1434.46, 1436.3, "Stay alert, and stay safe."]];const AUDIO="narration_full.mp3";const EDN="Full detail";
+</script><script>
+/* ===== IBFPL 3D flow — engine ===== */
+const Q=new URLSearchParams(location.search),VID=Q.has("video");
+const sc=new THREE.Scene();sc.background=new THREE.Color(0x0d1b2e);sc.fog=new THREE.Fog(0x0d1b2e,260,1700);
+const cam=new THREE.PerspectiveCamera(52,16/9,0.5,5000);
+const ren=new THREE.WebGLRenderer({antialias:!VID,preserveDrawingBuffer:true});ren.setPixelRatio(VID?1:Math.min(devicePixelRatio,2));
+document.getElementById("c").appendChild(ren.domElement);
+const hemi=new THREE.HemisphereLight(0xdbe9ff,0x253524,1.05);sc.add(hemi);
+const sun=new THREE.DirectionalLight(0xfff3d6,0.95);sun.position.set(80,140,60);sc.add(sun);
+const sun2=new THREE.DirectionalLight(0x88aaff,0.35);sun2.position.set(-80,60,-90);sc.add(sun2);
+const M={
+ steel:new THREE.MeshStandardMaterial({color:0x9db0c3,metalness:.55,roughness:.45}),
+ dark:new THREE.MeshStandardMaterial({color:0x33414f,metalness:.4,roughness:.6}),
+ pipe:new THREE.MeshStandardMaterial({color:0xc6d4e2,metalness:.3,roughness:.35,transparent:true,opacity:.30,depthWrite:false}),
+ oil:new THREE.MeshStandardMaterial({color:0xffb000,emissive:0x7a4a00,emissiveIntensity:.9,roughness:.3}),
+ tank:new THREE.MeshStandardMaterial({color:0xe3eaf2,metalness:.2,roughness:.5,transparent:true,opacity:.42,depthWrite:false,side:THREE.DoubleSide}),
+ blue:new THREE.MeshStandardMaterial({color:0x2c7be5,metalness:.4,roughness:.4}),
+ red:new THREE.MeshStandardMaterial({color:0xe03131,metalness:.3,roughness:.5,emissive:0x330000}),
+ yellow:new THREE.MeshStandardMaterial({color:0xffd43b,metalness:.2,roughness:.5,emissive:0x332a00}),
+ green:new THREE.MeshStandardMaterial({color:0x37b24d,emissive:0x0a3d14,roughness:.5}),
+ white:new THREE.MeshStandardMaterial({color:0xf1f3f5,roughness:.6}),
+ conc:new THREE.MeshStandardMaterial({color:0x6b7280,roughness:.9}),
+ glass:new THREE.MeshStandardMaterial({color:0x7dd3fc,emissive:0x0a3a55,roughness:.1,metalness:.2})
+};
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(6000,3000),new THREE.MeshStandardMaterial({color:0x1d3326,roughness:1,transparent:true,opacity:.78}));
+ground.rotation.x=-Math.PI/2;ground.position.set(700,-.05,-150);sc.add(ground);
+const grid=new THREE.GridHelper(6000,300,0x2d4a3a,0x24402f);grid.position.set(700,0,-150);grid.scale.z=.5;sc.add(grid);
+const V=(x,y,z)=>new THREE.Vector3(x,y,z),clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),ramp=(t,a,b)=>clamp((t-a)/(b-a)),lerp=(a,b,u)=>a+(b-a)*u,sm=u=>u*u*(3-2*u);
+const ADD=o=>(sc.add(o),o);
+function mesh(g,m,x=0,y=0,z=0){const o=new THREE.Mesh(g,m);o.position.set(x,y,z);return ADD(o)}
+function box(w,h,d,m,x,y,z){return mesh(new THREE.BoxGeometry(w,h,d),m,x,y,z)}
+function cylY(r,h,m,x,y,z,seg=20){return mesh(new THREE.CylinderGeometry(r,r,h,seg),m,x,y,z)}
+function cylX(r,h,m,x,y,z,seg=20){const o=mesh(new THREE.CylinderGeometry(r,r,h,seg),m,x,y,z);o.rotation.z=Math.PI/2;return o}
+function cylZ(r,h,m,x,y,z,seg=20){const o=mesh(new THREE.CylinderGeometry(r,r,h,seg),m,x,y,z);o.rotation.x=Math.PI/2;return o}
+/* ---------- timeline ---------- */
+const segIdx={};TL.forEach((s,i)=>segIdx[s.id]=i);
+const S0=id=>TL[segIdx[id]].start,S1=id=>TL[segIdx[id]].end,TOTAL=TL[TL.length-1].end+2.5;
+const act=(ids,t,pad=.4)=>{for(const id of ids){const s=TL[segIdx[id]];if(s&&t>=s.start-pad&&t<=s.end+pad)return true}return false};
+/* ---------- labels ---------- */
+const LABS=[];
+function lab(text,x,y,z,segs,w=9,col="#5ee1ff"){const c=document.createElement("canvas");c.width=512;c.height=128;const g=c.getContext("2d");
+ g.fillStyle="rgba(8,20,36,.88)";g.strokeStyle=col;g.lineWidth=6;const r=22;g.beginPath();g.moveTo(r,4);g.lineTo(508-r,4);g.quadraticCurveTo(508,4,508,r);g.lineTo(508,124-r);g.quadraticCurveTo(508,124,508-r,124);g.lineTo(r,124);g.quadraticCurveTo(4,124,4,124-r);g.lineTo(4,r);g.quadraticCurveTo(4,4,r,4);g.fill();g.stroke();
+ g.fillStyle="#fff";g.textAlign="center";g.textBaseline="middle";let fs=62;g.font=`bold ${fs}px Arial`;while(g.measureText(text).width>470&&fs>24){fs-=3;g.font=`bold ${fs}px Arial`}g.fillText(text,256,66);
+ const tx=new THREE.CanvasTexture(c);const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,depthTest:false,opacity:0}));sp.scale.set(w,w/4,1);sp.position.set(x,y,z);sp.renderOrder=10;ADD(sp);LABS.push({sp,segs});return sp}
+/* ---------- pipes with oil ---------- */
+const PIPES=[];
+function segMesh(a,b,r,m){const d=b.clone().sub(a),L=d.length(),g=new THREE.CylinderGeometry(r,r,L,10);g.translate(0,L/2,0);const o=new THREE.Mesh(g,m);o.position.copy(a);o.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());o.userData.L=L;return o}
+function pipe(pts,fill,r=.45,vis=true){pts=pts.map(p=>p.isVector3?p:V(...p));const P={pts,oil:[],len:[],tot:0,fill:fill||(()=>1)};
+ for(let i=0;i<pts.length-1;i++){const gl=segMesh(pts[i],pts[i+1],r,M.pipe);ADD(gl);const og=segMesh(pts[i],pts[i+1],r*.78,M.oil);ADD(og);P.oil.push(og);P.len.push(gl.userData.L);P.tot+=gl.userData.L;
+  if(i>0){ADD(new THREE.Mesh(new THREE.SphereGeometry(r,10,8),M.pipe)).position.copy(pts[i])}}
+ PIPES.push(P);return P}
+function atPipe(P,d){d=clamp(d,0,P.tot);for(let i=0;i<P.len.length;i++){if(d<=P.len[i]+1e-6||i==P.len.length-1){const u=P.len[i]?d/P.len[i]:0;return P.pts[i].clone().lerp(P.pts[i+1],clamp(u))}d-=P.len[i]}return P.pts[P.pts.length-1].clone()}
+/* flowing packets */
+const NPK=1400,pk=new THREE.InstancedMesh(new THREE.SphereGeometry(.34,6,5),new THREE.MeshBasicMaterial({color:0xfff2a8}),NPK);pk.frustumCulled=false;ADD(pk);
+const dum=new THREE.Object3D();
+function updatePipes(t){let n=0;for(const P of PIPES){const f=clamp(P.fill(t));let acc=0;
+  for(let i=0;i<P.oil.length;i++){const o=P.oil[i],fi=clamp((f*P.tot-acc)/P.len[i]);o.scale.y=Math.max(fi,.0001);o.visible=fi>0.001;acc+=P.len[i]}
+  const cnt=Math.floor(P.tot/9);if(f>0.02)for(let k=0;k<cnt&&n<NPK;k++){const d=((t*7+k*9)%P.tot);if(d<=f*P.tot){const p=atPipe(P,d);dum.position.copy(p);dum.updateMatrix();pk.setMatrixAt(n++,dum.matrix)}}}
+ for(let i=n;i<NPK;i++){dum.position.set(0,-999,0);dum.updateMatrix();pk.setMatrixAt(i,dum.matrix)}pk.instanceMatrix.needsUpdate=true}
+/* ---------- rings / highlights ---------- */
+const RINGS=[];
+function ring(x,y,z,r,segs,col=0xffe066){const o=new THREE.Mesh(new THREE.TorusGeometry(r,.12,8,40),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0}));o.position.set(x,y,z);o.rotation.x=Math.PI/2;ADD(o);RINGS.push({o,segs,r});return o}
+/* ---------- valves ---------- */
+const VALVES=[];
+function valve(tag,x,y,z,kind,open,segs,opt={}){ // open: fn(t)->0..1
+ const g=new THREE.Group();g.position.set(x,y,z);ADD(g);const dir=opt.axis||"x";
+ const body=new THREE.Mesh(new THREE.SphereGeometry(.95,14,10),M.blue);g.add(body);
+ const fl1=new THREE.Mesh(new THREE.CylinderGeometry(.75,.75,.25,14),M.steel),fl2=fl1.clone();fl1.rotation.z=fl2.rotation.z=Math.PI/2;fl1.position.x=-1;fl2.position.x=1;g.add(fl1,fl2);
+ const stem=new THREE.Mesh(new THREE.CylinderGeometry(.16,.16,1.4,8),M.steel);stem.position.y=1.5;g.add(stem);
+ let act=null,lamp=null,wheel=null;
+ if(kind!=="plain"){act=new THREE.Mesh(new THREE.BoxGeometry(1.5,1.2,1.5),kind==="pcv"?M.dark:M.white);act.position.y=2.4;g.add(act);
+  if(kind==="pcv"){const dm=new THREE.Mesh(new THREE.SphereGeometry(1.15,14,8,0,Math.PI*2,0,Math.PI/2),M.blue);dm.position.y=2.9;g.add(dm)}
+  else{wheel=new THREE.Mesh(new THREE.TorusGeometry(.55,.09,6,14),M.red);wheel.position.y=3.1;wheel.rotation.x=Math.PI/2;g.add(wheel)}
+  lamp=new THREE.Mesh(new THREE.SphereGeometry(.28,10,8),new THREE.MeshBasicMaterial({color:0x37b24d}));lamp.position.set(0,2.4,.95);g.add(lamp)}
+ if(opt.rot)g.rotation.y=opt.rot;
+ const V_={g,open,wheel,lamp,stem,segs,tag};VALVES.push(V_);
+ if(tag)lab(tag,x,y+5.2,z,segs,opt.w||6.2);
+ ring(x,y+.2,z,2.1,segs);return V_}
+function updValves(t){for(const v of VALVES){const o=clamp(v.open(t));if(v.lamp){v.lamp.material.color.setHex(o>0.95?0x37b24d:o<0.05?0xe03131:0xffa94d)}
+  if(v.wheel)v.wheel.rotation.z=o*6.28*2;v.stem.position.y=1.5+o*.5}}
+/* ---------- transmitters / detectors / misc ---------- */
+const BLINK=[];
+function tx(tag,x,y,z,segs,px,col){ // transmitter on a stem rising from pipe point (x,py,z)
+ const m=col==="g"?M.green:col==="r"?M.red:M.blue;cylY(.18,y-(px??1.2),M.dark,x,(y+(px??1.2))/2,z,6);const h=cylY(.45,.9,m,x,y+.2,z,12);const s=mesh(new THREE.SphereGeometry(.5,12,8),M.white,x,y+.75,z);ring(x,y+.4,z,1.2,segs);lab(tag,x,y+3,z,segs,tag.length>9?6.8:5.2);return h}
+function gasDet(x,y,z,segs){cylY(.12,y,M.dark,x,y/2,z,6);box(.9,.9,.7,M.yellow,x,y+.4,z);const led=mesh(new THREE.SphereGeometry(.2,8,6),new THREE.MeshBasicMaterial({color:0x37b24d}),x,y+.4,z+.4);BLINK.push(led);
+ const dome=mesh(new THREE.SphereGeometry(9,18,12),new THREE.MeshBasicMaterial({color:0xffd43b,transparent:true,opacity:0,wireframe:true,depthWrite:false}),x,y,z);RINGS.push({o:dome,segs,dome:true});return dome}
+function gasSet(x,z,segs,tag="GA/GE-A,B,C (2oo3)"){gasDet(x,5,z-5,segs);gasDet(x+5,5,z,segs);gasDet(x,5,z+5,segs);lab(tag,x+2,9.5,z,segs,9,"#ffd43b")}
+function pig(){const g=new THREE.Group();const b=new THREE.Mesh(new THREE.CylinderGeometry(.32,.32,1.8,10),new THREE.MeshStandardMaterial({color:0xff6b6b,emissive:0x550000}));b.rotation.z=Math.PI/2;g.add(b);
+ for(const dx of[-.9,.9]){const d=new THREE.Mesh(new THREE.CylinderGeometry(.43,.43,.12,12),M.yellow);d.rotation.z=Math.PI/2;d.position.x=dx;g.add(d)}
+ const cn=new THREE.Mesh(new THREE.ConeGeometry(.32,.7,10),M.red);cn.rotation.z=-Math.PI/2;cn.position.x=1.2;g.add(cn);g.scale.setScalar(1.6);ADD(g);return g}
+function tankV(x,z,r,h,lvl,segs,name,col){cylY(r,h,M.tank,x,h/2,z,28);const top=mesh(new THREE.ConeGeometry(r,2.2,28),M.tank,x,h+1.1,z);const liq=new THREE.Mesh(new THREE.CylinderGeometry(r*.96,r*.96,h,28),new THREE.MeshStandardMaterial({color:col||0xffb000,emissive:0x5a3500,transparent:true,opacity:.85}));liq.geometry.translate(0,h/2,0);liq.position.set(x,.1,z);ADD(liq);
+ for(let i=0;i<3;i++)mesh(new THREE.TorusGeometry(r+.05,.12,6,36),M.steel,x,h*(i+1)/4,z).rotation.x=Math.PI/2;
+ const T={liq,h,lvl,x,z};TANKS.push(T);if(name)lab(name,x,h+6,z,segs,r>6?13:10);return T}
+const TANKS=[];function updTanks(t){for(const T of TANKS)T.liq.scale.y=Math.max(clamp(T.lvl(t)),.02)}
+const PUMPS=[];
+function pumpU(x,z,run,segs,tag){box(5.5,.6,3.4,M.conc,x,.3,z);const mo=cylX(1.1,3,M.blue,x-2,1.5,z,16);const ca=cylZ(1.2,1.8,M.steel,x+.9,1.5,z,16);const fan=mesh(new THREE.BoxGeometry(.2,1.9,.3),M.red,x+.9,1.5,z+1.0);
+ const led=mesh(new THREE.SphereGeometry(.25,8,6),new THREE.MeshBasicMaterial({color:0x37b24d}),x-2,2.9,z);PUMPS.push({fan,run,led});ring(x,1.5,z,3.4,segs);if(tag)lab(tag,x,5.5,z,segs,8.5);return{x,z}}
+function updPumps(t){for(const p of PUMPS){const r=clamp(p.run(t));p.fan.rotation.z=(p.fan.rotation.z+r*.5);p.led.material.color.setHex(r>.5?0x37b24d:0x868e96)}}
+function filterV(x,z,segs,tag,clog){const v=cylY(1.6,4.2,M.tank,x,2.1,z,20);mesh(new THREE.SphereGeometry(1.6,16,8,0,Math.PI*2,0,Math.PI/2),M.tank,x,4.2,z);const bk=cylY(1,3.2,new THREE.MeshStandardMaterial({color:0xadb5bd,wireframe:true}),x,2.2,z,12);
+ const lid=cylY(1.75,.25,M.steel,x,4.35,z,20);const dpt=mesh(new THREE.SphereGeometry(.45,10,8),new THREE.MeshBasicMaterial({color:0x37b24d}),x+1.9,3.2,z);FILT.push({dpt,clog});lab(tag,x,8.2,z,segs,6.8);ring(x,2,z,2.6,segs);return v}
+const FILT=[];function updFilt(t){for(const f of FILT){const c=clamp(f.clog(t));f.dpt.material.color.setRGB(.2+c*.8,.7-c*.5,.3-c*.2)}}
+function coriolis(x,z,segs,tag,flowOn){box(3.4,1.6,1.8,M.dark,x,1.6,z);const t1=mesh(new THREE.TorusGeometry(.8,.12,8,24,Math.PI),M.steel,x,2.4,z-.4),t2=mesh(new THREE.TorusGeometry(.8,.12,8,24,Math.PI),M.steel,x,2.4,z+.4);t1.rotation.z=t2.rotation.z=0;
+ mesh(new THREE.SphereGeometry(.5,10,8),M.blue,x,3.6,z);lab(tag,x,6.4,z,segs,6.4);ring(x,1.7,z,2.6,segs)}
+function building(x,z,w,d,h,segs,name){box(w,h,d,M.conc,x,h/2,z);box(w+.6,.5,d+.6,M.dark,x,h+.25,z);for(let i=-1;i<=1;i+=2)box(w*.28,h*.35,.15,M.glass,x+i*w*.25,h*.55,z+d/2+.05);if(name)lab(name,x,h+5,z,segs,11)}
+function esdBtn(x,z,segs){cylY(.15,3,M.dark,x,1.5,z,6);box(1.3,1.3,.8,M.yellow,x,3.1,z);const b=mesh(new THREE.SphereGeometry(.5,12,8),M.red,x,3.1,z+.5);RINGS.push({o:b,segs,pulse:true});lab("ESD",x,6,z,segs,4.6,"#ff6b6b")}
+function sump(x,z,segs,tankName,lvl){const s=cylX(2.2,6.6,M.tank,x,.8,z,20);const l=new THREE.Mesh(new THREE.CylinderGeometry(2.05,2.05,6.4,20),new THREE.MeshStandardMaterial({color:0xffb000,transparent:true,opacity:.8,emissive:0x5a3500}));l.rotation.z=Math.PI/2;l.position.set(x,.2,z);ADD(l);
+ SUMPS.push({l,lvl});lab(tankName,x,5,z,segs,10)}
+const SUMPS=[];function updSumps(t){for(const s of SUMPS){const v=clamp(s.lvl(t));s.l.scale.set(1,Math.max(v,.05),Math.max(v,.05))}}
+/* ---------- pig keyframes ---------- */
+function pathPos(keys,t){if(t<=keys[0][0])return keys[0][1];for(let i=1;i<keys.length;i++)if(t<=keys[i][0]){const u=(t-keys[i-1][0])/(keys[i][0]-keys[i-1][0]);return keys[i-1][1].clone().lerp(keys[i][1],sm(clamp(u)))}return keys[keys.length-1][1]}
+
+/* ===== world 1: pipeline stations ===== */
+const YP=2.0,UG=-0.9;
+const SMT=[0,0],CT=[300,0],SVX=[470,620,770,920,1070],RTO=[1360,0],SDO=[1110,-380];
+const SVN=["SV-01 Banglabandha","SV-02 Debnagar","SV-03 Kantamoni","SV-04 Chandipur","SV-05 Sonapukur"];
+const P3=(x,y,z)=>V(x,y,z);
+/* helper to build a station pipe at height YP from list of [x,z] pairs relative to origin */
+function sp(o,pts,fill,r){return pipe(pts.map(p=>V(o[0]+p[0],p.length>2?p[2]:YP,o[1]+p[1])),fill,r)}
+const F_ALWAYS=()=>1;
+/* ------------- SMT SILIGURI ------------- */
+const f_smt1=t=>ramp(t,S0("smt")+1,S0("smt")+9),f_smt2=t=>ramp(t,S0("smt2")+1,S0("smt2")+8);
+(function(){const o=SMT;
+ const T1=tankV(-46,-16,8.5,11,t=>.8-.12*ramp(t,S0("smt"),S1("smt2")),["smt","smt_eq","pipe_facts"],"HSD Storage Tank (NRL)"),T2=tankV(-46,16,8.5,11,t=>.7-.1*ramp(t,S0("smt"),S1("smt2")),["smt","smt_eq"],"HSD Storage Tank");
+ sp(o,[[-37,-16],[-33,-16],[-33,0],[-33,16],[-37,16]],f_smt1);sp(o,[[-33,0],[-14,0]],f_smt1);
+ valve("MOV-1201",o[0]-26,YP,o[1],"mov",t=>S0("em1")>t?1:t>S0("em1")+10&&t<S1("em1")?0:1,["smt","smt_eq","em1"],{w:7});
+ sp(o,[[-14,0],[-14,6],[-4,6]],f_smt1);sp(o,[[-14,0],[-14,-6],[-4,-6]],f_smt1);sp(o,[[3,6],[8,6],[8,0],[8,-6],[3,-6]],f_smt2);sp(o,[[8,0],[12,0],[12,6],[18,6]],f_smt2);sp(o,[[12,0],[12,-6],[18,-6]],f_smt2);
+ pumpU(-8,6,t=>1,["smt","smt_eq"],"Booster Pump 101A (W)");pumpU(-8,-6,t=>0,["smt","smt_eq"],"Booster Pump 101B (SB)");
+ pumpU(22,6,t=>t<S0("em1")+10||t>S1("em1")?1:0,["smt","smt2","smt_eq"],"Main Line Pump 102A (W)");pumpU(22,-6,t=>0,["smt","smt2","smt_eq"],"Main Line Pump 102B (SB)");
+ sp(o,[[28,6],[32,6],[32,0],[32,-6],[28,-6]],f_smt2);sp(o,[[32,0],[40,0]],f_smt2);
+ valve("MOV-1503",o[0]+38,YP,o[1],"mov",t=>t>S0("em1")+10&&t<S1("em1")?0:1,["smt2","smt_eq","em1"],{w:7});
+ sp(o,[[40,0],[46,0]],f_smt2);
+ // pig launcher
+ cylX(1.5,16,M.steel,o[0]+54,YP,o[1],24);mesh(new THREE.ConeGeometry(1.5,4,18),M.steel,o[0]+44,YP,o[1]).rotation.z=Math.PI/2;
+ cylY(.3,3,M.dark,o[0]+60,YP+2.4,o[1],8);mesh(new THREE.CylinderGeometry(1.7,1.7,.4,20),M.yellow,o[0]+62.2,YP,o[1]).rotation.z=Math.PI/2;
+ lab("Pig Launcher",o[0]+56,YP+6,o[1],["smt2","smt_eq"],10);
+ sp(o,[[62,0],[70,0],[74,0,UG]].map(p=>p),f_smt2,.45);
+ sump(14,22,["smt","smt_eq"],"Sump Tank 030-TT",t=>.35+.1*Math.sin(t*.3));
+ building(8,-30,20,12,7,["smt","smt_eq"],"Control Room / SMCS");esdBtn(-20,12,["em1"]);gasSet(14,-14,["smt","smt_eq"],"Flame/Gas detectors");
+ lab("Siliguri Marketing Terminal (NRL, India)",o[0]+10,24,o[1]+0,["smt","smt_eq","smt2"],22,"#ffd43b");
+})();
+/* ------------- connectors: SMT -> CTMS -> SV chain ------------- */
+const F_C1=t=>ramp(t,S0("smt2")+6,S0("ctms")+1);
+pipe([V(70,YP,0),V(76,UG,0),V(CT[0]-24,UG,0),V(CT[0]-16,YP,0)],F_C1);
+/* ------------- CTMS BORDER ------------- */
+const f_ct=t=>ramp(t,S0("ctms")+1,S0("ctms")+9);
+(function(){const o=CT;
+ sp(o,[[-16,0],[-8,0],[0,0],[6,0],[10,0],[10,7],[14,7],[34,7],[40,7],[40,0],[48,0]],f_ct);sp(o,[[10,0],[10,-7],[14,-7],[34,-7],[40,-7],[40,0]],f_ct);
+ valve("SV-2001",o[0]-10,YP,o[1],"mov",t=>1,["ctms","ctms_eq"]);valve("SV-2001A",o[0]-3,YP,o[1],"mov",t=>1,["ctms","ctms_eq"],{w:7});
+ valve("MOV-1601",o[0]+14,YP,o[1]+7,"mov",t=>1,["ctms","ctms_eq"]);valve("MOV-1602",o[0]+32,YP,o[1]+7,"mov",t=>1,["ctms_eq"]);
+ coriolis(o[0]+23,o[1]+7,["ctms","ctms_eq"],"FE-1601 Coriolis");coriolis(o[0]+23,o[1]-7,["ctms","ctms_eq"],"FE-1602 Coriolis");
+ tx("TT-1601",o[0]+19,6,o[1]+10,["ctms","ctms_eq"],YP);tx("PT-1601",o[0]+27,6,o[1]+10,["ctms","ctms_eq"],YP);
+ box(5,4,3,M.dark,o[0]+23,2,o[1]+18);const scr=mesh(new THREE.PlaneGeometry(4,2.4),M.glass,o[0]+23,2.4,o[1]+19.6);lab("FQY-1601 Flow Computer",o[0]+23,8,o[1]+18,["ctms","ctms_eq"],12);
+ gasSet(o[0]+23,o[1]-16,["ctms","ctms_eq"],"GA/GE-1601A,B,C (2oo3)");
+ // border signs
+ for(const [s,c,z] of [[-1,0xff9933,"INDIA"],[1,0x006a4e,"BANGLADESH"]]){const b=box(.5,6,10,new THREE.MeshStandardMaterial({color:c}),o[0]-34+(s>0?4:-4),3,o[1]-14);lab(z,o[0]-34+(s>0?4:-4),9,o[1]-14,["ctms","ctms_eq","route"],8,"#ffffff")}
+ box(2,1,40,M.yellow,o[0]-34,.5,o[1]);lab("International Border (TP-9 / TP-10)",o[0]-34,12,o[1]+0,["ctms","ctms_eq"],16,"#ffd43b");
+ lab("Custody Transfer Metering (CTMS)",o[0]+23,13,o[1],["ctms","ctms_eq"],20,"#ffd43b");
+ // pig signaller on main line
+ cylY(.5,2.4,M.green,o[0]+48,YP+2,o[1],10);lab("XXI-1601 Pig signaller",o[0]+48,YP+6,o[1],["ctms_eq","pig"],9);
+})();
+/* ------------- long underground line to SV chain ------------- */
+const svFill=i=>t=>ramp(t,S0("sv")+i*(S1("sv")-S0("sv"))/5-1,S0("sv")+(i+1)*(S1("sv")-S0("sv"))/5+1);
+let prevEnd=[CT[0]+48,0];
+(function(){
+ // connector CTMS -> SV1
+ pipe([V(CT[0]+48,YP,0),V(CT[0]+54,UG,0),V(SVX[0]-24,UG,0),V(SVX[0]-16,YP,0)],t=>ramp(t,S0("ctms")+7,S0("sv")+5));
+ for(let i=0;i<5;i++){const x=SVX[i],segs=["sv","sv_eq"];
+  pipe([V(x-16,YP,0),V(x+16,YP,0)],t=>ramp(t,S0("sv")+i*3,S0("sv")+i*3+5));
+  valve("MOV (SV-0"+(i+1)+")",x-6,YP,0,"mov",t=>1,segs,{w:8});tx("PT",x+4,6,0,segs,YP);
+  cylY(.5,2.4,M.green,x+11,YP+2,0,10);
+  box(4,6,3,M.dark,x+2,3,12);box(1,.2,6,M.steel,x+2,6.3,12);lab("RTU + PLC cabinet",x+2,10,12,segs,10);
+  box(14,.4,6,M.blue,x-6,5.2,14);lab(SVN[i],x,16,4,segs,15,"#ffd43b");
+  if(i<4)pipe([V(x+16,YP,0),V(x+24,UG,0),V(SVX[i+1]-24,UG,0),V(SVX[i+1]-16,YP,0)],t=>ramp(t,S0("sv")+i*3+3,S0("sv")+i*3+8));
+ }
+ // soil cutaway markers for "underground" depth
+ for(let x=330;x<1070;x+=40)box(1,6,1,M.conc,x,-3,-3.5).material=M.dark;
+ lab("Pipeline buried underground (cover depth: confirm from design basis)",700,6,-5,["sv","sv_eq","pipe_facts"],34,"#7dd3fc");
+ // tap-off to Saidpur branch at SV5
+ pipe([V(SVX[4]+16,YP,0),V(SVX[4]+24,UG,0),V(RTO[0]-24,UG,0),V(RTO[0]-16,YP,0)],t=>ramp(t,S0("branch")-2,S0("rt1")+1));
+ const br=pipe([V(SVX[4]+4,YP,0),V(SVX[4]+4,UG,-10),V(SVX[4]+4,UG,SDO[1]),V(SDO[0]-24,UG,SDO[1]),V(SDO[0]-16,YP,SDO[1])],t=>ramp(t,S0("branch")+4,S0("branch")+16));
+ box(3,3,3,M.red,SVX[4]+4,YP,-6);lab("Saidpur DT — tap-off (8\" branch)",SVX[4]+12,10,-12,["branch","branch_eq"],18,"#ffa94d");
+ cylY(.6,3,M.red,SVX[4]+4,YP+1,-6,10);
+ lab("≈7 km 8\" branch to Saidpur RT",SVX[4]+4,9,SDO[1]/2,["branch"],20,"#ffa94d");
+})();
+
+/* ===== world 2: RT Parbatipur + Saidpur RT ===== */
+const PIGKEYS=[];let PIGOBJ=null,PIG2=null;
+(function(){const o=RTO,tk=["rt3","rt4","rt5","rt6"];
+ const f1=t=>ramp(t,S0("rt1")+1,S0("rt1")+8),f2=t=>ramp(t,S0("rt2")+1,S0("rt2")+8),f3=t=>ramp(t,S0("rt3")+1,S0("rt3")+9),f4=t=>ramp(t,S0("rt4")+1,S0("rt4")+7),f5=t=>ramp(t,S0("rt5")+1,S0("rt5")+8),f6=t=>ramp(t,S0("rt6")+1,S0("rt6")+10);
+ sp(o,[[-16,0],[-8,0],[0,0],[24,0],[28,0]],f1);
+ valve("SV-2005",o[0]+4,YP,o[1],"mov",t=>1,["rt1","rt_eq"]);
+ tx("TT-1701",o[0]+10,7,o[1],["rt1"],YP);tx("PT-1702",o[0]+15,7,o[1],["rt1"],YP);tx("PT-1703",o[0]+20,7,o[1],["rt1"],YP);
+ valve("MOV-1701",o[0]+25,YP,o[1],"mov",t=>ramp(t,S0("rt1")+4,S0("rt1")+8),["rt1","rt2"],{w:7});
+ // pig receiver
+ cylX(1.8,17,M.steel,o[0]+41,YP,o[1],24);mesh(new THREE.ConeGeometry(1.8,5,18),M.steel,o[0]+30.5,YP,o[1]).rotation.z=Math.PI/2;mesh(new THREE.CylinderGeometry(1.95,1.95,.5,20),M.yellow,o[0]+50,YP,o[1]).rotation.z=Math.PI/2;
+ sp(o,[[28,0],[56,0]],f2);
+ box(1,.8,5,M.conc,o[0]+38,.4,o[1]);box(1,.8,5,M.conc,o[0]+46,.4,o[1]);
+ cylY(.5,2.4,M.green,o[0]+36,YP+3,o[1],10);cylY(.5,2.4,M.green,o[0]+46,YP+3,o[1]-0,10);
+ lab("XXI-1701",o[0]+36,YP+7,o[1],["rt2","rt_eq"],6);lab("XXI-1702",o[0]+46,YP+7,o[1],["rt2","rt_eq"],6);
+ lab("Pig Receiver 030-MR-00-101 (VEE KAY)",o[0]+41,YP+11,o[1],["rt2","rt_eq"],18,"#ffd43b");
+ tx("PSV-1701",o[0]+39,YP+4,o[1]+0,["rt2","rt_eq"],YP);
+ valve("MOV-1702",o[0]+57,YP,o[1]+0,"mov",t=>ramp(t,S0("rt2")+3,S0("rt2")+6),["rt2"],{w:7});
+ gasSet(o[0]+41,o[1]-14,["rt2","rt_eq","rt3"],"GA/GE-1701A,B,C (2oo3)");
+ // sump
+ sump(o[0]+30,16,["rt2","rt_eq"],"Sump Tank 030-TT-00-102 (20 m³)",t=>.3+.4*ramp(t,S0("rt2")+6,S0("rt2")+14));
+ pumpU(o[0]+40,18,t=>ramp(t,S0("rt2")+10,S0("rt2")+11)*(t<S1("rt2")?1:0),["rt2","rt_eq"],"Sump Pump 030-PA-SM-101");
+ // MOV-1703 + filters
+ sp(o,[[56,0],[66,0],[66,6],[74,6],[82,6],[82,0],[66,0],[66,-6],[74,-6],[82,-6],[82,0]],f3);
+ valve("MOV-1703",o[0]+61,YP,o[1],"mov",t=>t>S0("rt4")+9&&t<S0("rt4")+13?0:1,["rt3","rt4","rt_eq"],{w:7});
+ filterV(o[0]+74,o[1]+6,["rt3","rt_eq"],"Basket Filter 030-GN-BK-101A (40 µm)",t=>ramp(t,S0("rt3")+2,S0("rt3")+7));filterV(o[0]+74,o[1]-6,["rt3","rt_eq"],"Basket Filter 101B (standby)",t=>0);
+ tx("DPT-1801",o[0]+70,8,o[1]+12,["rt3"],YP);tx("DPT-1802",o[0]+78,8,o[1]-12,["rt3"],YP);
+ gasSet(o[0]+74,o[1]+18,["rt3","rt_eq"],"GA/GE-1801A,B,C");
+ // PV + SRV
+ sp(o,[[82,0],[96,0]],f4);
+ valve("PV-1801",o[0]+88,YP,o[1],"pcv",t=>.5+.3*Math.sin(t*.8),["rt4","rt_eq"],{w:7});
+ tx("PT-1805",o[0]+93,8,o[1],["rt4"],YP);tx("PT-1806",o[0]+96,8,o[1]-4,["rt4"],YP);
+ sp(o,[[96,0],[100,0],[100,-0.01]],f4);
+ // SRV branch to surge tank
+ sp(o,[[94,0],[94,14],[100,14]],f4);valve("SRV-1801",o[0]+94,YP,o[1]+7,"plain",t=>t>S0("rt4")+8&&t<S0("rt4")+12?1:0,["rt4","rt_eq"],{axis:"z",rot:Math.PI/2,w:8});
+ tankV(o[0]+108,o[1]+20,4.5,6,t=>.2+.15*ramp(t,S0("rt4")+8,S0("rt4")+12),["rt4"],"Surge Tank (BPC)");
+ // metering
+ sp(o,[[96,0],[104,0],[104,6],[110,6],[126,6],[130,6],[130,0],[104,0],[104,-6],[110,-6],[126,-6],[130,-6],[130,0],[136,0]],f5);
+ coriolis(o[0]+118,o[1]+6,["rt5","rt_eq"],"FE-1801 Promass (E+H)");coriolis(o[0]+118,o[1]-6,["rt5","rt_eq"],"FE-1802 Promass (E+H)");
+ tx("TT-1801",o[0]+112,7,o[1]+10,["rt5"],YP);tx("PT-1809",o[0]+124,7,o[1]+10,["rt5"],YP);
+ box(5,4,3,M.dark,o[0]+118,2,o[1]+18);mesh(new THREE.PlaneGeometry(4,2.4),M.glass,o[0]+118,2.4,o[1]+19.6);lab("FQY-1801 Flow Computer (E+H)",o[0]+118,8,o[1]+18,["rt5","rt_eq"],13);
+ // tank branches
+ sp(o,[[136,0],[210,0]],f6);
+ const nm=["Padma","Meghna","Jamuna"],tx_=[150,180,210];
+ for(let i=0;i<3;i++){const x=tx_[i],st=S0("rt6")+2+i*4;
+  pipe([V(o[0]+x,YP,o[1]),V(o[0]+x,YP,o[1]-18),V(o[0]+x,YP,o[1]-26)],t=>ramp(t,st,st+5));
+  valve("MOV-T"+(i+1),o[0]+x,YP,o[1]-10,"mov",t=>ramp(t,st-1,st+1),["rt6"],{rot:Math.PI/2,w:6.5});
+  tankV(o[0]+x,o[1]-38,11,14,t=>(.35-.03*i)+.3*ramp(t,st,st+5+4),["rt6","rt_eq"],nm[i]+" tank")}
+ box(18,7,12,M.conc,o[0]+60,3.5,o[1]-24);box(18.6,.5,12.6,M.dark,o[0]+60,7.2,o[1]-24);lab("Control Room — SMCS / SCADA / PLC",o[0]+60,13,o[1]-24,["rt6","rt_eq","cr1"],20);
+ esdBtn(o[0]+14,o[1]+9,["rt_eq","em1"]);
+ lab("RT Parbatipur (BPC, Bangladesh)",o[0]+60,26,o[1]-6,["rt1","rt2","rt3","rt4","rt5","rt6","rt_eq"],24,"#ffd43b");
+ pipe([V(o[0]+210,YP,o[1]),V(o[0]+216,YP,o[1])],f6);
+ // pig along master path
+ PIGOBJ=pig();PIG2=pig();
+})();
+/* pig trajectory keys (world coordinates) */
+function pigPos(t){const A=S0("smt2"),B=S0("sv"),C=S0("pig"),D=S0("rt2");
+ const keys=[[A+4,V(SMT[0]+50,YP,0)],[A+11,V(SMT[0]+62,YP,0)],[B-2,V(CT[0]+48,YP,0)],[C,V(SVX[1]-10,YP,0)],[C+10,V(SVX[3]+10,YP,0)],[S0("rt1"),V(RTO[0]-8,YP,0)],[S0("rt1")+8,V(RTO[0]+26,YP,0)],[D+3,V(RTO[0]+40,YP,0)],[D+6,V(RTO[0]+44,YP,0)]];
+ if(t<keys[0][0]-.01)return null;return pathPos(keys,t)}
+/* ---------- SAIDPUR RT ---------- */
+(function(){const o=SDO;
+ const g1=t=>ramp(t,S0("sd1")+1,S0("sd1")+8),g2=t=>ramp(t,S0("sd2")+1,S0("sd2")+8),g3=t=>ramp(t,S0("sd3")+1,S0("sd3")+8),g4=t=>ramp(t,S0("sd4")+1,S0("sd4")+9);
+ sp(o,[[-16,0],[0,0],[16,0]],g1);
+ valve("MOV-1003",o[0]+6,YP,o[1],"mov",t=>1,["sd1","sd_eq"],{w:7});
+ cylX(1.6,14,M.steel,o[0]+23,YP,o[1],24);mesh(new THREE.ConeGeometry(1.6,4,16),M.steel,o[0]+14,YP,o[1]).rotation.z=Math.PI/2;mesh(new THREE.CylinderGeometry(1.75,1.75,.5,20),M.yellow,o[0]+30.2,YP,o[1]).rotation.z=Math.PI/2;
+ sp(o,[[16,0],[38,0]],g1);cylY(.5,2.4,M.green,o[0]+20,YP+3,o[1],10);lab("XXI-1003",o[0]+20,YP+7,o[1],["sd1","sd_eq"],6);
+ lab("Pig Receiver PR-1001 (Sheyang Xinlian)",o[0]+23,YP+11,o[1],["sd1","sd_eq"],20,"#ffd43b");tx("PIT-1005",o[0]+27,YP+4,o[1],["sd1"],YP);
+ valve("MOV-1015",o[0]+35,YP,o[1],"mov",t=>1,["sd1"],{w:7});
+ sp(o,[[38,0],[44,0],[44,6],[52,6],[58,6],[58,0],[44,0],[44,-6],[52,-6],[58,-6],[58,0]],g2);
+ filterV(o[0]+51,o[1]+6,["sd2","sd_eq"],"Basket Filter FS-1001A (Sparko)",t=>ramp(t,S0("sd2")+2,S0("sd2")+6));filterV(o[0]+51,o[1]-6,["sd2","sd_eq"],"FS-1001B (standby)",t=>0);
+ tx("DPT-1001",o[0]+51,8,o[1]+12,["sd2"],YP);
+ sp(o,[[58,0],[66,0],[66,6],[78,6],[88,6],[88,0],[66,0],[66,-6],[78,-6],[88,-6],[88,0],[96,0]],g2);
+ valve("MOV-1009",o[0]+70,YP,o[1]+6,"mov",t=>1,["sd2"],{w:7});
+ coriolis(o[0]+78,o[1]+6,["sd2","sd_eq"],"MTR-A (Emerson)");coriolis(o[0]+78,o[1]-6,["sd2","sd_eq"],"MTR-B");
+ box(5,4,3,M.dark,o[0]+78,2,o[1]+16);mesh(new THREE.PlaneGeometry(4,2.4),M.glass,o[0]+78,2.4,o[1]+17.6);lab("FC-1001 Metering Computer",o[0]+78,8,o[1]+16,["sd2","sd_eq"],13);
+ gasSet(o[0]+78,o[1]-16,["sd2","sd_eq"],"Flammable gas detector");
+ // PRS
+ sp(o,[[96,0],[100,0],[100,6],[130,6],[134,6],[134,0],[100,0],[100,-6],[130,-6],[134,-6],[134,0],[140,0]],g3);
+ valve("PCV-1001",o[0]+110,YP,o[1]+6,"pcv",t=>.5+.3*Math.sin(t),["sd3","sd_eq"],{w:7});valve("PCV-1002",o[0]+110,YP,o[1]-6,"pcv",t=>0,["sd3"],{w:7});
+ valve("E/H-1020",o[0]+122,YP,o[1]+6,"mov",t=>1,["sd3","sd_eq"],{w:7});valve("E/H-1021",o[0]+122,YP,o[1]-6,"mov",t=>1,["sd3"],{w:7});
+ tx("PIT-1027",o[0]+104,7,o[1]+10,["sd3"],YP);tx("PIT-1032",o[0]+128,7,o[1]+10,["sd3"],YP);
+ lab("Pressure Regulation Skid PRS-1001",o[0]+116,13,o[1],["sd3","sd_eq"],20,"#ffd43b");
+ // tie-in and tank
+ sp(o,[[140,0],[150,0],[150,-14],[150,-24]],g4);valve("E/H-1021 (inlet ROV)",o[0]+150,YP,o[1]-8,"mov",t=>1,["sd4"],{rot:Math.PI/2,w:9});
+ tankV(o[0]+150,o[1]-36,11,13,t=>.3+.4*ramp(t,S0("sd4")+3,S0("sd4")+11),["sd4"],"PDB Oil Tank (Saidpur Power Plant)");
+ // closed drain tank
+ sump(o[0]+24,18,["sd1","sd4","sd_eq"],"CDT-1001 Closed Drain Tank (11.5 m³)",t=>.3+.3*ramp(t,S0("sd1")+3,S0("sd1")+10));pumpU(o[0]+36,18,t=>0,["sd4"],"SMP-1001 / BP-1001");
+ lab("Saidpur RT / Receipt Station (PDB Power Plant)",o[0]+75,24,o[1]-4,["sd1","sd2","sd3","sd4","sd_eq"],26,"#ffa94d");
+})();
+
+/* ===== world 3: control room, power house, effects ===== */
+const CRO=[1290,175],PHO=[1405,175];
+const SCREENS=[];const DGL=[];
+function screen(x,y,z,w,h,rot,kind,segs){const c=document.createElement("canvas");c.width=320;c.height=Math.round(320*h/w);const tex=new THREE.CanvasTexture(c);const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex}));m.position.set(x,y,z);m.rotation.y=rot||0;ADD(m);
+ const fr=new THREE.Mesh(new THREE.BoxGeometry(w+.3,h+.3,.2),M.dark);fr.position.copy(m.position);fr.rotation.y=m.rotation.y;fr.translateZ(-.15);ADD(fr);SCREENS.push({c,tex,kind,segs});return m}
+function drawScr(S,t){const g=S.c.getContext("2d"),W=S.c.width,H=S.c.height;g.fillStyle="#06121f";g.fillRect(0,0,W,H);g.lineWidth=2;
+ const k=S.kind;
+ if(k==="scada"){g.strokeStyle="#ffb000";g.lineWidth=5;g.beginPath();g.moveTo(10,H*.5);g.lineTo(W-10,H*.5);g.stroke();
+  const names=["SMT","BDR","SV1","SV2","SV3","SV4","SV5","RT"];names.forEach((n,i)=>{const x=22+i*(W-44)/7;g.fillStyle="#37b24d";g.fillRect(x-7,H*.5-7,14,14);g.fillStyle="#fff";g.font="11px Arial";g.textAlign="center";g.fillText(n,x,H*.5-14);g.fillStyle="#7dd3fc";g.fillText((22+i*.4+Math.sin(t+i)*.3).toFixed(1)+" bar",x,H*.5+26)});
+  g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("SCADAvantage — Pipeline Overview",8,16);const x=((t*30)%W);g.fillStyle="#fff";g.beginPath();g.arc(x,H*.5,5,0,7);g.fill()}
+ if(k==="pids"){g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("PIDS — fibre intrusion zones",8,16);for(let i=0;i<40;i++){const h=10+Math.abs(Math.sin(i*1.7+t*.7))*40+(i===22?Math.max(0,Math.sin(t*2))*50:0);g.fillStyle=i===22&&h>50?"#e03131":"#37b24d";g.fillRect(8+i*7.5,H-10-h,5,h)}}
+ if(k==="lds"){g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("LDS — pressure & volume balance",8,16);for(const [c,a,p] of [["#7dd3fc",12,0],["#ffb000",9,2]]){g.strokeStyle=c;g.beginPath();for(let x=0;x<W-16;x+=4){const y=H*.55+Math.sin(x*.05+t+p)*a;x?g.lineTo(8+x,y):g.moveTo(8,y)}g.stroke()}g.fillStyle="#37b24d";g.fillText("Imbalance < threshold — no leak alarm",8,H-8)}
+ if(k==="plc"){g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("Honeywell Experion PKS — Safety Manager (ESD)",8,16);for(let r=0;r<8;r++)for(let c=0;c<14;c++){g.fillStyle=((r*7+c*3)%11===0)?"#e03131":"#2b8a3e";g.fillRect(10+c*21,26+r*17,17,13)}}
+ if(k==="fc"){g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("Flow computer FQY-1801",8,16);g.fillStyle="#fff";g.font="14px Arial";[["Flow",(120+Math.sin(t)*3).toFixed(1)+" m³/h"],["Temp",(27+Math.sin(t*.3)).toFixed(1)+" °C"],["Pres",(18+Math.sin(t*.5)).toFixed(1)+" kg/cm²"],["Dens",(0.84).toFixed(3)+" t/m³"],["Total",(52341+t*3|0)+" m³"]].forEach((r,i)=>{g.fillText(r[0],10,40+i*22);g.fillText(r[1],120,40+i*22)})}
+ if(k==="alarm"){g.fillStyle="#ffd43b";g.font="bold 13px Arial";g.textAlign="left";g.fillText("Alarm summary",8,16);g.font="12px Arial";const a=[["HIGH","PT-1805 high",1],["MED","DPT-1801 high",1],["LOW","Door open SV-03",0]];a.forEach((r,i)=>{g.fillStyle=r[2]&&Math.floor(t*2)%2?"#e03131":"#868e96";g.fillRect(8,28+i*22,60,16);g.fillStyle="#fff";g.fillText(r[0],14,40+i*22);g.fillText(r[1],80,40+i*22)})}
+ S.tex.needsUpdate=true}
+function person(x,z,col,rot){const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=rot||0;ADD(g);
+ const b=new THREE.Mesh(new THREE.CylinderGeometry(.55,.65,1.6,10),new THREE.MeshStandardMaterial({color:col}));b.position.y=1.9;g.add(b);const h=new THREE.Mesh(new THREE.SphereGeometry(.45,12,10),new THREE.MeshStandardMaterial({color:0xf1c27d}));h.position.y=3.2;g.add(h);
+ const hat=new THREE.Mesh(new THREE.SphereGeometry(.5,12,8,0,Math.PI*2,0,Math.PI/2),M.yellow);hat.position.y=3.35;g.add(hat);const ch=new THREE.Mesh(new THREE.BoxGeometry(1.2,.2,1.2),M.dark);ch.position.y=1.1;g.add(ch);return g}
+(function(){const [cx,cz]=CRO,sg=["cr1","cr2","cr3","cr4","cr_eq"];
+ box(72,.4,44,new THREE.MeshStandardMaterial({color:0x2f3b48}),cx,.2,cz);
+ box(72,12,.5,new THREE.MeshStandardMaterial({color:0x45566a,transparent:true,opacity:.55}),cx,6,cz-22);box(.5,12,44,new THREE.MeshStandardMaterial({color:0x45566a,transparent:true,opacity:.35}),cx-36,6,cz);box(.5,12,44,new THREE.MeshStandardMaterial({color:0x45566a,transparent:true,opacity:.35}),cx+36,6,cz);
+ screen(cx,8.5,cz-21.6,34,8.5,0,"scada",sg);lab("SCADA overview wall",cx,14.8,cz-21,sg,14);
+ const desks=[[-24,"scada","SCADA — ABB SCADAvantage v5.6.5"],[-12,"pids","PIDS — Commptel Network"],[0,"lds","LDS — leak detection"],[12,"plc","PLC / ESD — Honeywell Experion PKS SM"],[24,"fc","Flow computers (E+H)"]];
+ desks.forEach(([dx,k,n],i)=>{box(9,1.1,4,M.dark,cx+dx,.9,cz-3);screen(cx+dx-2.3,3.2,cz-4.4,4.1,2.4,0,k,sg);screen(cx+dx+2.3,3.2,cz-4.4,4.1,2.4,0,i%2?"alarm":k,sg);lab(n,cx+dx,8,cz-4,sg,10.5);person(cx+dx,cz+1.2,[0x2563eb,0x7c3aed,0x0f766e,0xc2410c,0x475569][i],Math.PI);ring(cx+dx,1.2,cz-3,4.8,sg)});
+ // racks + annunciators
+ for(let i=0;i<3;i++)box(3,9,3,M.dark,cx-30+i*3.4,4.5,cz+16);lab("Server / PLC rack (MOXA PLC server)",cx-26,11.5,cz+16,sg,14);
+ box(8,3,.8,M.red,cx+26,5,cz+19);lab("Fire alarm / ESD panel",cx+26,9,cz+19,sg,11,"#ff6b6b");esdBtn(cx+30,cz+14,["cr4","em1"]);
+ lab("CONTROL ROOM — RT Parbatipur",cx,20,cz,sg,24,"#ffd43b");
+ // ceiling light bars
+ for(let i=-2;i<=2;i++)box(10,.2,1,new THREE.MeshBasicMaterial({color:0xfff7d6}),cx+i*14,11.8,cz);
+})();
+/* power house */
+const WIRES=[];function wire(pts,col,fill){const arr=[];for(let i=0;i<pts.length-1;i++){const o=segMesh(V(...pts[i]),V(...pts[i+1]),.18,new THREE.MeshBasicMaterial({color:col}));ADD(o);arr.push(o)}WIRES.push({arr,fill})}
+function updWires(t){for(const w of WIRES){const f=clamp(w.fill(t));w.arr.forEach(o=>{o.visible=f>0.02;o.scale.y=Math.max(f,.01)})}}
+(function(){const [px,pz]=PHO,sg=["pw1","pw2","pw3","pw4","pw5","pw_eq"];
+ box(104,.4,48,new THREE.MeshStandardMaterial({color:0x2f3b48}),px,.2,pz);
+ // grid pole + arrester
+ cylY(.5,16,M.conc,px-46,8,pz-16,8);box(8,.4,.4,M.steel,px-46,15,pz-16);lab("11 kV incomer (PBS/NESCO)",px-46,19,pz-16,["pw1"],16,"#7dd3fc");
+ box(5,7,3.2,M.blue,px-38,3.5,pz-8);lab("HT Panel — 11 kV VCB",px-38,10,pz-8,["pw1"],13);
+ const tf=box(7,6,5,new THREE.MeshStandardMaterial({color:0x7a8a9a,metalness:.5}),px-26,3,pz-8);for(let i=0;i<8;i++)box(.3,4,5.4,M.steel,px-29+i*.9,3,pz-8);for(let i=0;i<3;i++){cylY(.3,1.8,M.white,px-28+i*2.2,6.9,pz-8,8)}lab("Transformer 11/0.415 kV (Dyn11)",px-26,10.5,pz-8,["pw1"],15);
+ box(11,6,3,M.steel,px-10,3,pz-8);lab("LT Panel (415 V)",px-10,9.5,pz-8,["pw1"],11);box(5,6,3,M.green,px+0,3,pz-8);lab("PFI 190 kVAR (Energex)",px,9.5,pz-8,["pw1"],12);
+ wire([[px-46,15,pz-16],[px-40,15,pz-16],[px-38,7,pz-8]],0x7dd3fc,t=>ramp(t,S0("pw1")+1,S0("pw1")+3));wire([[px-38,7,pz-8],[px-26,6.8,pz-8],[px-10,6.8,pz-8],[px,6.8,pz-8]],0xffd43b,t=>ramp(t,S0("pw1")+3,S0("pw1")+7));
+ // DG
+ box(18,2,6,M.conc,px+20,1,pz-6);box(8,5,5,new THREE.MeshStandardMaterial({color:0x2f9e44}),px+16,4.2,pz-6);box(6,4.2,4.5,M.steel,px+23,3.9,pz-6);box(4,4.4,5,M.dark,px+28,3.9,pz-6);cylY(.45,9,M.dark,px+14,10,pz-9,8);cylY(.4,4,M.red,px+20,8,pz-9,8);
+ lab("DG Set 250 kVA (Sterling — Perkins engine / Stamford alternator)",px+22,14,pz-6,["pw2","pw_eq"],24,"#ffd43b");const dgled=mesh(new THREE.SphereGeometry(.5,10,8),new THREE.MeshBasicMaterial({color:0x868e96}),px+16,7.1,pz-6);DGL.push(dgled);ring(px+22,3,pz-6,9,["pw2"]);
+ box(4,6,2.4,M.steel,px+34,3,pz-8);lab("AMF Panel",px+34,9,pz-8,["pw2"],7);
+ // battery + charger + UPS
+ for(let r=0;r<2;r++)for(let c=0;c<6;c++)box(1.6,2,1.3,new THREE.MeshStandardMaterial({color:0x1e293b}),px+42+c*2,1.4+r*2.4,pz-3);box(14,.3,3.2,M.steel,px+46,.4,pz-3);lab("Battery Bank 48 V (AGM VRLA)",px+46,8,pz-3,["pw3"],13);
+ box(4,6.4,2.6,M.dark,px+42,3.4,pz-10);box(4,6.4,2.6,M.dark,px+47,3.4,pz-10);lab("Charger A/B 48V/450A float-cum-boost",px+44.5,10,pz-10,["pw3"],16);
+ box(4,6.4,2.8,M.blue,px+53,3.4,pz-10);lab("UPS (Hitachi)",px+53,10,pz-10,["pw3"],8);box(4,5,2.8,M.steel,px+58,2.6,pz-10);lab("Voltage Stabilizer 100 kVA (Numax)",px+58,8.8,pz-10,["pw3","pw4"],14);
+ // HVAC
+ box(9,4,3,M.white,px+30,2.8,pz+12);cylZ(1.3,.3,M.dark,px+28,2.8,pz+13.6,16);cylZ(1.3,.3,M.dark,px+32,2.8,pz+13.6,16);lab("HVAC (65 kW control-room load)",px+30,8,pz+12,["pw4"],15);
+ // fire
+ box(4,6,1.6,M.red,px+46,3,pz+12);lab("Fire alarm panel",px+46,9,pz+12,["pw5","pw_eq"],10,"#ff6b6b");
+ for(let i=0;i<4;i++)cylY(.9,4.6,M.red,px+52+i*2.2,2.3,pz+12,12);lab("Clean-agent cylinders",px+55,8,pz+12,["pw5"],12,"#ff6b6b");
+ box(.8,.8,.5,M.red,px+62,3,pz+14);lab("MCP + siren",px+62,6,pz+14,["pw5","pw_eq"],8,"#ff6b6b");
+ // CP + solar
+ box(4.5,6,2.4,M.green,px+40,3,pz+12);lab("CP panel TRU (ICCP — Cristron)",px+40,9.5,pz+12,["pw5"],14);
+ for(let i=0;i<6;i++){const s=box(5,.2,3,new THREE.MeshStandardMaterial({color:0x1e3a8a,metalness:.6,roughness:.2}),px-30+i*5.5,7.5,pz+14);s.rotation.x=-.4}lab("Solar system",px-18,10.5,pz+14,["pw4","pw5"],9);
+ lab("POWER HOUSE — RT Parbatipur",px,24,pz,sg,26,"#ffd43b");
+ wire([[px-10,6.8,pz-8],[px+16,6.8,pz-8]],0xffd43b,t=>ramp(t,S0("pw2")+1,S0("pw2")+5)*(1-.0));
+})();
+
+/* ---------- effects: leak, fire, blackout ---------- */
+const FXS=[];
+(function(){ // leak plume at SV-03 + 60
+ const lx=SVX[2]+62,g=new THREE.Group();g.position.set(lx,UG,0);ADD(g);for(let i=0;i<26;i++){const s=new THREE.Mesh(new THREE.SphereGeometry(.5,6,5),new THREE.MeshBasicMaterial({color:0xff6b6b,transparent:true,opacity:.8}));g.add(s)}
+ const warn=lab("LEAK! (pressure drop + PIDS alert)",lx,22,0,["em2"],20,"#ff6b6b");
+ FXS.push(t=>{const on=act(["em2"],t,0);g.visible=on;if(on){const u=t*1.4;g.children.forEach((s,i)=>{const p=((u+i/26)%1);s.position.set(Math.sin(i*2.1)*3*p,p*9,Math.cos(i*1.3)*3*p);s.scale.setScalar(.4+p*1.2);s.material.opacity=.9*(1-p)})}})
+ // fire at RT filter area
+ const fx=RTO[0]+74,fz=RTO[1]+6,f=new THREE.Group();f.position.set(fx,0,fz);ADD(f);for(let i=0;i<9;i++){const c=new THREE.Mesh(new THREE.ConeGeometry(.9,3.6,8),new THREE.MeshBasicMaterial({color:i%2?0xff6b00:0xffd43b,transparent:true,opacity:.85}));f.add(c)}
+ lab("FIRE — gas/flame detectors vote, alarm",fx,24,fz,["em3"],20,"#ff6b6b");
+ FXS.push(t=>{const on=act(["em3"],t,0);f.visible=on;if(on)f.children.forEach((c,i)=>{c.position.set(Math.sin(i*2.3)*2.2,1.8+Math.abs(Math.sin(t*6+i))*1.2,Math.cos(i*1.7)*2.2);c.scale.set(1,.8+Math.abs(Math.sin(t*7+i*1.3))*.9,1)})});
+})();
+function blackout(t){return act(["em4"],t,0)?(ramp(t,S0("em4")+2,S0("em4")+3)*(1-ramp(t,S0("em4")+9,S0("em4")+10))):0}
+
+/* ===== plan: cameras, overlays, render loop ===== */
+const CAM={
+intro:[[-260,260,330,700,0,-60],[420,380,480,700,0,-60]],
+route:[[1500,320,300,1100,0,-120],[700,260,320,700,0,-80],[-60,200,260,200,0,-40]],
+pipe_facts:[[560,16,26,620,-1,0],[790,12,22,860,-1,0]],
+smt:[[-70,35,60,10,3,0],[30,28,50,10,3,0]],
+smt_eq:[[-30,12,25,-8,2,0],[30,14,22,20,2,0]],
+smt2:[[30,25,40,50,2,0],[95,20,30,60,2,0]],
+ctms:[[290,32,55,323,2,0],[345,24,48,323,2,0]],
+ctms_eq:[[300,12,-30,323,2,-6],[340,14,-34,325,2,-10]],
+sv:[[440,26,45,470,2,0],[600,26,45,620,2,0],[760,26,45,770,2,0],[920,26,45,920,2,0],[1050,26,45,1070,2,0]],
+sv_eq:[[SVX[2]-12,14,26,SVX[2],3,6],[SVX[2]+20,16,28,SVX[2]+6,3,6]],
+pig:[[100,60,70,220,0,0],[700,90,60,820,0,0],[1330,44,50,1400,2,0]],
+branch:[[1050,34,44,1072,2,-14],[1150,160,-60,1090,0,-200],[1120,40,-330,1112,2,-380]],
+rt1:[[1345,18,35,1375,2,0],[1395,16,30,1385,2,0]],
+rt2:[[1395,18,32,1401,2,0],[1425,14,30,1405,2,0]],
+rt_eq:[[1392,10,18,1401,3,0],[1412,12,16,1403,3,0]],
+rt3:[[1415,14,35,1434,3,0],[1448,12,28,1436,3,0]],
+rt4:[[1440,16,40,1456,3,4],[1478,16,38,1462,3,8]],
+rt5:[[1465,14,34,1478,2,0],[1492,12,30,1481,2,4]],
+rt6:[[1380,44,20,1440,6,-38],[1490,44,10,1440,6,-38]],
+sd1:[[1120,14,-350,1133,3,-380],[1150,12,-352,1138,3,-380]],
+sd2:[[1150,16,-350,1170,2,-380],[1195,14,-352,1188,2,-380]],
+sd3:[[1210,16,-350,1226,2,-380],[1240,14,-352,1226,2,-380]],
+sd4:[[1235,24,-345,1260,6,-410],[1288,28,-368,1260,6,-410]],
+cr1:[[1290,24,216,1290,6,160],[1322,18,196,1290,5,160]],
+cr2:[[1262,6,188,1266,3,171],[1272,7,184,1268,3,171]],
+cr3:[[1278,7,188,1284,3,171],[1292,7,186,1286,3,171]],
+cr4:[[1306,7,188,1314,3,171],[1330,8,186,1320,3,171]],
+pw1:[[1345,16,200,1380,4,167],[1402,14,196,1396,4,167]],
+pw2:[[1415,10,196,1427,4,169],[1448,12,192,1436,4,169]],
+pw3:[[1450,12,196,1458,4,168],[1478,12,190,1462,4,166]],
+pw4:[[1430,12,212,1435,3,187],[1400,14,214,1390,6,189]],
+pw5:[[1445,10,208,1460,3,187],[1474,10,208,1466,3,187]],
+em1:[[-35,18,45,-20,3,6],[30,22,40,10,3,0]],
+em2:[[810,18,40,832,2,0],[852,20,36,832,5,0]],
+em3:[[1410,14,40,1434,3,6],[1455,16,34,1434,4,6]],
+em4:[[1400,14,215,1420,4,172],[1450,16,208,1430,4,172]],
+end:[[1500,300,300,1000,0,-120],[-200,260,320,500,0,-100]]
+};
+/* big overview labels */
+(function(){const ov=["intro","route","pipe_facts","pig","end","branch"];
+ lab("SMT Siliguri (NRL, India)",20,46,0,ov,80,"#ffd43b");lab("CTMS — Border",323,40,0,ov,70,"#ffd43b");
+ SVN.forEach((n,i)=>lab(n,SVX[i],36,0,ov,56));
+ lab("RT Parbatipur (Bangladesh)",1425,50,0,ov,84,"#ffd43b");lab("Saidpur DT (tap-off)",SVX[4]+8,46,-30,ov,60,"#ffa94d");lab("Saidpur RT → PDB tank",1190,40,-380,ov,70,"#ffa94d");
+ lab("Control room + Power house",1345,36,175,["intro","route","end"],64,"#7dd3fc")})();
+const pigO=pig();
+function pose(seg,u){const k=CAM[seg.id]||CAM.intro;const n=k.length-1;let x=clamp(u)*n,i=Math.min(Math.floor(x),n-1),f=sm(x-i);const a=k[i],b=k[i+1];return a.map((v,j)=>lerp(v,b[j],f))}
+const ZS=TL.filter(s=>s.end-s.start>0.01);
+function camPose(t){let i=0;for(let j=0;j<ZS.length;j++)if(ZS[j].start-.8<=t)i=j;const s=ZS[i];const cur=pose(s,(t-s.start)/(s.end-s.start));
+ if(i>0){const w=sm(ramp(t,s.start-.8,s.start+1.8));if(w<1){const p=ZS[i-1],pv=pose(p,1);return cur.map((v,j)=>lerp(pv[j],v,w))}}return cur}
+function fade(ids,t){let m=0;for(const id of ids){const s=TL[segIdx[id]];if(!s||s.end-s.start<.01)continue;m=Math.max(m,ramp(t,s.start-.5,s.start+.1)*(1-ramp(t,s.end,s.end+.6)))}return m}
+function GF(t){const r=S0("route"),e=S1("route");return Math.max(ramp(t,r+1,e-3)*(t<S1("route")+1?1:0),act(["pipe_facts","pig","end"],t,0)?1:0)}
+let UY=0,UP=0,UD=1;
+function render(t){
+ const GFv=GF(t);for(const P of PIPES){if(!P._f){P._f=P.fill;P.fill=(tt)=>Math.max(P._f(tt),GFv_cur)}}GFv_cur=GFv;
+ updatePipes(t);updValves(t);updTanks(t);updPumps(t);updFilt(t);updSumps(t);updWires(t);
+ for(const L of LABS)L.sp.material.opacity=fade(L.segs,t);
+ for(const R of RINGS){const f=fade(R.segs,t);if(R.dome){R.o.material.opacity=.1*f;continue}
+  if(R.pulse){R.o.scale.setScalar(1+.25*Math.sin(t*6)*f);continue}
+  R.o.material.opacity=f*(.45+.35*Math.sin(t*4));R.o.rotation.z=t}
+ BLINK.forEach((l,i)=>l.material.color.setHex(Math.sin(t*3+i)>0?0x37b24d:0x0a3d14));
+ const pp=pigPos(t);pigO.visible=!!pp;if(pp)pigO.position.copy(pp);
+ for(const f of FXS)f(t);
+ const b=blackout(t);hemi.intensity=1.05*(1-.78*b);sun.intensity=.95*(1-.8*b);
+ const dgOn=t>S0("pw2")+2&&t<S1("pw2")+30||(b>0.4&&t>S0("em4")+4);DGL.forEach(l=>l.material.color.setHex(dgOn?0x37b24d:0x868e96));
+ if(SCREENS.length&&(fade(["cr1","cr2","cr3","cr4"],t)>0||!render._d)){render._d=1;SCREENS.forEach(S=>drawScr(S,t))}
+ const c=camPose(t);let dx=c[0]-c[3],dy=c[1]-c[4],dz=c[2]-c[5];
+ if(UY||UP||UD!=1){const r=Math.hypot(dx,dz),a=Math.atan2(dz,dx)+UY,el=Math.atan2(dy,r)+UP;const d=Math.hypot(r,dy)*UD,rr=Math.cos(el)*d;dx=Math.cos(a)*rr;dz=Math.sin(a)*rr;dy=Math.sin(el)*d}
+ cam.position.set(c[3]+dx,Math.max(c[4]+dy,1.2),c[5]+dz);cam.lookAt(c[3],c[4],c[5]);
+ ren.render(sc,cam)}
+let GFv_cur=0;
+
+
+</script><script>
+const $=id=>document.getElementById(id);document.body.classList.toggle("video",VID);
+$("ed").textContent="IBFPL 3D FLOW — "+EDN.toUpperCase();
+function size(){const w=VID?1280:innerWidth,h=VID?720:innerHeight;ren.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener("resize",size);size();
+let T=0,playing=false,lastNow=0,curSeg="",cardSeg="";
+const au=new Audio(AUDIO);au.preload="auto";
+function ui(t){let s=null;for(const x of TL)if(x.end-x.start>.01&&t>=x.start-.4)s=x;if(!s)s=TL[0];
+ if(s.id!==curSeg){curSeg=s.id;$("loc").textContent=s.loc;$("loc").parentNode.style.borderColor=s.id.startsWith("em")?"#ff6b6b":"#ffd43b";UY=UP=0;UD=1}
+ const showCard=s.card&&t>=s.start+.8&&t<=s.end+.2;const c=$("card");
+ if(showCard){if(cardSeg!==s.id){cardSeg=s.id;c.innerHTML="<h3>"+s.card.t+"</h3><table>"+s.card.rows.map(r=>"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>").join("")+"</table>"}c.style.opacity=1}else c.style.opacity=0;
+ let sub="";for(const x of SUB)if(t>=x[0]&&t<x[1]+.15){sub=x[2];break}$("st").textContent=sub;$("st").parentNode.style.visibility=sub?"visible":"hidden"}
+function frame(t){T=t;render(t);ui(t)}
+window.setT=t=>{frame(t);return TOTAL};window.TOTAL=TOTAL;
+if(!VID){
+ const sel=$("jump");TL.filter(s=>s.end-s.start>.01).forEach(s=>{const o=document.createElement("option");o.value=s.start;o.textContent=s.loc;sel.appendChild(o)});
+ sel.onchange=()=>seek(+sel.value);
+ function seek(t){T=clamp(t,0,TOTAL);au.currentTime=T;frame(T)}
+ $("sl").oninput=e=>seek(e.target.value/1000*TOTAL);
+ function toggle(){playing=!playing;$("pp").textContent=playing?"⏸ Pause":"▶ Play";if(playing){au.currentTime=T;au.play().catch(()=>{});lastNow=performance.now()}else au.pause()}
+ $("pp").onclick=toggle;addEventListener("keydown",e=>{if(e.code==="Space"){e.preventDefault();toggle()}});
+ $("mu").onclick=()=>{au.muted=!au.muted;$("mu").textContent=au.muted?"🔇":"🔊"};
+ let drag=null;const cv=ren.domElement;cv.onpointerdown=e=>{drag=[e.clientX,e.clientY]};addEventListener("pointerup",()=>drag=null);
+ addEventListener("pointermove",e=>{if(!drag)return;UY-=(e.clientX-drag[0])*.005;UP=clamp(UP+(e.clientY-drag[1])*.004,-.9,.9);drag=[e.clientX,e.clientY]});
+ cv.addEventListener("wheel",e=>{e.preventDefault();UD=clamp(UD*(e.deltaY>0?1.1:.9),.3,3)},{passive:false});
+ const fm=t=>Math.floor(t/60)+":"+String(Math.floor(t%60)).padStart(2,"0");
+ (function loop(now){requestAnimationFrame(loop);if(playing){const dt=(now-lastNow)/1000;lastNow=now;T+=dt;if(!au.paused&&Math.abs(au.currentTime-T)>.35)T=au.currentTime;if(T>=TOTAL){T=TOTAL;playing=false;au.pause();$("pp").textContent="▶ Play"}}
+  frame(T);$("sl").value=T/TOTAL*1000;$("tm").textContent=fm(T)+" / "+fm(TOTAL)})(performance.now());
+}else frame(0);
+</script></body></html>
