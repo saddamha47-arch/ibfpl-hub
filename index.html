@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>111</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#034b1d"><link rel="icon" href="icon-192.png"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="manifest" href="app111.json"><meta name="theme-color" content="#06142e"><link rel="icon" href="i111-192.png"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>
 :root{--g:#0b3b1e;--gold:#e5b00d;--ind:#4f46e5;--bg:#f1f4f8;--tx:#16202c;--mu:#6b7889;--bd:#dfe5ee}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top)}
@@ -46,9 +46,80 @@ nav button.on{background:var(--gold)!important;color:var(--gtx,#1b1500)!importan
 .ne{opacity:.55}
 @media print{#mn .scroll{max-height:none}}
 @media print{header,nav,.np{display:none}}
+
+/* ===== 111 Engineering Intelligence Platform theme ===== */
+html{background:#050f24}
+body{background:radial-gradient(1200px 620px at 70% -10%,#12356e 0%,#081a38 46%,#050f24 100%) fixed;min-height:100vh}
+body header{background:linear-gradient(135deg,#06142e,#0c2a5e)!important;border-bottom:1px solid #1d3b70;position:relative;z-index:6}
+body nav{background:#07162f!important}
+.hb.mnu{display:none;font-size:18px;padding:6px 12px}
+#nv{display:block;padding:10px 8px;overflow-x:hidden}
+#nv .sg{margin-bottom:2px}
+#nv button{font-size:14.5px}
+#nv .sgh{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;color:#cfe0ff;font-weight:600;padding:10px 12px;border-radius:10px;white-space:normal;cursor:pointer}
+#nv .sgh:hover,#nv .sgi button:hover{background:#ffffff14}
+#nv .sgh.on,#nv .sgi button.on{background:linear-gradient(90deg,#1d6ff2,#2f8bff)!important;color:#fff!important;font-weight:700}
+#nv .sgc{opacity:.7;font-size:12px}
+#nv .sgi{display:none;padding:2px 0 6px 8px;border-left:1px solid #1d3b70;margin:2px 0 4px 20px}
+#nv .sg.op .sgi{display:block}
+#nv .sgi button{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:8px;white-space:normal;color:#c3d6f7;cursor:pointer}
+main.wide{max-width:1360px}
+main{max-width:1040px;width:100%}
+#nvb{display:none}
+@media(min-width:1000px){
+ body{display:grid;grid-template-columns:256px minmax(0,1fr);grid-template-rows:auto 1fr;align-items:start}
+ header{grid-column:1/3}
+ #nv{position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid #1d3b70}
+ main{margin:0 auto;padding:16px 20px}
+}
+@media(max-width:999px){
+ .hb.mnu{display:inline-block}
+ #nv{position:fixed;left:0;top:0;bottom:0;width:284px;max-width:86vw;overflow-y:auto;transform:translateX(-104%);transition:transform .2s;z-index:30;box-shadow:8px 0 30px #0009;padding-top:calc(12px + env(safe-area-inset-top))}
+ body.nvo #nv{transform:none}
+ body.nvo #nvb{display:block;position:fixed;inset:0;background:#0009;z-index:29}
+}
+.dx{color:#e8f0ff;display:grid;gap:14px;margin-bottom:14px}
+.dx .g{background:linear-gradient(180deg,#10295acc,#0a1c3dd9);border:1px solid #23457f;border-radius:16px;padding:14px;box-shadow:0 6px 24px #0006;min-width:0}
+.dx h3{color:#fff;font-size:16px;margin:0 0 10px}
+.dx h3.sec{margin:6px 2px 0;color:#cfe0ff;font-size:15px;letter-spacing:.4px}
+.dx .top{display:grid;grid-template-columns:1.2fr 2fr;gap:14px}
+.dx .hero{position:relative;overflow:hidden;min-height:200px;padding:0}
+.dx .ht{position:relative;padding:18px 20px;max-width:62%}
+.dx .h1{font-size:54px;font-weight:900;line-height:1;color:#061a3d}
+.dx .h2{font-size:19px;font-weight:800;color:#061a3d;line-height:1.2;margin-top:4px}
+.dx .h3{font-size:13px;font-weight:700;color:#fff;margin-top:26px;text-shadow:0 1px 3px #000a}
+.dx .r4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dx .st{border-radius:16px;padding:16px 10px;text-align:center;cursor:pointer;color:#fff;font-weight:700;font-size:15px;border:1px solid #ffffff2e;box-shadow:0 6px 24px #0006;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.dx .st:hover,.dx .kv:hover{filter:brightness(1.15)}
+.dx .st .si{font-size:30px}
+.dx .st b{font-size:32px;display:block;line-height:1.15}
+.dx .st small{font-weight:500;opacity:.85;font-size:12px}
+.dx .st.a{background:linear-gradient(160deg,#1a63e0,#0b2f7a)}.dx .st.b{background:linear-gradient(160deg,#12924d,#0a5a30)}.dx .st.c{background:linear-gradient(160deg,#e3740f,#a44706)}.dx .st.d{background:linear-gradient(160deg,#6a3fe0,#3b1f96)}
+.dx .r3{display:grid;grid-template-columns:1.5fr 1.2fr 1fr;gap:14px}
+.dx .rr4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dx .r3b{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:14px}
+.dx .kv{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #1d3b70;font-size:14px;cursor:pointer}
+.dx .kv b{white-space:nowrap}
+.dx .mu2{color:#9fb6de;font-size:12.5px;margin:6px 0}
+.dx .bar2{height:7px;background:#0b1c3d;border-radius:5px;overflow:hidden;margin-bottom:4px}.dx .bar2 i{display:block;height:100%;background:linear-gradient(90deg,#22d3ee,#2f7df6)}
+.dx .lnk{display:inline-block;background:#1d6ff2;color:#fff;border:0;border-radius:8px;padding:7px 12px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;margin:2px 2px 2px 0}
+.dx .ban{background:linear-gradient(120deg,#0b2a5c,#7a3b12 70%,#d98324);padding:22px}
+.dx .b1{font-size:26px;font-weight:800;color:#fff;line-height:1.2}
+.dx .b2{display:inline-block;margin-top:12px;background:#f5c518;color:#1b1500;font-weight:800;border-radius:999px;padding:8px 16px}
+@media(max-width:1250px){.dx .top{grid-template-columns:1fr}.dx .r3,.dx .r3b{grid-template-columns:1fr 1fr}.dx .rr4{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.dx .r3,.dx .r3b,.dx .rr4{grid-template-columns:1fr}.dx .r4{grid-template-columns:1fr 1fr}.dx .ht{max-width:100%}.dx .h1{font-size:44px}}
+@media print{html,body{background:#fff!important;display:block}.dx{display:none}}
+.dx .m3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dx .m2{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px}
+.dx .mini{background:#0a1d42;border:1px solid #1d3b70;border-radius:12px;padding:10px;cursor:pointer;min-width:0}
+.dx .mini small{color:#cfe0ff;font-weight:600;display:block;margin-bottom:4px}
+.dx .mv{font-size:19px;display:block;color:#fff}
+.dx .chip{display:inline-block;background:#0a1d42;border:1px solid #23457f;border-radius:999px;padding:5px 11px;font-size:13px;margin:3px 4px 3px 0;cursor:pointer}
+.dx .st{line-height:1.2}
+@media(max-width:700px){.dx .m3,.dx .m2{grid-template-columns:1fr}}
 </style></head><body>
-<header><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Dashboard · v16.11.26-3</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
-<nav id="nv"></nav><main id="mn"></main><div id="md" onclick="if(event.target.id=='md')cl()"><div id="bx"></div></div>
+<header><button class="hb mnu" aria-label="Menu" onclick="document.body.classList.toggle('nvo')">☰</button><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Intelligence Platform<br>Smart • Reliable • Integrated · v17.11.26-4</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
+<nav id="nv"></nav><div id="nvb" onclick="document.body.classList.remove('nvo')"></div><main id="mn"></main><div id="md" onclick="if(event.target.id=='md')cl()"><div id="bx"></div></div>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -61,7 +132,7 @@ if(ok){const app=initializeApp(firebaseConfig);auth=getAuth(app);db=initializeFi
 const er=e=>alert("Not allowed: "+(e.code||e.message));
 window.FB={ok,listen:(c,cb)=>onSnapshot(collection(db,c),s=>cb(s.docs.map(d=>({id:d.id,...d.data()}))),e=>console.warn(c,e.code)),
 get:async(c,id)=>{const s=await getDoc(doc(db,c,id));return s.exists()?s.data():null},
-set:(c,id,d)=>setDoc(doc(db,c,id),d).catch(er),upd:(c,id,d)=>updateDoc(doc(db,c,id),d).catch(er),del:(c,id)=>deleteDoc(doc(db,c,id)).catch(er),
+set:(c,id,d)=>setDoc(doc(db,c,id),d).catch(er),setq:(c,id,d)=>setDoc(doc(db,c,id),d).catch(e=>console.warn(c,e.code)),upd:(c,id,d)=>updateDoc(doc(db,c,id),d).catch(er),del:(c,id)=>deleteDoc(doc(db,c,id)).catch(er),
 onAuth:cb=>onAuthStateChanged(auth,cb),signIn:(e,p)=>signInWithEmailAndPassword(auth,e,p),signUp:(e,p)=>createUserWithEmailAndPassword(auth,e,p),signOut:()=>signOut(auth)};
 window.dispatchEvent(new Event("fbready"));
 </script>
@@ -75,7 +146,7 @@ const save=()=>draw(),LG=t=>{if(me)F.set("log",uid(),{t:day(),u:me.name,x:t,ts:D
 const can=r=>me&&(r==="req"||r==="staff"||r==="rec"?true:(r==="mgr"||r==="apr")?(me.role==="admin"||me.ap===true):me.role==="admin"),cw=c=>true;
 const bal=i=>+i.qty+S.tx.filter(t=>t.i===i.id).reduce((a,t)=>a+(t.k==="in"?+t.n:-t.n),0);
 const unit=i=>i.unit||"pcs",nm=id=>(S.items.find(x=>x.id===id)||{name:"(deleted)"}).name,st=i=>bal(i)<=0?0:bal(i)<=+i.min?1:2;
-const TS=[["dash","Dashboard"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"]];
+const TS=[["dash","Dashboard"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["val","💰 Equipment Value"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"]];
 function cl(){$("#md").classList.remove("on")}function M(h){$("#bx").innerHTML=h;$("#md").classList.add("on");enh()}
 const opt=(a,s)=>a.map(x=>{const v=x.id||x,n=x.name||x;return`<option value="${E(v)}" ${v===s?"selected":""}>${E(n)}</option>`}).join(""),V=id=>$("#"+id).value;
 function draw(){draw0();enh()}
@@ -83,7 +154,7 @@ function draw0(){
 $("#hu").innerHTML=me?`<span class="tg ${RC[me.role][0]}">${E(me.name)} · ${RC[me.role][1]}</span><button class="hb" onclick="out()">Logout</button>`:`<button class="hb p" onclick="login()">Log In</button><button class="hb" onclick="reg()">Register</button>`;
 $("#nv").innerHTML=tabOrder().filter(t=>(t[0]!=="us"||can("admin"))&&(t[0]!=="vlt"||can("admin"))&&(!["ie","sop","pid","emg","kpi","dir","ap","help","notice","forms","inc",...GK,"lv","an","rp"].includes(t[0])||me)).map(t=>`<button class="${t[0]===tab?"on":""}${hd(t[0])?"":" ne"}" onclick="tab='${t[0]}';draw()">${bn&&TB[t[0]]?TB[t[0]]:t[1]}${t[0]==="pm"&&ovd()?" 🔴"+ovd():""}${t[0]==="ap"&&pcn()?" 🔴"+pcn():""}</button>`).join("");
 const m=$("#mn");
-if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
+if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="val")m.innerHTML=valv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
 }
 function dash(){const low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),tot=CAT.map(c=>S.items.filter(i=>i.cat===c).reduce((a,i)=>a+Math.max(0,bal(i)),0)),T=tot.reduce((a,b)=>a+b,0)||1;
 let o=0;const r=62,C=2*Math.PI*r,arc=tot.map((v,k)=>{const l=v/T*C,e=`<circle cx="90" cy="90" r="${r}" fill="none" stroke="${COL[k]}" stroke-width="26" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-o}" transform="rotate(-90 90 90)"/>`;o+=l;return e}).join("");
@@ -201,7 +272,7 @@ M(`<h3>${p.t}</h3><div class="f">${p.f.map(f=>{const v=E(x[f[0]]??""),i="g_"+f[0
 function gs(c,id){const d={by:me.name};SP[c].f.forEach(f=>d[f[0]]=V("g_"+f[0]));if(!(d.eq||d.title||d.done))return alert("প্রয়োজনীয় ঘর পূরণ করুন");id?F.upd(c,id,d):F.set(c,uid(),d);LG("Saved "+c);cl()}
 const gx=(c,id)=>{if(confirm("Delete?"))F.del(c,id)},pmd=(id,c="pm")=>{F.upd(c,id,{last:iso()});LG("Maintenance done")};
 function rpv(){return`<div class="c"><h3>📄 Reports & Backup</h3><label class="mu">Month<input id="rm" type="month" value="${iso().slice(0,7)}"></label><button class="b p" onclick="rep()">📄 Monthly report (Print / Save as PDF)</button><button class="b" onclick="bk()">💾 Full backup (JSON)</button><p class="mu">PDF: Print window-তে "Save as PDF" বেছে নিন।<br>📱 ফোনে অ্যাপের মতো: Chrome ⋮ মেনু → "Add to Home screen / Install app"।</p></div>`}
-function bk(){const o={items:S.items,tx:S.tx,equip:S.eq,incidents:S.inc,...S.g,reqs:S.reqs,emp:S.emp,leave:S.lv,changes:S.ch},a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:"application/json"}));a.download="ibfpl-backup-"+iso()+".json";a.click()}
+function bk(){const o={items:S.items,tx:S.tx,equip:S.eq,incidents:S.inc,...S.g,reqs:S.reqs,emp:S.emp,leave:S.lv,changes:S.ch,users:S.users,log:S.log,kvs:kvAll()},a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:"application/json"}));a.download="111-backup-"+iso()+".json";a.click()}
 function rep(){const m=V("rm"),w=open("","_blank");if(!w)return alert("Pop-up allow করুন");const T=a=>a.length?"<ul>"+a.join("")+"</ul>":"<p>None</p>",
 low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),od=S.g.pm.filter(x=>ps(x)[1]!=="OK"),ic=S.inc.filter(x=>(x.date||"").startsWith(m)),h=S.g.ho.filter(x=>(x.date||"").startsWith(m));
 w.document.write(`<html><head><title>Report ${m}</title><style>body{font-family:sans-serif;padding:20px}h1{color:#0b3b1e}h2{border-bottom:1px solid #ccc}</style></head><body><h1>111 Monthly Report — ${E(m)}</h1><p>Generated ${day()} by ${E(me.name)}</p><h2>Summary</h2><p>Items ${S.items.length} · Equipment ${S.eq.length} · Problems this month ${ic.length} · Handover entries ${h.length}</p><h2>Low / out of stock</h2>${T(low.map(i=>`<li>${E(i.name)} (${bal(i)}/${i.min}) — ${E(i.loc)}</li>`))}<h2>Overdue / due-soon maintenance</h2>${T(od.map(x=>`<li>${E(x.eq)} — ${E(x.kind)} — due ${E(due(x)||"?")}</li>`))}<h2>Problems & solutions</h2>${T(ic.map(x=>`<li><b>${E(x.date)} ${E(x.eq)} (${E(x.loc)})</b>: ${E(x.prob)}<br>Solution: ${E(x.act||"—")}<br>Precaution: ${E(x.prev||"—")}</li>`))}<script>print()<\/script></body></html>`);w.document.close()}
@@ -556,7 +627,7 @@ const UDM=["Introduction to Instrumentation","4-20mA Signals in PLC","Installati
 function qza(i,j){const d=JSON.parse(localStorage.qz||"{}");d[i]=QZ[i][2]===j?j+1:-(j+1);localStorage.qz=JSON.stringify(d);draw()}
 
 
-const hd=k=>{const g=S.g;return({exec:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
+const hd=k=>{const g=S.g;return({exec:1,val:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
 /* ---------- Calculators ---------- */
 
 const n3=(v,k=3)=>isFinite(v)?(+v).toLocaleString("en-US",{maximumFractionDigits:k}):"—";
@@ -857,7 +928,7 @@ function stnv(){const q=stnQ.toLowerCase(),D=STN[stnS],SN=STNS.find(s=>s[0]===st
  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px">${L.map(x=>`<div onclick="stnOpen('${x.id}')" style="cursor:pointer;border:1px solid var(--bd);border-radius:12px;overflow:hidden;background:#fff">${x.ph[0]?`<img data-sec="${x.ph[0]}" style="width:100%;height:130px;object-fit:cover;display:block" onerror="this.style.display='none'">`:`<div style="height:130px;display:flex;align-items:center;justify-content:center;background:#f1f3f5;font-size:34px">🧯</div>`}<div style="padding:8px"><b style="font-size:13px">${E(x.n)}</b><br><small class="mu">${E(x.tag)}</small><br><small>${E(x.mk)}${x.qty?` · ${x.qty}টি`:""}</small></div></div>`).join("")||"<p class='mu'>কিছু পাওয়া যায়নি।</p>"}</div></div>
  <div class="c"><h3>🗺 IBFPL আসল রুট</h3>${stnRoute()}</div>`}
 function stnOpen(id){const x=STN[stnS].find(i=>i.id===id);if(!x)return;const ul=a=>"<ul style='margin:4px 0 10px 18px;padding:0;font-size:13.5px;line-height:1.6'>"+a.map(t=>`<li>${E(t)}</li>`).join("")+"</ul>",h=(i,t)=>`<h4 style="margin:12px 0 2px">${i} ${t}</h4>`;
- M(`<h3>${E(x.n)}</h3><p class="mu" style="margin:2px 0"><b>Tag:</b> ${E(x.tag)} · <b>সংখ্যা:</b> ${x.qty||"—"} · <b>অবস্থান:</b> ${E(x.loc)}<br><b>Brand:</b> ${E(x.mk)}</p>
+ M(`<h3>${E(x.n)}</h3><p class="mu" style="margin:2px 0"><b>Tag:</b> ${E(x.tag)} · <b>সংখ্যা:</b> ${x.qty||"—"} · <b>অবস্থান:</b> ${E(x.loc)}<br><b>Brand:</b> ${E(x.mk)}${eqpLine(x)}</p>
  ${x.ph.length?`<div style="display:flex;gap:6px;overflow-x:auto;margin:8px 0">${x.ph.map(p=>`<img data-sec="${p}" onclick="if(this.src)window.open(this.src)" style="height:170px;min-width:120px;border-radius:8px;border:1px solid var(--bd);cursor:zoom-in;background:#eef2f6">`).join("")}</div><small class="mu">ছবিতে চাপ দিলে বড় হবে।</small>`:""}
  ${stnAnim(x.anim)}${CN_MAP[x.id]?`<button class="b" style="background:#1d6fd1;color:#fff;margin:6px 0" onclick="cnOpen('${CN_MAP[x.id]}')">🔌 Electrical / HART / Communication connection দেখুন</button>`:""}
  ${h("🏷","নেমপ্লেট / রেটিং")}<table style="width:100%;font-size:13px;border-collapse:collapse;table-layout:fixed;word-break:break-word">${x.np.map(r=>`<tr><td style="padding:4px;border-bottom:1px solid var(--bd);width:36%"><b>${E(r[0])}</b></td><td style="padding:4px;border-bottom:1px solid var(--bd)">${E(r[1])}</td></tr>`).join("")}</table>
@@ -988,13 +1059,22 @@ function billv0(){const f=n=>n==null?`<span style="color:#b02a37">${IR}</span>`:
  <p class="mu" style="font-size:12px">এই ফর্মের তথ্য শুধু এই ব্রাউজারে থাকে। Internet bill-এর provider, connection ID ও package: ${IR}।</p></div>`}
 /* ---- Oil price ---- */
 function opLd(){try{return JSON.parse(localStorage.getItem("oil_v1")||"{}")}catch(e){return {}}}
+const OP_SEED={brent:95.60,wti:88.54,dubai:89.81,rate:124.50,bd_d:135,bd_k:155,bd_o:165,bd_p:160},
+ OP_D="১৭ নভেম্বর ২০২৬",OP_SRC=[["Brent, WTI ও DME Oman — oilprice.com (সামান্য বিলম্বিত quote)","https://oilprice.com/oil-price-charts/"],["USD → BDT — allratestoday.com","https://allratestoday.com/currency-converter/usd-to-bdt-rate"],["বাংলাদেশের খুচরা দাম — জ্বালানি ও খনিজ সম্পদ বিভাগের ২৯ অক্টোবর ২০২৬ প্রজ্ঞাপন (নভেম্বর ২০২৬-এ অপরিবর্তিত)","https://www.dhakatimes24.com/2026/10/29/416100"]];
+const opHas=k=>{const v=opLd()[k];return v!==undefined&&v!==null&&v!==""},opV=k=>opHas(k)?+opLd()[k]:OP_SEED[k];
 function opSet(k,v){const d=opLd();d[k]=v;d.upd=new Date().toISOString().slice(0,16).replace("T"," ");try{localStorage.setItem("oil_v1",JSON.stringify(d))}catch(e){}draw()}
 async function opRate(){const el=document.getElementById("op_msg");el.textContent="আনা হচ্ছে…";try{const r=await fetch("https://open.er-api.com/v6/latest/USD"),j=await r.json();if(j&&j.rates&&j.rates.BDT){const d=opLd();d.rate=+j.rates.BDT.toFixed(2);d.rsrc="open.er-api.com · "+(j.time_last_update_utc||"").slice(0,16);try{localStorage.setItem("oil_v1",JSON.stringify(d))}catch(e){}draw()}else el.textContent="পাওয়া যায়নি — হাতে লিখুন।"}catch(e){el.textContent="সংযোগ হয়নি — হাতে লিখুন।"}}
-function oilv(){const d=opLd(),L=158.9873,B=[["brent","Brent Crude"],["wti","WTI Crude"],["dubai","Dubai / Oman Crude"]],n=(x,p)=>x?(+x).toLocaleString("en-IN",{maximumFractionDigits:p??2}):"—";
- return `<div class="c"><h2>🛢 International Oil Price</h2><div style="background:#fff8e1;border:1px solid #f0c36d;border-radius:8px;padding:8px 12px;font-size:13px"><b>Live data নয়।</b> Benchmark দাম আপনি নিজে লিখবেন (নির্ভরযোগ্য উৎস থেকে দেখে)। শুধু USD→BDT বিনিময় হার বোতাম চেপে অনলাইন থেকে আনা যায়।</div>
- <div style="margin:10px 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">USD → BDT: <input type="number" value="${d.rate||""}" style="width:100px" onchange="opSet('rate',this.value)"> <button class="b" onclick="opRate()">বিনিময় হার আনুন</button> <small class="mu" id="op_msg">${d.rsrc?E(d.rsrc):"উৎস: হাতে লেখা"}</small></div>
- <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px"><tr style="background:#f1f3f5;text-align:left"><th style="padding:6px">Benchmark</th><th>USD / barrel</th><th>BDT / barrel</th><th>USD / litre</th><th>BDT / litre</th></tr>${B.map(b=>{const u=+d[b[0]]||0,r=+d.rate||0;return `<tr style="border-top:1px solid var(--bd)"><td style="padding:6px"><b>${b[1]}</b></td><td><input type="number" value="${d[b[0]]||""}" style="width:90px" onchange="opSet('${b[0]}',this.value)"></td><td>${u&&r?n(u*r,0):"—"}</td><td>${u?n(u/L,4):"—"}</td><td>${u&&r?n(u*r/L,2):"—"}</td></tr>`}).join("")}</table></div>
- <p class="mu" style="font-size:12.5px">সূত্র: BDT/barrel = USD/barrel × বিনিময় হার; প্রতি litre = প্রতি barrel ÷ 158.9873। এটি <b>crude oil</b>-এর দাম — পরিশোধিত ডিজেলের (HSD) দাম আলাদা ও বেশি। শেষ হালনাগাদ: ${d.upd?E(d.upd):"—"}। দেশভিত্তিক দাম, সাপ্তাহিক/মাসিক chart: ${IR} (data উৎস ঠিক হলে যোগ হবে)।</p></div>`}
+function oilv(){const d=opLd(),L=158.9873,B=[["brent","Brent Crude"],["wti","WTI Crude"],["dubai","Dubai / Oman (DME Oman)"]],R=[["bd_d","ডিজেল (HSD)"],["bd_k","কেরোসিন"],["bd_o","অকটেন"],["bd_p","পেট্রোল"]],
+ n=(x,p)=>x?(+x).toLocaleString("en-IN",{maximumFractionDigits:p??2}):"—",sd=k=>opHas(k)?"":`<span class="tg cod" title="আপনার দেওয়া নয় — উৎস থেকে বসানো" style="padding:1px 6px;font-size:11px">ref</span>`,r=opV("rate");
+ return `<div class="c"><h2>🛢 Oil Price Analytics</h2><div style="background:#fff8e1;border:1px solid #f0c36d;border-radius:8px;padding:8px 12px;font-size:13px"><b>Live data নয়।</b> <span class="tg cod" style="padding:1px 6px;font-size:11px">ref</span> চিহ্নিত মানগুলো ${E(OP_D)}-এ প্রকাশিত উৎস থেকে বসানো — দাম প্রতিদিন বদলায়, তাই কাজে লাগানোর আগে মিলিয়ে নিন। ঘরে নিজে লিখলে আপনার মানই স্থায়ীভাবে থাকবে।</div>
+ <div style="margin:10px 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">USD → BDT: <input type="number" value="${d.rate||""}" placeholder="${OP_SEED.rate}" style="width:110px" onchange="opSet('rate',this.value)"> ${sd("rate")} <button class="b" onclick="opRate()">বিনিময় হার আনুন</button> <small class="mu" id="op_msg">${d.rsrc?E(d.rsrc):"উৎস: "+(opHas("rate")?"হাতে লেখা":"allratestoday.com, "+OP_D)}</small></div>
+ <h3 style="margin-top:14px">আন্তর্জাতিক crude benchmark</h3>
+ <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px"><tr style="background:#f1f3f5;text-align:left"><th style="padding:6px">Benchmark</th><th>USD / barrel</th><th>BDT / barrel</th><th>USD / litre</th><th>BDT / litre</th></tr>${B.map(b=>{const u=opV(b[0]);return `<tr style="border-top:1px solid var(--bd)"><td style="padding:6px"><b>${b[1]}</b> ${sd(b[0])}</td><td><input type="number" step="0.01" value="${d[b[0]]||""}" placeholder="${OP_SEED[b[0]]}" style="width:92px" onchange="opSet('${b[0]}',this.value)"></td><td>${u&&r?n(u*r,0):"—"}</td><td>${u?n(u/L,4):"—"}</td><td>${u&&r?n(u*r/L,2):"—"}</td></tr>`}).join("")}</table></div>
+ <h3 style="margin-top:16px">বাংলাদেশের সরকারি খুচরা দাম (৳/লিটার)</h3>
+ <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px"><tr style="background:#f1f3f5;text-align:left"><th style="padding:6px">পণ্য</th><th>৳ / লিটার</th><th>৳ / ব্যারেল</th><th>USD / ব্যারেল</th></tr>${R.map(b=>{const u=opV(b[0]);return `<tr style="border-top:1px solid var(--bd)"><td style="padding:6px"><b>${b[1]}</b> ${sd(b[0])}</td><td><input type="number" step="0.01" value="${d[b[0]]||""}" placeholder="${OP_SEED[b[0]]}" style="width:92px" onchange="opSet('${b[0]}',this.value)"></td><td>${u?n(u*L,0):"—"}</td><td>${u&&r?n(u*L/r,2):"—"}</td></tr>`}).join("")}</table></div>
+ <p class="mu" style="font-size:12.5px;margin-top:10px">সূত্র: BDT/barrel = USD/barrel × বিনিময় হার; প্রতি litre = প্রতি barrel ÷ 158.9873। Crude-এর দাম ও পরিশোধিত ডিজেলের খুচরা দাম এক নয় — খুচরা দামে পরিশোধন, পরিবহন, শুল্ক ও মার্জিন যোগ থাকে, আর সরকার মাসে একবার তা নির্ধারণ করে। শেষ হালনাগাদ (হাতে লেখা): ${d.upd?E(d.upd):"—"}।</p>
+ <h4 style="margin:10px 0 2px">উৎস</h4><ul style="margin:4px 0 0 18px;padding:0;font-size:13px;line-height:1.7">${OP_SRC.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${E(s[0])}</a></li>`).join("")}</ul></div>`}
+
 /* ===== 6-Month Learning Plan ===== */
 const PLN=[
 ["মাস ১ — ভিত্তি: Pipeline, Safety ও P&ID",[
@@ -1191,19 +1271,227 @@ let projI=0;
 function projv(){const p=PROJ[projI],ul=a=>"<ul style='margin:4px 0 10px 18px;padding:0;font-size:13.5px;line-height:1.6'>"+a.map(t=>`<li>${E(t)}</li>`).join("")+"</ul>";
 return `<div class="c"><h2>🛢 IBFPL, SPM ও CDPL — এক নজরে</h2><p class="mu"><small>বাংলাদেশের তিনটি বড় petroleum pipeline প্রকল্প। সব তথ্য প্রকাশিত সংবাদ থেকে নেওয়া — নিচে উৎস দেওয়া আছে। সংবাদভেদে কিছু সংখ্যা ভিন্ন; সরকারি নথি পেলে মিলিয়ে নিন।</small></p><div style="display:flex;gap:6px;flex-wrap:wrap">${PROJ.map((x,i)=>`<button class="b" style="${i===projI?"background:#0a7d2c;color:#fff":""}" onclick="projI=${i};draw()">${E(x.t.split(" — ")[0])}</button>`).join("")}</div></div>
 <div class="c"><h3>${E(p.t)}</h3><p class="mu"><small>${E(p.s)}</small></p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0">${p.k.map(x=>`<div style="flex:1;min-width:130px;border:1px solid var(--bd);border-radius:10px;padding:10px"><small class="mu">${E(x[0])}</small><br><b style="font-size:17px">${E(x[1])}</b></div>`).join("")}</div>${p.b.map(x=>`<h4 style="margin:10px 0 2px">${E(x[0])}</h4>${ul(x[1])}`).join("")}<h4 style="margin:10px 0 2px">উৎস</h4><ul style="margin:4px 0 0 18px;padding:0;font-size:13px;line-height:1.7">${p.src.map(x=>`<li><a href="${x[1]}" target="_blank" rel="noopener">${E(x[0])}</a></li>`).join("")}</ul></div>`}
+/* ===== Indicative equipment price catalogue (USD per unit) =====
+   M = অনলাইনে পাওয়া তালিকা/বাজারদর (নিচে উৎস)   E = প্রকৌশল অনুমান, কোনো দরপত্র বা quotation নয় */
+const EQP_D="১৭ নভেম্বর ২০২৬",EQP={
+mov:[12000,35000,"E","Rotork IQ20 actuator ≈ $1,560 (surplus listing) + 8–12″ ball valve ও installation ধরে"],
+mov1:[12000,35000,"E","Main line / bypass MOV, actuator সহ"],
+mov2:[6000,18000,"E","Meter run MOV (IQ12, ছোট size)"],
+pcv:[15000,45000,"E","Electric actuated control valve + positioner"],
+srv:[60000,200000,"E","Nitrogen-loaded surge relief skid (Daniel/Emerson শ্রেণি)"],
+psv:[1200,6000,"E","Spring loaded PSV/TRV, size ও rating অনুযায়ী"],
+prv:[3000,15000,"E","Pressure reducing valve"],
+nrv:[500,4000,"E","Non-return valve, size অনুযায়ী"],
+bv:[300,2500,"E","Manual ball valve"],
+mv:[300,2500,"E","Manual ball / plug valve"],
+iv:[60,250,"E","Instrument isolation valve"],
+mij:[2500,8000,"E","Monolithic insulating joint"],
+pl:[15000,60000,"E","Pig launcher barrel + closure"],
+rec:[25000,90000,"E","Scraper receiver barrel + quick opening closure"],
+sump:[3000,12000,"E","Sump tank + sump pump"],
+pig:[1200,4000,"E","Pig signaller (intrusive/non-intrusive)"],
+pt:[1500,4000,"M","Honeywell SmartLine STG74L — তালিকা $7,614, বাজারদর $3,959 (Kele)"],
+tt:[1200,3000,"E","SmartLine TT + Pt100 RTD ও thermowell"],
+dpt:[3000,9000,"E","Honeywell ST700 DPT + basket filter assembly"],
+lvl:[2500,7000,"E","Radar / guided wave level transmitter"],
+pg:[30,150,"E","Bourdon pressure gauge"],
+ft:[25000,60000,"M","E+H Promass F 300 শুরু $14,624 (Instrumart); custody grade বড় size-এ বেশি"],
+flt:[3000,9000,"E","Basket filter + DP transmitter"],
+rtu:[15000,50000,"E","ABB RTU panel — I/O, power ও marshalling সহ"],
+tel:[20000,70000,"E","Telecom panel (SDH/fiber) + PIDS interface"],
+tic:[8000,25000,"E","Telemetry interface cabinet"],
+scada:[1500,4000,"M","Workstation PC + monitor; ABB SCADA software license আলাদা"],
+lds:[150000,500000,"E","ABB SCADAvantage LDS — license, tuning ও commissioning (পুরো pipeline-এর জন্য একবার)"],
+pids:[500000,2000000,"E","Fotech DAS + interrogator + integration, ১৩১ কিমি পুরো লাইনের জন্য"],
+esd:[30000,120000,"E","Honeywell safety PLC cabinet (SIL rated), প্রতি cabinet"],
+tgs:[30000,120000,"E","Tank farm SCADA + PLC + tank gauging interface"],
+pa:[3000,15000,"E","PA/talkback system"],
+cctv:[2000,8000,"E","NVR + camera set (৯টি ধরে)"],
+fap:[2000,8000,"E","Notifier addressable fire alarm panel"],
+gd:[1500,3500,"E","Explosion proof IR hydrocarbon gas detector"],
+cag:[25000,120000,"E","IG-541 clean agent system — cylinder bank, nozzle ও detection"],
+fp:[15000,50000,"E","Fire pump + Tornatech controller"],
+jp:[3000,12000,"E","Jockey pump + controller"],
+hyd:[500,3000,"E","Hydrant / monitor, প্রতিটি"],
+fire:[100,600,"E","Fire alarm device / extinguisher, প্রতিটি"],
+ext:[30,150,"E","CO₂ / DCP extinguisher"],
+sir:[800,3000,"E","Siren + control panel"],
+dg:[18000,45000,"M","100 kVA Perkins ≈ ৳২২–২৩ লাখ (bdstall); বড় rating-এ বেশি"],
+amf:[1500,6000,"E","AMF / auto mains failure panel"],
+dt:[500,2500,"E","HSD day tank"],
+tr:[7000,13000,"M","৩১৫ kVA substation package ≈ ৳১৬ লাখ (transformer + HT + LT + PFI সহ, bdstall)"],
+ht:[3000,12000,"E","HT load break switch / VCB panel"],
+pfi:[2500,9000,"E","PFI plant with capacitor steps"],
+lt:[8000,30000,"E","LT main switchboard (L&T শ্রেণি)"],
+ltsw:[8000,30000,"E","LT switchgear + PFI panel"],
+pmcc:[20000,70000,"E","Power & motor control centre"],
+lp:[600,2500,"E","Lighting & power distribution panel"],
+ldb:[400,2000,"E","Lighting distribution board"],
+ats:[1000,5000,"E","ATS panel / SDB"],
+stab:[500,3000,"E","Servo voltage stabilizer"],
+upsx:[1500,8000,"E","ACDB, cell booster ও load bank"],
+sol:[60,250,"E","Solar panel, প্রতিটি (inverter আলাদা)"],
+ups:[1100,3500,"M","10 kVA online UPS ≈ ৳১,৩৫,০০০ (bdstall)"],
+chg:[2500,9000,"E","Float cum boost charger"],
+bat:[60,250,"E","VRLA 2 V cell, প্রতিটি"],
+dcdb:[600,2500,"E","DC distribution board"],
+mccb:[200,900,"E","Battery MCCB box"],
+cb:[800,3000,"E","Cell booster"],
+conv:[500,2500,"E","48/24 V DC-DC converter"],
+inv:[700,3000,"E","48 V / 230 V inverter"],
+cp:[3000,12000,"E","CP transformer rectifier unit"],
+cc:[2500,8000,"E","ER corrosion probe + transmitter"],
+rmu:[1500,6000,"E","CP remote monitoring unit"],
+hvac:[400,1500,"E","Split / scroll air conditioner"],
+tw:[1500,6000,"E","Tubewell starter panel + submersible pump"],
+sub:[2000,8000,"E","Deep tube well submersible pump"],
+misc:[300,1500,"E","Rodent repeller, loop box, FTC"],
+lgt:[2000,10000,"E","Lighting, CCTV ও আনুষঙ্গিক (lot)"],
+oth:[0,0,"E","SV-05-এর মতো — ঐ তালিকায় ধরা আছে"]};
+const EQP_SRC=[["Honeywell SmartLine পেশার ট্রান্সমিটার — Kele","https://www.kele.com/product/pressure/pressure-transmitters/honeywell/stg74l-e1g000-1-a-ahs-11sa10a0"],["E+H Promass F 300 Coriolis — Instrumart","https://www.instrumart.com/products/45664/eh-proline-promass-f-300-coriolis-flow-meter"],["Rotork IQ20 actuator — Equipt listing","https://www.equipt.com/listings/368512-new-2016-rotork-iq20fa14b4-electric-motor-driven-actuators-in-british-columbia"],["১০০ kVA Perkins DG — bdstall","https://www.bdstall.com/details/perkins-100-kva-industrial-diesel-generator-48876"],["৩১৫ kVA substation — bdstall","https://www.bdstall.com/details/315-kva-electrical-substation-51075/"],["১০ kVA online UPS — bdstall","https://www.bdstall.com/details/kstar-gp10-10kva-online-ups-103671/"]];
+const eqpU=(n,d)=>n?"$"+(+n).toLocaleString("en-US",{maximumFractionDigits:d??0}):"—";
+function eqpRow(id,qty){const p=EQP[id];if(!p||!p[1])return null;const q=+qty||0;return{min:p[0],max:p[1],b:p[2],note:p[3],q,tmin:p[0]*q,tmax:p[1]*q}}
+function eqpStn(k){const D=(typeof STN==="object"&&STN[k])||[];let a=0,b=0,n=0;const cat={};
+ D.forEach(x=>{const r=eqpRow(x.id,x.qty);if(!r)return;a+=r.tmin;b+=r.tmax;n++;const c=cat[x.cat]=cat[x.cat]||[0,0];c[0]+=r.tmin;c[1]+=r.tmax});return{a,b,n,cat,t:D.length}}
+let valS="";
+function valv(){if(typeof STN!=="object"||!STNS.some(s=>(STN[s[0]]||[]).length))return secv();
+ const r=opV("rate"),bd=(u)=>r?"৳"+(u*r).toLocaleString("en-IN",{maximumFractionDigits:0}):"—",
+ tot=STNS.map(s=>[s,eqpStn(s[0])]),GA=tot.reduce((x,y)=>x+y[1].a,0),GB=tot.reduce((x,y)=>x+y[1].b,0),CAT={};
+ tot.forEach(([s,v])=>Object.entries(v.cat).forEach(([c,n])=>{const z=CAT[c]=CAT[c]||[0,0];z[0]+=n[0];z[1]+=n[1]}));
+ const mx=Math.max(...Object.values(CAT).map(x=>x[1]),1);
+ const D=valS?(STN[valS]||[]):[];
+ return `<div class="c"><h2>💰 Equipment Value — Indicative</h2>
+ <div style="background:#fff8e1;border:1px solid #f0c36d;border-radius:8px;padding:8px 12px;font-size:13px"><b>এগুলো দরপত্র বা প্রকৃত ক্রয়মূল্য নয়।</b> প্রতিটি দাম আনুমানিক একটি পরিসর — কিছু অনলাইন বাজারদর থেকে (<b>M</b>), বাকিগুলো একই শ্রেণির যন্ত্রের সাধারণ দাম ধরে প্রকৌশল অনুমান (<b>E</b>)। আসল দাম size, rating, certification, brand, পরিমাণ, শুল্ক ও installation-এর উপর অনেক বদলায়। নথি বা বাজেটে ব্যবহারের আগে সরবরাহকারীর quotation নিন। তথ্য সংগ্রহ: ${E(EQP_D)}।</div>
+ <div class="kp" style="margin-top:10px"><div><small class="mu">সব স্থাপনা মিলিয়ে (USD)</small><b style="font-size:21px">${eqpU(GA)} – ${eqpU(GB)}</b></div><div><small class="mu">টাকায় (হার ${r||"—"})</small><b style="font-size:21px">${bd(GA)} – ${bd(GB)}</b></div></div>
+ <p class="mu" style="font-size:12.5px">PIDS ও LDS পুরো ১৩১ কিমি লাইনের জন্য একবারের খরচ — এখানে RT Parbatipur-এর সাথে ধরা হয়েছে, তাই ঐ স্থাপনার অঙ্ক সবচেয়ে বড় দেখায়।</p></div>
+ <div class="c"><h3>🏗 স্থাপনা অনুযায়ী</h3><table style="width:100%;border-collapse:collapse;font-size:13.5px"><tr style="background:#f1f3f5;text-align:left"><th style="padding:6px">স্থাপনা</th><th>ধরনের সংখ্যা</th><th>USD (কম – বেশি)</th><th>৳ (কম – বেশি)</th></tr>
+ ${tot.map(([s,v])=>`<tr style="border-top:1px solid var(--bd);cursor:pointer" onclick="valS='${s[0]}';draw()"><td style="padding:6px"><b>${E(s[0]==="dt"?"SV-05 (DT) Saidpur":s[1].split(" (")[0].split(" — ")[0])}</b></td><td>${v.n} / ${v.t}</td><td>${eqpU(v.a)} – ${eqpU(v.b)}</td><td>${bd(v.a)} – ${bd(v.b)}</td></tr>`).join("")}</table><p class="mu"><small>সারিতে চাপ দিলে ঐ স্থাপনার প্রতিটি যন্ত্রের দাম দেখাবে।</small></p></div>
+ <div class="c"><h3>🗂 বিভাগ অনুযায়ী (সব স্থাপনা মিলিয়ে)</h3>${Object.entries(CAT).sort((a,b)=>b[1][1]-a[1][1]).map(([c,n])=>`<div style="display:flex;justify-content:space-between"><span><b>${E(c)}</b></span><span>${eqpU(n[0])} – ${eqpU(n[1])}</span></div><div class="bar"><i style="width:${n[1]/mx*100}%;background:#1d6ff2"></i></div>`).join("")}</div>
+ ${valS?`<div class="c"><h3>${E(STNS.find(s=>s[0]===valS)[1])}</h3><button class="b" onclick="valS='';draw()">✕ বন্ধ</button>
+ <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px"><tr style="background:#f1f3f5;text-align:left"><th style="padding:6px">যন্ত্র</th><th>সংখ্যা</th><th>প্রতিটি (USD)</th><th>মোট (USD)</th><th>ভিত্তি</th></tr>
+ ${D.map(x=>{const v=eqpRow(x.id,x.qty);return `<tr style="border-top:1px solid var(--bd)"><td style="padding:6px"><b>${E(x.n)}</b><br><small class="mu">${E(x.cat)}</small></td><td>${x.qty||"—"}</td><td>${v?eqpU(v.min)+" – "+eqpU(v.max):"—"}</td><td>${v&&v.q?eqpU(v.tmin)+" – "+eqpU(v.tmax):"—"}</td><td><span class="tg cod" style="padding:1px 6px;font-size:11px" title="${v?E(v.note):""}">${v?v.b:"—"}</span></td></tr>`}).join("")}</table></div></div>`:""}
+ <div class="c"><h3>📚 দামের উৎস</h3><p class="mu"><small><b>M</b> = নিচের তালিকাভুক্ত অনলাইন উৎস থেকে নেওয়া। <b>E</b> = প্রকৌশল অনুমান; এগুলোর জন্য প্রকাশ্য দাম পাওয়া যায় না, কারণ এ ধরনের যন্ত্র project-ভিত্তিক দরপত্রে কেনা হয়।</small></p>
+ <ul style="margin:4px 0 0 18px;padding:0;font-size:13px;line-height:1.7">${EQP_SRC.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${E(s[0])}</a></li>`).join("")}</ul></div>`}
+
+function eqpLine(x){const v=eqpRow(x.id,x.qty);if(!v)return"";const r=opV("rate"),bd=u=>r?" (৳"+(u*r).toLocaleString("en-IN",{maximumFractionDigits:0})+")":"";
+ return `<br><b>আনুমানিক দাম:</b> ${eqpU(v.min)} – ${eqpU(v.max)}${bd(v.min)} প্রতিটি <span class="tg cod" style="padding:1px 6px;font-size:11px" title="${E(v.note)}">${v.b}</span>${v.q>1?` · ${v.q}টি মিলে ${eqpU(v.tmin)} – ${eqpU(v.tmax)}`:""} <small class="mu">— দরপত্র নয়, <a href="#" onclick="cl();tab='val';draw();return false">বিস্তারিত</a></small>`}
+/* ===== 111 Engineering Intelligence Platform — shell, sidebar, dashboard, cloud sync ===== */
+const UI_G=[["Dashboard","🏠",["dash"]],["Inventory Dashboard","📦",["invd"]],["Digital Twin","🛰",["map","flow"]],["Equipment Command Center","⚙️",["stn","eq","ast"]],["Engineering Visuals","📐",["conn","pid","ie","calc"]],["Operations","🛢",["parcel","dgm","rd","ho","wo","pm","ptw","inc","fs"]],["Management Analytics","📊",["kpi","an","bill","val","exec","amc"]],["Knowledge Center","🌍",["ibfpl","sop","emg","case","proj","lib","help"]],["Oil Price Analytics","💧",["oil"]],["Learning Hub","🎓",["acad","learn","plan","trn"]],["Reports","📄",["rp","hs","docs","forms"]],["Admin & Settings","🔧",["inv","rq","ap","lv","dir","notice","vlt","us"]]];
+const uiOpen={};
+function uiGo(t){tab=t;document.body.classList.remove("nvo");draw();window.scrollTo(0,0)}
+function uiTg(i){uiOpen[i]=!document.querySelector('#nv .sg[data-i="'+i+'"]').classList.contains("op");draw()}
+function uiNav(sc){const nv=document.getElementById("nv");if(!nv||nv.dataset.ui===tab+"|"+nv.children.length&&nv.querySelector(".sg"))return;
+ const bs=[...nv.querySelectorAll(":scope>button")];if(!bs.length)return;const by={},rest=[];
+ bs.forEach(b=>{const m=/tab='([a-z0-9_]+)'/.exec(b.getAttribute("onclick")||"");if(m){by[m[1]]=b;b.setAttribute("onclick","uiGo('"+m[1]+"')")}else rest.push(b)});
+ if(by.dash){const b=by.dash.cloneNode(true);b.className=tab==="invd"?"on":"";by.dash.className=tab==="dash"?"on":"";by.invd=b}const used=new Set();let h="";
+ UI_G.forEach((g,i)=>{const its=g[2].filter(k=>by[k]);its.forEach(k=>used.add(k));if(!its.length)return;const act=its.includes(tab);
+  if(g[2].length===1){h+=`<div class="sg"><button class="sgh${act?" on":""}" onclick="uiGo('${its[0]}')"><span>${g[1]} ${g[0]}</span></button></div>`;return}
+  const op=uiOpen[i]===undefined?act:uiOpen[i],bad=its.some(k=>/🔴/.test(by[k].textContent));
+  h+=`<div class="sg${op?" op":""}" data-i="${i}"><button class="sgh${act&&!op?" on":""}" onclick="uiTg(${i})"><span>${g[1]} ${g[0]}${bad?" 🔴":""}</span><span class="sgc">${op?"▾":"▸"}</span></button><div class="sgi">${its.map(k=>by[k].outerHTML).join("")}</div></div>`});
+ const more=Object.keys(by).filter(k=>!used.has(k));
+ if(more.length||rest.length)h+=`<div class="sg op"><button class="sgh"><span>➕ More</span></button><div class="sgi">${more.map(k=>by[k].outerHTML).join("")}${rest.map(b=>b.outerHTML).join("")}</div></div>`;
+ nv.innerHTML=h;nv.scrollTop=sc||0}
+
+/* ---- cloud sync for data that used to live only in this browser ---- */
+const KV_SH=["oil_v1","dg_v1","bill_v1","net_v1","health_v1"],KV_CONF={};let KV_APPLY=false,KV_ON=false,KV_UN=null;const KV_T={};
+const kvDoc=k=>k==="plan_v1"?(me?"plan_"+me.id:null):k,kvKey=id=>id.startsWith("plan_")?(me&&id==="plan_"+me.id?"plan_v1":null):(KV_SH.includes(id)?id:null);
+const kvCan=k=>!!me&&(k==="plan_v1"||can("apr"));
+function kvPush(k){if(!KV_ON||!kvCan(k)||!window.FB||!window.FB.ok)return;clearTimeout(KV_T[k]);KV_T[k]=setTimeout(()=>{const v=localStorage.getItem(k),id=kvDoc(k);if(v==null||!id)return;const ts=Date.now();try{KV_APPLY=true;localStorage.setItem("kvt_"+k,ts)}finally{KV_APPLY=false}(window.FB.setq||window.FB.set)("kvs",id,{d:v,ts,u:me.name||me.email||""})},900)}
+(function(){const o=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){o.call(this,k,v);if(this===localStorage&&!KV_APPLY&&(KV_SH.includes(k)||k==="plan_v1"))kvPush(k)}})();
+function kvTake(k,r){try{KV_APPLY=true;localStorage.setItem(k,r.d);localStorage.setItem("kvt_"+k,r.ts)}finally{KV_APPLY=false}delete KV_CONF[k]}
+function kvUse(k,cloud){const r=KV_CONF[k];if(!r)return;if(cloud){try{KV_APPLY=true;localStorage.setItem("kvb_"+k,localStorage.getItem(k)||"")}finally{KV_APPLY=false}kvTake(k,r)}else{delete KV_CONF[k];kvPush(k)}draw()}
+function kvSnap(a){const seen={};let ch=false;a.forEach(r=>{const k=kvKey(r.id);if(!k||typeof r.d!=="string")return;seen[k]=1;const loc=localStorage.getItem(k),lt=+localStorage.getItem("kvt_"+k)||0;
+  if(loc===r.d){if(lt!==r.ts){try{KV_APPLY=true;localStorage.setItem("kvt_"+k,r.ts)}finally{KV_APPLY=false}}delete KV_CONF[k];return}
+  if(loc==null||loc===""||loc==="{}"||loc==="[]"||lt){if(!lt||r.ts>lt){kvTake(k,r);ch=true}return}
+  KV_CONF[k]=r;ch=true});
+ [...KV_SH,"plan_v1"].forEach(k=>{if(!seen[k]&&!KV_CONF[k]){const v=localStorage.getItem(k);const id=kvDoc(k);if(v&&v!=="{}"&&v!=="[]"&&id&&kvCan(k)&&window.FB.get)window.FB.get("kvs",id).then(d=>{if(!d)kvPush(k)}).catch(()=>{})}});
+ if(ch)draw()}
+function kvStart(){if(KV_UN){KV_UN();KV_UN=null}KV_ON=false;if(!me||!window.FB||!window.FB.ok)return;KV_ON=true;KV_UN=window.FB.listen("kvs",kvSnap)}
+function kvAll(){const o={};[...KV_SH,"plan_v1"].forEach(k=>{const v=localStorage.getItem(k);if(v)o[k]=v});return o}
+function kvBanner(){const ks=Object.keys(KV_CONF);if(!ks.length)return"";const nm={oil_v1:"Oil Price",dg_v1:"DG & Fuel",bill_v1:"Electricity Bills",health_v1:"Equipment Health",net_v1:"Internet Bills",plan_v1:"6-Month Plan"};
+ return `<div class="g" style="border-color:#f0b429"><h3>☁️ Cloud sync — আপনার সিদ্ধান্ত দরকার</h3><p class="mu2">এই device-এর তথ্য ও Cloud-এর তথ্য আলাদা। কোনটি রাখবেন বেছে নিন (অন্যটির একটি কপি এই device-এ রাখা হবে)।</p>${ks.map(k=>`<div class="kv" style="cursor:default"><span><b>${nm[k]||k}</b> <span class="mu2">Cloud: ${E(KV_CONF[k].u||"")} · ${new Date(KV_CONF[k].ts).toLocaleString()}</span></span><span>${kvCan(k)?`<button class="lnk" onclick="kvUse('${k}',0)">এই device-এর তথ্য রাখুন</button> `:""}<button class="lnk" style="background:#0f7a3d" onclick="kvUse('${k}',1)">Cloud-এর তথ্য নিন</button></span></div>`).join("")}</div>`}
+
+
+const uiSec=()=>typeof SEC_ST==="undefined"||SEC_ST==="ok";
+function uiEq(){const o={types:0,qty:0,st:{},cat:{}};if(!uiSec()||typeof STN!=="object")return null;STNS.forEach(s=>{const D=STN[s[0]]||[];let q=0;D.forEach(x=>{const n=+x.qty||0;q+=n;o.cat[x.cat]=(o.cat[x.cat]||0)+n});o.st[s[0]]={t:D.length,q};o.types+=D.length;o.qty+=q});return o.types?o:null}
+function uiCat(c){const L=[];STNS.forEach(s=>(STN[s[0]]||[]).forEach(x=>{if(x.cat===c)L.push([s,x])}));M(`<h3>⚙️ ${E(c)}</h3><p class="mu"><small>${L.length} item — station অনুযায়ী</small></p>${L.map(([s,x])=>`<div class="row" onclick="cl();stnS='${s[0]}';stnC='';stnQ='';tab='stn';draw();stnOpen('${x.id}')"><span><b>${E(x.n)}</b><br><small class="mu">${E(s[1])} · ${E(x.tag||"")}</small></span><span>${E(x.qty??"")} ›</span></div>`).join("")}`)}
+function uiStn(k){stnS=k;stnC="";stnQ="";uiGo("stn")}
+function uiPlan(){try{const d=plnLd(),dn=d.done||{};let tot=0,ok=0;PLN.forEach(m=>m[1].forEach(()=>{tot++;if(dn["w"+tot])ok++}));return{tot,ok,pc:tot?Math.round(ok/tot*100):0,start:d.start||""}}catch(e){return null}}
+function uiSearch(v){gsq=v;uiGo("gs")}
+const UI_HERO=`<svg viewBox="0 0 600 220" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><defs><linearGradient id="uh1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b5fc4"/><stop offset=".6" stop-color="#5aa7ee"/><stop offset="1" stop-color="#bfe1fb"/></linearGradient><linearGradient id="uh2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9eef5"/><stop offset="1" stop-color="#8fa3ba"/></linearGradient></defs><rect width="600" height="220" fill="url(#uh1)"/><ellipse cx="470" cy="46" rx="70" ry="16" fill="#fff" opacity=".35"/><ellipse cx="330" cy="70" rx="50" ry="11" fill="#fff" opacity=".25"/><rect y="176" width="600" height="44" fill="#2f6b3a"/><rect y="186" width="600" height="34" fill="#255a30"/><g fill="url(#uh2)" stroke="#5b6f86" stroke-width="1.5"><rect x="330" y="96" width="70" height="82" rx="4"/><ellipse cx="365" cy="96" rx="35" ry="9"/><rect x="412" y="78" width="78" height="100" rx="4"/><ellipse cx="451" cy="78" rx="39" ry="10"/><rect x="505" y="40" width="20" height="138"/><rect x="535" y="60" width="16" height="118"/><rect x="560" y="88" width="26" height="90" rx="3"/></g><g stroke="#5b6f86" stroke-width="2" fill="none"><path d="M505 70h20M505 100h20M505 130h20M535 90h16M535 120h16"/></g><path d="M250 196h110v-18h60" stroke="#dfe7f0" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M250 196h110v-18h60" stroke="#8fa3ba" stroke-width="2" fill="none"/><rect x="296" y="187" width="10" height="18" fill="#c0392b"/><rect x="352" y="170" width="16" height="16" rx="2" fill="#c0392b"/><linearGradient id="uh3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9ecfc" stop-opacity=".92"/><stop offset=".5" stop-color="#d9ecfc" stop-opacity=".75"/><stop offset=".68" stop-color="#d9ecfc" stop-opacity="0"/></linearGradient><rect width="600" height="176" fill="url(#uh3)"/></svg>`;
+/* ---- equipment health (input by approver, synced through kvs) ---- */
+const HL_S={H:["Healthy","#22c55e","✅"],A:["Attention","#f0b429","⚠️"],C:["Critical","#ef4444","⛔"]};
+function hlLd(){try{return JSON.parse(localStorage.getItem("health_v1")||"{}")}catch(e){return{}}}
+function hlSet(st,id,s){const d=hlLd(),k=st+"/"+id;if(s)d[k]={s,d:new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10),u:me?(me.name||""):""};else delete d[k];try{localStorage.setItem("health_v1",JSON.stringify(d))}catch(e){}draw();uiHealth(st)}
+function hlStat(){const d=hlLd(),o={H:0,A:0,C:0,N:0,st:{},last:""};const eq=uiSec()&&typeof STN==="object";
+ if(eq&&STNS.some(s=>(STN[s[0]]||[]).length)){STNS.forEach(s=>{const r={H:0,A:0,C:0,N:0};(STN[s[0]]||[]).forEach(x=>{const v=d[s[0]+"/"+x.id];if(v&&HL_S[v.s]){r[v.s]++;o[v.s]++;if(v.d>o.last)o.last=v.d}else{r.N++;o.N++}});o.st[s[0]]=r});o.full=true}
+ else Object.values(d).forEach(v=>{if(v&&HL_S[v.s]){o[v.s]++;if(v.d>o.last)o.last=v.d}});
+ o.as=o.H+o.A+o.C;o.pc=o.as?Math.round(o.H/o.as*100):null;return o}
+let hlF="";
+function uiHealth(st){if(!uiSec()||typeof STN!=="object"||!STNS.some(s=>(STN[s[0]]||[]).length)){uiGo("stn");return}st=st||stnS;const d=hlLd(),w=kvCan("health_v1"),D=(STN[st]||[]).filter(x=>!hlF||(hlF==="N"?!d[st+"/"+x.id]:(d[st+"/"+x.id]||{}).s===hlF));
+ M(`<h3>💚 Equipment Health — input</h3><p class="mu"><small>প্রতিটি equipment-এর বর্তমান অবস্থা বেছে নিন। Health % = Healthy ÷ মোট assessed। ${w?"চাপ দিলেই সেভ হয়।":"শুধু Admin/অনুমোদিত ব্যক্তি বদলাতে পারেন।"}</small></p>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0">${STNS.map(s=>`<button class="b" style="${s[0]===st?"background:#1d6ff2;color:#fff":""}" onclick="uiHealth('${s[0]}')">${E(s[0]==="dt"?"Saidpur DT":s[1].split(" (")[0].split(" — ")[0])}</button>`).join("")}</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0">${[["","All"],["H","Healthy"],["A","Attention"],["C","Critical"],["N","Not assessed"]].map(f=>`<button class="b" style="padding:5px 10px;font-size:13px;${hlF===f[0]?"background:#0b2a5c;color:#fff":""}" onclick="hlF='${f[0]}';uiHealth('${st}')">${f[1]}</button>`).join("")}</div>
+${D.map(x=>{const v=d[st+"/"+x.id];return `<div class="row" style="cursor:default;flex-wrap:wrap"><span style="flex:1;min-width:180px"><b>${E(x.n)}</b><br><small class="mu">${E(x.tag||"")}${v?" · "+E(v.d)+(v.u?" · "+E(v.u):""):" · not assessed"}</small></span><span>${w?Object.entries(HL_S).map(([k,s])=>`<button class="b" title="${s[0]}" style="padding:6px 10px;${v&&v.s===k?"background:"+s[1]+";color:#fff;border-color:"+s[1]:""}" onclick="hlSet('${st}','${x.id}','${k}')">${s[2]} ${s[0]}</button>`).join("")+(v?`<button class="b" title="Clear" style="padding:6px 10px" onclick="hlSet('${st}','${x.id}','')">✕</button>`:""):(v?`<span class="tg" style="background:${HL_S[v.s][1]};color:#fff;border:0">${HL_S[v.s][0]}</span>`:`<span class="tg cod">Not assessed</span>`)}</span></div>`}).join("")||'<p class="mu">এই filter-এ কিছু নেই।</p>'}`)}
+
+/* ---- dashboard ---- */
+const UI_TX=`<svg viewBox="0 0 120 150" style="width:110px;flex:none" aria-hidden="true"><defs><linearGradient id="tx1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5aa7ff"/><stop offset="1" stop-color="#1546a8"/></linearGradient><linearGradient id="tx2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f1f5f9"/><stop offset="1" stop-color="#7c8ea3"/></linearGradient></defs><rect x="8" y="34" width="20" height="26" rx="4" fill="url(#tx1)"/><circle cx="66" cy="46" r="38" fill="url(#tx1)" stroke="#0b2a5c" stroke-width="2"/><circle cx="66" cy="46" r="24" fill="#0a1730" stroke="#9cc7ff" stroke-width="3"/><rect x="50" y="38" width="32" height="16" rx="3" fill="#bfe3c8"/><rect x="52" y="82" width="28" height="18" fill="url(#tx2)"/><rect x="34" y="98" width="64" height="26" rx="5" fill="url(#tx2)" stroke="#5b6f86"/><circle cx="46" cy="111" r="4" fill="#5b6f86"/><circle cx="86" cy="111" r="4" fill="#5b6f86"/><rect x="56" y="124" width="20" height="22" fill="url(#tx2)"/></svg>`;
+const UI_GLOBE=`<svg viewBox="0 0 120 120" style="width:104px;flex:none" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="#0d3a86" stroke="#4d8ef0" stroke-width="2"/><g fill="none" stroke="#4d8ef0" stroke-width="1.3" opacity=".8"><ellipse cx="60" cy="60" rx="24" ry="52"/><ellipse cx="60" cy="60" rx="44" ry="52"/><path d="M8 60h104M15 34h90M15 86h90"/></g><g fill="#f0b429"><circle cx="40" cy="44" r="4"/><circle cx="76" cy="38" r="4"/><circle cx="84" cy="66" r="4"/><circle cx="50" cy="80" r="4"/></g></svg>`;
+function uiTwin(){const N=[["SV-1","sv1",45,1],["SV-2","sv5",140,0],["SV-3","sv5",235,1],["SV-4","sv5",330,0],["SV-5 / DT","dt",425,1],["RT Parbatipur","rtp",520,1,"#22c55e",104]],nd=n=>{const x=n[2],w=n[5]||84,ly=n[3]?148:74;return `<g onclick="uiStn('${n[1]}')" style="cursor:pointer"><circle cx="${x}" cy="120" r="11" fill="${n[4]||"#f0b429"}" stroke="#fff" stroke-width="2.5"/><rect x="${Math.min(x-w/2,570-w-4)}" y="${ly}" width="${w}" height="26" rx="6" fill="#0b2a5c" stroke="#3b6fc0"/><text x="${Math.min(x,570-w/2-4)}" y="${ly+18}" text-anchor="middle" font-size="13.5" font-weight="700" fill="#fff">${n[0]}</text></g>`};
+ return `<svg viewBox="0 0 570 215" style="width:100%;display:block;border-radius:12px" role="img" aria-label="Pipeline schematic with clickable stations"><defs><linearGradient id="tw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb7e8"/><stop offset=".3" stop-color="#3f8a4a"/><stop offset="1" stop-color="#1f5a2c"/></linearGradient></defs><rect width="570" height="215" fill="url(#tw1)"/><path d="M0 62C90 40 160 70 250 52S420 30 570 58V0H0Z" fill="#9fd0f5"/><g fill="#2c6d37" opacity=".7"><ellipse cx="90" cy="186" rx="120" ry="26"/><ellipse cx="330" cy="196" rx="150" ry="24"/><ellipse cx="520" cy="182" rx="90" ry="22"/></g><g fill="#2a6a35"><circle cx="30" cy="150" r="9"/><circle cx="200" cy="96" r="8"/><circle cx="290" cy="172" r="9"/><circle cx="375" cy="150" r="8"/><circle cx="95" cy="86" r="7"/></g><path d="M14 120H520" stroke="#e8eef5" stroke-width="10" stroke-linecap="round"/><path d="M14 120H520" stroke="#f0b429" stroke-width="2.5" stroke-dasharray="10 12"/><path d="M425 120V40H500" stroke="#e8eef5" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="100" font-size="12.5" font-weight="700" fill="#06280f">From India ▸</text><text x="434" y="62" font-size="11.5" font-weight="700" fill="#06280f">≈7 km</text>${N.map(nd).join("")}<g onclick="uiStn('rts')" style="cursor:pointer"><circle cx="500" cy="40" r="11" fill="#22c55e" stroke="#fff" stroke-width="2.5"/><rect x="398" y="6" width="90" height="26" rx="6" fill="#0b2a5c" stroke="#3b6fc0"/><text x="443" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="#fff">RT Saidpur</text></g><text x="12" y="206" font-size="11.5" fill="#e8f5ea">Schematic, not to scale · click a station to open it</text></svg>`}
+function uiElec(){let a=[];try{a=blLd()}catch(e){}const m={};a.forEach(x=>{if(x&&x.m)m[x.m]=(m[x.m]||0)+(+x.kwh||0)});const ks=Object.keys(m).sort().slice(-6);if(!ks.length)return `<b class="mv">—</b><p class="mu2">No bill entered yet</p>`;
+ const mx=Math.max(...ks.map(k=>m[k]),1),cur=m[ks[ks.length-1]],pv=ks.length>1?m[ks[ks.length-2]]:0,ch=pv?Math.round((cur-pv)/pv*100):null;
+ return `<b class="mv">${cur.toLocaleString()} kWh</b><div class="mu2" style="margin:0">${E(ks[ks.length-1])}${ch==null?"":` · <span style="color:${ch>0?"#fca5a5":"#86efac"}">${ch>0?"↑":"↓"} ${Math.abs(ch)}%</span>`}</div><svg viewBox="0 0 120 56" style="width:100%;margin-top:6px">${ks.map((k,i)=>{const h=Math.max(3,m[k]/mx*50);return `<rect x="${i*20+3}" y="${54-h}" width="13" height="${h}" rx="2" fill="#22d3ee"><title>${k}: ${m[k]} kWh</title></rect>`}).join("")}</svg>`}
+function uiDg(){let d={};try{d=dgLd()}catch(e){}const L=Object.entries(d).filter(([k,v])=>v&&+v.lvl>0);if(!L.length)return `<b class="mv">—</b><p class="mu2">No fuel level entered yet</p>`;
+ const tot=L.reduce((a,[k,v])=>a+(+v.lvl||0),0);return `<b class="mv">${tot.toLocaleString()} L</b><div class="mu2" style="margin:0">fuel in ${L.length} DG tank${L.length>1?"s":""}</div><div style="margin-top:8px">${L.slice(0,5).map(([k,v])=>{const c=+v.cap||0,p=c?Math.min(100,v.lvl/c*100):0;return `<div class="bar2" title="${E(k)}"><i style="width:${c?p:100}%;background:${c&&p<25?"#ef4444":"linear-gradient(90deg,#f0b429,#f59e0b)"}"></i></div>`}).join("")}</div>`}
+function uiPm(){if(!me)return `<b class="mv">🔒</b><p class="mu2">Log in to view</p>`;let s=[],ok=0;try{s=[...S.g.pm,...S.g.fs,...S.g.trn,...S.g.cal].filter(x=>due(x));ok=s.filter(x=>ps(x)[1]!=="OVERDUE").length}catch(e){}if(!s.length)return `<b class="mv">—</b><p class="mu2">No scheduled task yet</p>`;const p=Math.round(ok/s.length*100);
+ return `<b class="mv">${p}% on time</b><div class="mu2" style="margin:0">${ok} / ${s.length} scheduled tasks</div><svg viewBox="0 0 100 100" style="width:74px;display:block;margin:6px auto 0"><circle cx="50" cy="50" r="38" fill="none" stroke="#0b1c3d" stroke-width="12"/><circle cx="50" cy="50" r="38" fill="none" stroke="#22c55e" stroke-width="12" stroke-linecap="round" stroke-dasharray="${p*2.388} 238.8" transform="rotate(-90 50 50)"/></svg>`}
+function dashX(){const eq=uiEq(),lk=`<span title="Login / unlock required">🔒</span>`,mh=me?(S.g.mh||[]).length:null,pl=uiPlan(),op=opLd(),hl=hlStat(),
+ low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2).length,od=me?ovd():null,pn=me?pcn():null,oi=me?S.inc.filter(x=>!/clos|done|solved|সমাধান/i.test(String(x.st||x.status||""))).length:null,
+ bar=(l,v,mx,fn,ex)=>`<div class="kv" onclick="${fn}"><span>${E(l)}${ex||""}</span><b>${v}</b></div><div class="bar2"><i style="width:${mx?Math.max(3,v/mx*100):0}%"></i></div>`,
+ chip=(l,v,t)=>`<span class="chip" onclick="uiGo('${t}')">${l} <b>${v==null?"🔒":v}</b></span>`,
+ li=(t,l,m)=>`<div class="kv" onclick="uiGo('${t}')"><span>${m||"✔"} ${l}</span><span>›</span></div>`,
+ pr=k=>{const v=(typeof opV==="function")?opV(k):op[k];return v?"$"+(+v).toLocaleString("en-US",{maximumFractionDigits:2}):"—"},bdp=k=>{const v=(typeof opV==="function")?opV(k):op[k];return v?"৳"+(+v).toLocaleString("en-IN")+"/L":"—"};
+ const stMax=eq?Math.max(...Object.values(eq.st).map(x=>x.q),1):1,ctMax=eq?Math.max(...Object.values(eq.cat),1):1;
+ const lg=(S.log||[]).slice().sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,4);
+ const hp=hl.pc,hc=hp==null?"#3b5b8f":hp>=90?"#22c55e":hp>=75?"#f0b429":"#ef4444";
+ return `<div class="dx">${kvBanner()}
+<div class="top"><div class="g hero">${UI_HERO}<div class="ht"><div class="h1">111</div><div class="h2">Oil &amp; Gas Engineering<br>Intelligence Platform</div><div class="h3">Explore • Learn • Manage • Excel</div></div></div>
+<div class="r4"><div class="st a" onclick="uiGo('stn')"><span class="si">🏭</span>Pipeline<br>Installations<b>8</b><small>5 SV · DT · 2 RT</small></div>
+<div class="st b" onclick="uiGo('stn')"><span class="si">⚙️</span>Total<br>Equipment<b>${eq?eq.qty.toLocaleString():lk}</b><small>${eq?eq.types+" item types":"Unlock to view"}</small></div>
+<div class="st c" onclick="uiGo('stn')"><span class="si">🛠</span>Maintenance<br>Records<b>${mh==null?lk:mh}</b><small>${mh==null?"Log in to view":"in Maintenance History"}</small></div>
+<div class="st d" onclick="uiHealth()"><span class="si">📈</span>Equipment<br>Health<b>${hp==null?"—":hp+"%"}</b><small>${hl.as?hl.as+" assessed":"No input yet"}</small></div></div></div>
+<div class="r3"><div class="g"><h3>🛰 Digital Twin — Pipeline Overview</h3>${uiTwin()}<div style="margin-top:8px"><button class="lnk" onclick="uiGo('map')">Map &amp; Distance →</button> <button class="lnk" onclick="uiGo('flow')">3D Flow →</button></div></div>
+<div class="g"><h3>📊 Management Dashboard</h3><div class="m3"><div class="mini" onclick="uiGo('bill')"><small>Electricity Consumption</small>${uiElec()}</div><div class="mini" onclick="uiGo('dgm')"><small>DG Fuel</small>${uiDg()}</div><div class="mini" onclick="uiGo('pm')"><small>Maintenance</small>${uiPm()}</div></div>
+<div style="margin-top:10px">${chip("⚠️ Low stock",low,"inv")}${chip("🗓 Overdue",od,"pm")}${chip("⏳ Approvals",pn,"ap")}${chip("🚧 Open problems",oi,"inc")}</div><div style="margin-top:6px"><button class="lnk" onclick="uiGo('kpi')">KPI →</button> <button class="lnk" onclick="uiGo('val')">Equipment Value →</button> <button class="lnk" onclick="uiGo('exec')">Executive Brief →</button> <button class="lnk" onclick="uiGo('parcel')">Parcels →</button></div></div>
+<div class="g"><h3>🤖 Engineering Assistant</h3><input placeholder="Ask anything about instruments, systems…" onkeydown="if(event.key==='Enter')uiSearch(this.value)" style="background:#eaf2ff"><p class="mu2">Searches this platform (not an AI chat). Press Enter.</p><b style="font-size:13.5px">Examples:</b>${li("conn","Transmitter working principle")}${li("help","Flowmeter fault")}${li("conn","PLC communication")}</div></div>
+<div class="rr4"><div class="g"><h3>💚 Equipment Health &amp; Reliability</h3><div style="display:flex;gap:14px;align-items:center"><svg viewBox="0 0 100 100" style="width:92px;flex:none"><circle cx="50" cy="50" r="40" fill="none" stroke="#0b1c3d" stroke-width="11"/><circle cx="50" cy="50" r="40" fill="none" stroke="${hc}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${(hp||0)*2.513} 251.3" transform="rotate(-90 50 50)"/><text x="50" y="47" text-anchor="middle" font-size="10" fill="#9fb6de">Overall Health</text><text x="50" y="66" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">${hp==null?"—":hp+"%"}</text></svg><div style="flex:1"><div class="kv" style="cursor:default"><span>🟢 Healthy</span><b>${hl.H}</b></div><div class="kv" style="cursor:default"><span>🟡 Attention</span><b>${hl.A}</b></div><div class="kv" style="cursor:default"><span>🔴 Critical</span><b>${hl.C}</b></div>${hl.full?`<div class="kv" style="cursor:default"><span>⚪ Not assessed</span><b>${hl.N}</b></div>`:""}</div></div><p class="mu2">${hl.as?"Healthy ÷ assessed"+(hl.last?" · last input "+E(hl.last):""):"No health input yet — open View Details to enter"}</p><button class="lnk" onclick="uiHealth()">${kvCan("health_v1")?"Update / View Details →":"View Details →"}</button></div>
+<div class="g"><h3>📐 Engineering Visualization</h3><div style="display:flex;gap:10px;align-items:center">${UI_TX}<div style="flex:1">${li("conn","Diagrams")}${li("conn","Wiring")}${li("flow","Animation")}${li("help","Troubleshooting")}</div></div><div style="margin-top:6px"><button class="lnk" onclick="uiGo('conn')">View →</button> <button class="lnk" onclick="uiGo('pid')">P&amp;ID →</button> <button class="lnk" onclick="uiGo('ie')">I&amp;E Tools →</button></div></div>
+<div class="g"><h3>🌍 Global Knowledge Center</h3><div style="display:flex;gap:10px;align-items:center">${UI_GLOBE}<div style="flex:1">${li("case","Case Studies","●")}${li("lib","Standards","●")}${li("sop","Best Practices","●")}${li("ibfpl","Guidelines","●")}</div></div><div style="margin-top:6px"><button class="lnk" onclick="uiGo('proj')">Explore →</button> <button class="lnk" onclick="uiGo('emg')">Emergency →</button></div></div>
+<div class="g"><h3>💧 Oil Price Analytics</h3><div class="kv" onclick="uiGo('oil')"><span>Brent Crude</span><b>${pr("brent")}</b></div><div class="kv" onclick="uiGo('oil')"><span>WTI Crude</span><b>${pr("wti")}</b></div><div class="kv" onclick="uiGo('oil')"><span>Dubai / Oman</span><b>${pr("dubai")}</b></div><div class="kv" onclick="uiGo('oil')"><span>Diesel — BD retail</span><b>${bdp("bd_d")}</b></div><p class="mu2">${op.upd?"Manually updated · "+E(op.upd):"Reference values · "+(typeof OP_D!=="undefined"?E(OP_D):"")+" · not live"}</p><button class="lnk" onclick="uiGo('oil')">Open Oil Price Analytics →</button></div></div>
+<div class="g"><h3>⚙️ Equipment Command Center</h3>${eq?`<div class="m2"><div><p class="mu2">By station (quantity) · health H / A / C</p>${STNS.map(s=>{const r=hl.st[s[0]]||{H:0,A:0,C:0};return bar(s[0]==="dt"?"Saidpur DT (at SV-05)":s[1].split(" (")[0].split(" — ")[0],eq.st[s[0]].q,stMax,`uiStn('${s[0]}')`,` <small class="mu2">🟢${r.H} 🟡${r.A} 🔴${r.C}</small>`)}).join("")}</div><div><p class="mu2">By category (quantity)</p>${Object.entries(eq.cat).sort((a,b)=>b[1]-a[1]).map(([c,n])=>bar(c,n,ctMax,`uiCat('${c.replace(/'/g,"\\'")}')`)).join("")}</div></div><p class="mu2" style="margin-top:8px">আনুমানিক মূল্য (দরপত্র নয়): <b>${(()=>{const x=STNS.reduce((p,s)=>[p[0]+eqpStn(s[0]).a,p[1]+eqpStn(s[0]).b],[0,0]);return eqpU(x[0])+" – "+eqpU(x[1])})()}</b> <button class="lnk" onclick="uiGo('val')">বিস্তারিত →</button></p>`:`<p class="mu2">Station-wise and category-wise equipment is in the protected area.</p><button class="lnk" onclick="uiGo('stn')">🔒 Unlock / Log in</button>`}</div>
+<div class="r3b"><div class="g"><h3>🎓 Six-Month Learning Roadmap</h3>${pl?`<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg viewBox="0 0 100 100" style="width:96px"><circle cx="50" cy="50" r="40" fill="none" stroke="#0b1c3d" stroke-width="12"/><circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="12" stroke-linecap="round" stroke-dasharray="${pl.pc*2.513} 251.3" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">${pl.pc}%</text></svg><div><b>${pl.ok} / ${pl.tot} weeks done</b><div class="mu2">${pl.start?"Started "+E(pl.start):"Start date not set"}</div><button class="lnk" style="margin-top:4px" onclick="uiGo('plan')">Continue Learning →</button></div></div>`:""}<div style="margin-top:6px"><button class="lnk" onclick="uiGo('acad')">Academy →</button> <button class="lnk" onclick="uiGo('learn')">Pro Course →</button></div></div>
+<div class="g"><h3>📣 Recent Updates</h3>${me?(lg.map(l=>`<div class="kv" style="cursor:default"><span>${E(l.x)}</span><span class="mu2" style="white-space:nowrap">${E(l.t||"")}</span></div>`).join("")||`<p class="mu2">No activity yet.</p>`):`<p class="mu2">Log in to see recent activity.</p>`}${me?`<button class="lnk" style="margin-top:8px" onclick="uiGo('hs')">History →</button>`:""}${can("admin")?` <button class="lnk" style="margin-top:8px;background:#0f7a3d" onclick="bk()">💾 Full backup</button>`:""}</div>
+<div class="g ban"><div class="b1">One Platform.<br>Complete Engineering Solution.</div><span class="b2">Powering Your Engineering Excellence</span></div></div>
+<div style="text-align:right"><button class="lnk" style="padding:10px 16px;font-size:15px" onclick="uiGo('invd')">Next page: Inventory &amp; Asset Dashboard →</button></div></div>`}
+const _uiDraw=draw;
+draw=function(){const nv=document.getElementById("nv"),sc=nv?nv.scrollTop:0;_uiDraw();try{uiNav(sc)}catch(e){console.warn("uiNav",e)}
+ const mn=document.getElementById("mn");if(!mn)return;mn.classList.toggle("wide",tab==="dash");
+ try{if(tab==="dash")mn.innerHTML=dashX();else if(tab==="invd"){mn.innerHTML=`<div style="margin-bottom:10px"><button class="b" onclick="uiGo('dash')">← Main Dashboard</button></div>`+dash();enh()}}catch(e){console.warn("dashX",e)}};
+window.addEventListener("fbready",()=>{if(window.FB&&window.FB.ok)window.FB.onAuth(()=>setTimeout(kvStart,1500))});
 
 /* ===== Access protection ===== */
 const SEC_W={"s":"Jdxwbw5RnV5meKUAw2CEag==","i":"VPcr4ksWEWvEVXj1","c":"76FxeG9f7muLXL4R5u5pUv6WpAu6pjfIAtzuF43HIF7r1SNEWugtyy/vYsW/A6IV"},SEC_TABS=["stn","bill","sop","pid","emg","map","exec"];let SEC_IDX={},SEC_K=null,SEC_RAW=null,SEC_ST="lock",SEC_MSG="",SEC_TRY=null;const SEC_IMG={};
 const sb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0)),sb64e=u=>btoa(String.fromCharCode(...u));
 async function secDec(u){return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},SEC_K,u.slice(12)))}
-async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwjdb1af")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
+async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwk77kne")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
 async function secPw(p){p=String(p||"").replace(/^[\s'"“”‘’]+/,"").replace(/[\s।.,'"“”‘’]+$/,"");SEC_MSG="যাচাই হচ্ছে…";let raw;try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveKey"]),wk=await crypto.subtle.deriveKey({name:"PBKDF2",salt:sb64(SEC_W.s),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);raw=new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:sb64(SEC_W.i)},wk,sb64(SEC_W.c)))}catch(e){SEC_MSG=window.isSecureContext===false?"এই ঠিকানায় (https নয়) খোলা যাবে না — সাইটের https ঠিকানা ব্যবহার করুন।":"Passphrase মিলছে না — বানান, ছোট হাতের অক্ষর ও হাইফেন (-) দেখে আবার লিখুন।";draw();return}
 try{await secImport(raw)}catch(e){SEC_MSG="Passphrase ঠিক আছে, কিন্তু sec/data.bin ফাইল পাওয়া যায়নি বা পুরোনো। GitHub-এ নতুন sec ফোল্ডারটি upload করুন।";draw()}}
 function secAuto(){if(SEC_ST==="ok"||!me||!F||!F.get||SEC_TRY===me.id)return;SEC_TRY=me.id;F.get("secure","main").then(d=>{if(d&&d.k)return secImport(sb64(d.k));SEC_MSG="আপনার account-এ এখনো অনুমতি দেওয়া হয়নি।";draw()}).catch(()=>{SEC_MSG="আপনার account এখনো Admin-এর অনুমোদন (Verify) পায়নি।";draw()})}
 function secShare(){if(!SEC_RAW||!me||me.role!=="admin")return;F.set("secure","main",{k:sb64e(SEC_RAW),at:Date.now(),by:me.id});SEC_MSG="Verified user-দের জন্য চালু করা হয়েছে।";draw()}
 function secv(){secAuto();return `<div class="c" style="max-width:520px;margin:20px auto;text-align:center"><div style="font-size:44px">🔒</div><h2>সুরক্ষিত অংশ</h2><p class="mu">এই অংশ শুধু Admin-এর অনুমোদিত (Verified) ব্যবহারকারীরা দেখতে পারেন।</p>${me?`<p>Log in আছে: <b>${E(me.name||me.email||"")}</b></p>`:`<p><b>আগে Log In করুন।</b> নতুন হলে Register করে Admin-এর অনুমোদনের অপেক্ষা করুন।</p>`}${SEC_MSG?`<p style="color:#b02a37">${E(SEC_MSG)}</p>`:""}<details style="margin-top:14px;text-align:left"><summary>Admin passphrase দিয়ে খুলুন</summary><div style="display:flex;gap:6px;margin-top:8px"><input id="sec_pw" type="password" placeholder="Admin passphrase" style="flex:1" onkeydown="if(event.key==='Enter')secPw(this.value)"><button class="b" onclick="secPw(document.getElementById('sec_pw').value)">খুলুন</button></div></details></div>`}
 function secBar(){return SEC_ST==="ok"&&me&&me.role==="admin"?`<div class="c" style="background:#eef7f0"><small>🔓 সুরক্ষিত তথ্য খোলা আছে।</small> <button class="b" onclick="secShare()">Verified user-দের জন্য চালু / হালনাগাদ করুন</button> ${SEC_MSG?`<small>${E(SEC_MSG)}</small>`:""}</div>`:""}
-const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwjdb1af").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
+const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwk77kne").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
 function secImgs(){if(!SEC_K)return;document.querySelectorAll("img[data-sec]").forEach(async im=>{const k=im.dataset.sec;if(im.dataset.done)return;im.dataset.done=1;try{if(!SEC_IMG[k]){const ix=SEC_IDX[k];if(!ix)throw 0;const b=await secPack(ix[0]);SEC_IMG[k]=URL.createObjectURL(new Blob([await secDec(b.slice(ix[1],ix[1]+ix[2]))],{type:"image/jpeg"}))}im.src=SEC_IMG[k]}catch(e){im.style.display="none"}})}
 draw();
 window.addEventListener("fbready",()=>{F=window.FB;if(!F.ok){$("#mn").innerHTML='<div class="c"><h3>Firebase setup দরকার</h3><p>ফাইলের শুরুতে firebaseConfig-এ নিজের Firebase তথ্য বসান।</p></div>';return}
