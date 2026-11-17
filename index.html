@@ -118,7 +118,7 @@ main{max-width:1040px;width:100%}
 .dx .st{line-height:1.2}
 @media(max-width:700px){.dx .m3,.dx .m2{grid-template-columns:1fr}}
 </style></head><body>
-<header><button class="hb mnu" aria-label="Menu" onclick="document.body.classList.toggle('nvo')">☰</button><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Intelligence Platform<br>Smart • Reliable • Integrated · v17.11.26-4</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
+<header><button class="hb mnu" aria-label="Menu" onclick="document.body.classList.toggle('nvo')">☰</button><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Intelligence Platform<br>Smart • Reliable • Integrated · v17.11.26-5</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
 <nav id="nv"></nav><div id="nvb" onclick="document.body.classList.remove('nvo')"></div><main id="mn"></main><div id="md" onclick="if(event.target.id=='md')cl()"><div id="bx"></div></div>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -146,7 +146,7 @@ const save=()=>draw(),LG=t=>{if(me)F.set("log",uid(),{t:day(),u:me.name,x:t,ts:D
 const can=r=>me&&(r==="req"||r==="staff"||r==="rec"?true:(r==="mgr"||r==="apr")?(me.role==="admin"||me.ap===true):me.role==="admin"),cw=c=>true;
 const bal=i=>+i.qty+S.tx.filter(t=>t.i===i.id).reduce((a,t)=>a+(t.k==="in"?+t.n:-t.n),0);
 const unit=i=>i.unit||"pcs",nm=id=>(S.items.find(x=>x.id===id)||{name:"(deleted)"}).name,st=i=>bal(i)<=0?0:bal(i)<=+i.min?1:2;
-const TS=[["dash","Dashboard"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["val","💰 Equipment Value"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"]];
+const TS=[["dash","Dashboard"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["val","💰 Equipment Value"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["mst","🎓 Mastery Track"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"],["diag","🔧 Diagnostics"]];
 function cl(){$("#md").classList.remove("on")}function M(h){$("#bx").innerHTML=h;$("#md").classList.add("on");enh()}
 const opt=(a,s)=>a.map(x=>{const v=x.id||x,n=x.name||x;return`<option value="${E(v)}" ${v===s?"selected":""}>${E(n)}</option>`}).join(""),V=id=>$("#"+id).value;
 function draw(){draw0();enh()}
@@ -154,7 +154,7 @@ function draw0(){
 $("#hu").innerHTML=me?`<span class="tg ${RC[me.role][0]}">${E(me.name)} · ${RC[me.role][1]}</span><button class="hb" onclick="out()">Logout</button>`:`<button class="hb p" onclick="login()">Log In</button><button class="hb" onclick="reg()">Register</button>`;
 $("#nv").innerHTML=tabOrder().filter(t=>(t[0]!=="us"||can("admin"))&&(t[0]!=="vlt"||can("admin"))&&(!["ie","sop","pid","emg","kpi","dir","ap","help","notice","forms","inc",...GK,"lv","an","rp"].includes(t[0])||me)).map(t=>`<button class="${t[0]===tab?"on":""}${hd(t[0])?"":" ne"}" onclick="tab='${t[0]}';draw()">${bn&&TB[t[0]]?TB[t[0]]:t[1]}${t[0]==="pm"&&ovd()?" 🔴"+ovd():""}${t[0]==="ap"&&pcn()?" 🔴"+pcn():""}</button>`).join("");
 const m=$("#mn");
-if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="val")m.innerHTML=valv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
+if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="mst")m.innerHTML=mstv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="val")m.innerHTML=valv();if(tab==="diag")m.innerHTML=diagv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
 }
 function dash(){const low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),tot=CAT.map(c=>S.items.filter(i=>i.cat===c).reduce((a,i)=>a+Math.max(0,bal(i)),0)),T=tot.reduce((a,b)=>a+b,0)||1;
 let o=0;const r=62,C=2*Math.PI*r,arc=tot.map((v,k)=>{const l=v/T*C,e=`<circle cx="90" cy="90" r="${r}" fill="none" stroke="${COL[k]}" stroke-width="26" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-o}" transform="rotate(-90 90 90)"/>`;o+=l;return e}).join("");
@@ -343,7 +343,7 @@ out+=pga(T);if(Dc.length)out+=`<div class="c"><h3>📄 সংশ্লিষ্�
 return`<div class="c"><h3>🔎 সমস্যার সমাধান খুঁজুন</h3><p class="mu">নতুন কোনো সমস্যা (জেনারেটর, প্যানেল, PLC…) দেখলে এখানে লিখে খুঁজুন। আগের রেকর্ডে মিললে সমস্যা ও সমাধানের বিবরণ দেখাবে।</p><input id="hq" placeholder="যেমন: জেনারেটর স্টার্ট হচ্ছে না / UPS battery low" value="${E(hq)}" oninput="hq=this.value;draw();const e=$('#hq');e.focus();e.setSelectionRange(99999,99999)"><div style="overflow-x:auto;white-space:nowrap">${["Generator","UPS","PLC","SCADA","RTU","MOV","Panel","Transmitter","Flow computer","Fire pump"].map(c=>`<button class="b" onclick="hq='${c}';draw()">${c}</button>`).join("")}</div></div>${out}`}
 let PD2=[];
 const PG=["Depot · Padma Oil","Depot · Meghna Petroleum","Depot · Jamuna Oil","PDB Saidpur (07 KM) · Padma","PDB Saidpur (07 KM) · Meghna","PDB Saidpur (07 KM) · Jamuna","Inside 07 KM pipeline","New tank-farm pipeline"],OM={Padma:[0,3],Meghna:[1,4],Jamuna:[2,5],"Pipeline (BPC)":[6,7]},ALL=[0,1,2,3,4,5,6,7];
-const gv=(x,i,k)=>+((x.g||[])[i*3+k])||0,g2=(x,k,ids)=>ids.reduce((a,i)=>a+gv(x,i,k),0),hasC=x=>x.cm!==""&&x.cm!=null,tqf=x=>x.tq!==""&&x.tq!=null?+x.tq:g2(x,2,ALL),lgf=x=>hasC(x)?tqf(x)-(+x.cm):0,lpf=x=>hasC(x)&&+x.cm?lgf(x)/x.cm*100:0,pf3=v=>(+v||0).toFixed(3),pcl=()=>S.g.parcel.filter(x=>x.v===2).sort((a,b)=>(+a.eq)-(+b.eq));
+const gv=(x,i,k)=>+((x.g||[])[i*3+k])||0,g2=(x,k,ids)=>ids.reduce((a,i)=>a+gv(x,i,k),0),hasC=x=>x.cm!==""&&x.cm!=null,tqf=x=>x.tq!==""&&x.tq!=null?+x.tq:g2(x,2,ALL),lgf=x=>hasC(x)?tqf(x)-(+x.cm):0,lpf=x=>hasC(x)&&+x.cm?lgf(x)/x.cm*100:0,pf3=v=>(+v||0).toFixed(3),pcl=()=>S.g.parcel.filter(x=>x.v===2).sort((a,b)=>(+a.eq)-(+b.eq)),pold=()=>S.g.parcel.filter(x=>x.v!==2&&!x.line).sort((a,b)=>(+a.eq||0)-(+b.eq||0)),plin=()=>S.g.parcel.find(x=>x.line)||null;
 function pcvBase(){const P=pcl(),w=can("staff"),sm=f=>P.reduce((a,x)=>a+f(x),0),T=sm(tqf),C=sm(x=>hasC(x)?+x.cm:0),Lg=sm(lgf),Pc=P.filter(hasC).reduce((a,x)=>a+tqf(x),0),Y={},Mo={};
 P.forEach(x=>{const d=x.date2||x.date;[[Y,d.slice(0,4)],[Mo,d.slice(0,7)]].forEach(([o,k])=>{const r=o[k]=o[k]||{n:0,t:0,c:0,l:0};r.n++;r.t+=tqf(x);if(hasC(x)){r.c+=+x.cm;r.l+=lgf(x)}})});
 const rw=(k,r)=>`<tr><td>${k}</td><td align="center">${r.n}</td><td align="right">${nf(r.t)}</td><td align="right">${nf(r.c)}</td><td align="right">${nf(r.l)}</td><td align="right">${r.c?pf3(r.l/r.c*100):"—"}</td></tr>`,th="<tr><th></th><th>Parcels</th><th>Transmitted MT</th><th>Custody MT</th><th>Loss/Gain MT</th><th>%</th></tr>",OT=sm(x=>g2(x,2,ALL));
@@ -352,6 +352,17 @@ return`<div class="c"><h3>🛢 HSD Transmission Record — Parbatipur Depot</h3>
 <div class="c"><h3>📅 বছর অনুযায়ী</h3><div class="scroll"><table>${th}${Object.keys(Y).sort().map(k=>rw(k,Y[k])).join("")}</table></div></div>
 <div class="c"><h3>🗓 মাস অনুযায়ী</h3><div class="scroll"><table>${th}${Object.keys(Mo).sort().reverse().map(k=>rw(k.split("-").reverse().join("-"),Mo[k])).join("")}</table></div></div>
 <div class="c"><h3>📋 Parcel-wise (ট্যাপ করলে বিস্তারিত)</h3><div class="scroll"><table><tr><th>#</th><th>Date</th><th>Padma MT</th><th>Meghna MT</th><th>Jamuna MT</th><th>Pipeline MT</th><th>Transmitted</th><th>Custody</th><th>Loss MT</th><th>%</th></tr>${P.map(x=>`<tr onclick="pdt('${x.id}')" style="cursor:pointer"><td><b>${E(x.eq)}</b></td><td style="white-space:nowrap">${fd(x.date)}${x.date2?" → "+fd(x.date2):""}</td>${Object.keys(OM).map(k=>`<td align="right">${nf(g2(x,2,OM[k]))}</td>`).join("")}<td align="right"><b>${nf(tqf(x))}</b></td><td align="right">${hasC(x)?nf(x.cm):"—"}</td><td align="right">${hasC(x)?nf(lgf(x)):"—"}</td><td align="right">${hasC(x)?pf3(lpf(x)):"—"}</td></tr>`).join("")}</table></div></div>`}
+
+function poldc(){const O=pold(),L=plin();if(!O.length&&!L)return"";const nf2=v=>(+v||0).toLocaleString("en-IN",{maximumFractionDigits:3}),
+ sm=f=>O.reduce((a,x)=>a+(+f(x)||0),0);
+ return `<div class="c"><h3>📜 পুরোনো ধরনের Parcel রেকর্ড (${O.length}টি)</h3>
+ <p class="mu"><small>এগুলো Excel থেকে আসা আগের হিসাব — এতে ট্যাংক-ভিত্তিক বিস্তারিত নেই, তাই উপরের নতুন তালিকায় আসে না। মুছে ফেলা হয়নি, এখানে পুরোটাই দেখা যাচ্ছে।</small></p>
+ ${O.length?`<div class="kp"><div><small class="mu">মোট M/Tons @15°C</small><b>${nf2(sm(x=>x.mt))}</b></div><div><small class="mu">মোট US BBLS</small><b>${nf2(sm(x=>x.bbl))}</b></div></div>
+ <div class="scroll" style="margin-top:8px"><table style="width:100%;border-collapse:collapse;font-size:13px"><tr><th>Parcel</th><th>DATE</th><th align="right">Liter</th><th align="right">@30°C</th><th align="right">M/Tons @15°C</th><th align="right">US BBLS</th><th align="right">L/G</th></tr>
+ ${O.map(x=>`<tr style="border-top:1px solid var(--bd)"><td>${E(x.eq)}</td><td>${E(fd(x.date))}</td><td align="right">${nf2(x.qty)}</td><td align="right">${nf2(x.q30)}</td><td align="right">${nf2(x.mt)}</td><td align="right">${nf2(x.bbl)}</td><td align="right">${x.lg?nf2(x.lg):"—"}</td></tr>`).join("")}</table></div>
+ <button class="b" style="margin-top:8px" onclick="poldCsv()">⬇ CSV</button>`:""}
+ ${L?`<p class="mu" style="margin-top:8px"><b>Pipeline fill:</b> ${nf2(L.qty)} লিটার · ${nf2(L.mt)} MT · ${nf2(L.bbl)} BBL</p>`:""}</div>`}
+function poldCsv(){const t=[["Parcel","DATE","Liter","At 30C","M/Tons @15C","US BBLS","L/G"],...pold().map(x=>[x.eq,x.date,x.qty,x.q30,x.mt,x.bbl,x.lg??""])].map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+t],{type:"text/csv"}));a.download="111-parcels-old.csv";a.click()}
 function pdt(id){const x=S.g.parcel.find(v=>v.id===id);M(`<h3>Parcel ${E(x.eq)}</h3><p class="mu">${fd(x.date)}${x.date2?" → "+fd(x.date2):""}${x.rm?" · "+E(x.rm):""}</p><div class="scroll"><table><tr><th></th><th>Ambient L</th><th>@15°C L</th><th>MT</th></tr>${PG.map((n,i)=>g2(x,2,[i])||g2(x,0,[i])?`<tr><td>${n}</td><td align="right">${nf(gv(x,i,0))}</td><td align="right">${nf(gv(x,i,1))}</td><td align="right">${nf(gv(x,i,2))}</td></tr>`:"").join("")}<tr style="font-weight:700"><td>Total</td><td align="right">${nf(g2(x,0,ALL))}</td><td align="right">${nf(g2(x,1,ALL))}</td><td align="right">${nf(g2(x,2,ALL))}</td></tr></table></div><div class="kp" style="margin-top:10px"><div>Transmitted (Depot/PDB)<b>${nf(tqf(x))}</b></div><div>Custody meter SV-01<b>${hasC(x)?nf(x.cm):"—"}</b></div><div>Loss/Gain MT<b>${hasC(x)?nf(lgf(x)):"—"}</b></div><div>Loss %<b>${hasC(x)?pf3(lpf(x)):"—"}</b></div></div>${w3()?`<button class="b p" onclick="pfm('${id}')">✏ Edit</button>`:""}${can("admin")?`<button class="b r" onclick="gx('parcel','${id}');cl()">🗑 Delete</button>`:""}<button class="b" onclick="cl()">Close</button>`)}
 const w3=()=>can("staff");
 function pfm(id){if(!can("staff"))return;const x=id?S.g.parcel.find(v=>v.id===id):{eq:String(pcl().length+1),date:iso(),date2:"",g:[],cm:"",rm:""};
@@ -491,7 +502,7 @@ return W(c,x,`<b>${E(x[p.f[0][0]])}</b> ${t}<br><small class="mu">${m}</small>${
 const lgt=()=>+localStorage.lgt||.25;
 function lgc(){const P=pcl().filter(hasC),thr=lgt(),bad=P.filter(x=>Math.abs(lpf(x))>thr),a=P.map(lpf),mn=Math.min(...a,0),mx=Math.max(...a,0),r=(mx-mn)||1,pts=a.map((v,i)=>(i*(290/Math.max(1,a.length-1))+5)+","+(55-(v-mn)/r*50)).join(" ");
 return`<div class="c"><h3>⚠ Loss / Gain সতর্কতা</h3><label class="mu">সীমা (± %)<input type="number" step="0.05" value="${thr}" onchange="localStorage.lgt=this.value;draw()"></label><p>সীমার বাইরে: <b class="${bad.length?"er":"ok"}">${bad.length}</b> / ${P.length} পার্সেল</p><svg viewBox="0 0 300 60" style="width:100%;height:70px"><line x1="0" x2="300" y1="${55-(0-mn)/r*50}" y2="${55-(0-mn)/r*50}" stroke="#aaa" stroke-dasharray="3"/><polyline points="${pts}" fill="none" stroke="#dc2626" stroke-width="1.6"/></svg>${bad.slice(-12).reverse().map(x=>`<div class="row" onclick="pdt('${x.id}')"><span><b>Parcel ${E(x.eq)}</b> <small class="mu">${fd(x.date2||x.date)}</small></span><span class="tg dmg">${pf3(lpf(x))}% · ${nf(lgf(x))} MT</span></div>`).join("")}</div>`}
-function pcv(){return pimpCard()+pcvBase()+pdbc()+lgc()}
+function pcv(){return pimpCard()+pcvBase()+poldc()+pdbc()+lgc()}
 function rdq(id){const e=S.eq.find(x=>x.id===id);M(`<h3>📝 Reading — ${E(e.name)}</h3><div class="f"><input id="q_p" class="w" placeholder="Parameter" value="${E(e.name)}"><input id="q_v" type="number" step="any" placeholder="Reading"><input id="q_u" placeholder="Unit"><input id="q_a" type="number" step="any" placeholder="Min limit"><input id="q_b" type="number" step="any" placeholder="Max limit"></div><button class="b p" onclick="F.set('rd',uid(),{eq:V('q_p'),loc:'${E(e.loc)}',val:V('q_v'),min:V('q_a'),max:V('q_b'),date:iso(),note:V('q_u')});LG('Reading '+V('q_p'));cl()">Save</button>`)}
 function tds(){const k=S.g,od=["pm","fs","trn","cal"].reduce((a,c)=>a+k[c].filter(x=>ps(x)[1]==="OVERDUE").length,0),sn=["pm","fs","trn","cal"].reduce((a,c)=>a+k[c].filter(x=>ps(x)[1]==="Due soon").length,0),wo=k.wo.filter(x=>x.st!=="Closed"),nm=(me.name||"").split(" ")[0].toLowerCase(),mine=wo.filter(x=>nm&&(x.asg||"").toLowerCase().includes(nm)),amc=k.amc.filter(x=>x.end&&x.end>=iso()&&x.end<=iso(60)).length+k.amc.filter(x=>x.end&&x.end<iso()).length,low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2).length,notok=S.eq.filter(x=>x.st==="Not Ok").length,lgb=pcl().filter(x=>hasC(x)&&Math.abs(lpf(x))>lgt()).length,rdt=k.rd.filter(x=>x.date===iso()).length;
 return[["🔴 মেয়াদোত্তীর্ণ (PM/Calibration/Safety/Training)",od,"pm"],["🟠 ৩০ দিনের মধ্যে due",sn,"pm"],["🔧 খোলা Work Order",wo.length,"wo"],["👤 আমার কাজ",mine.length,"wo"],["🛑 Not Ok যন্ত্র",notok,"eq"],["📦 কম/শেষ স্টক",low,"inv"],["🤝 AMC/Warranty শেষ বা শেষের পথে",amc,"amc"],["⚠ Loss/Gain সীমা পেরিয়েছে",lgb,"parcel"],["📋 আজকের Round রিডিং",rdt,"rd"],["❌ আজকের Panel check বাকি",PGD.filter(p=>!S.g.dpc.some(x=>x.date===iso()&&x.eq===p.t)).length,"pg"],["🧩 Critical spare কম",S.g.crit.filter(x=>+x.qty<+x.min).length,"crit"],["⏳ অনুমোদনের অপেক্ষায়",pcn(),"ap"]]}
@@ -627,7 +638,7 @@ const UDM=["Introduction to Instrumentation","4-20mA Signals in PLC","Installati
 function qza(i,j){const d=JSON.parse(localStorage.qz||"{}");d[i]=QZ[i][2]===j?j+1:-(j+1);localStorage.qz=JSON.stringify(d);draw()}
 
 
-const hd=k=>{const g=S.g;return({exec:1,val:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
+const hd=k=>{const g=S.g;return({exec:1,val:1,diag:1,mst:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
 /* ---------- Calculators ---------- */
 
 const n3=(v,k=3)=>isFinite(v)?(+v).toLocaleString("en-US",{maximumFractionDigits:k}):"—";
@@ -1375,8 +1386,496 @@ function valv(){if(typeof STN!=="object"||!STNS.some(s=>(STN[s[0]]||[]).length))
 
 function eqpLine(x){const v=eqpRow(x.id,x.qty);if(!v)return"";const r=opV("rate"),bd=u=>r?" (৳"+(u*r).toLocaleString("en-IN",{maximumFractionDigits:0})+")":"";
  return `<br><b>আনুমানিক দাম:</b> ${eqpU(v.min)} – ${eqpU(v.max)}${bd(v.min)} প্রতিটি <span class="tg cod" style="padding:1px 6px;font-size:11px" title="${E(v.note)}">${v.b}</span>${v.q>1?` · ${v.q}টি মিলে ${eqpU(v.tmin)} – ${eqpU(v.tmax)}`:""} <small class="mu">— দরপত্র নয়, <a href="#" onclick="cl();tab='val';draw();return false">বিস্তারিত</a></small>`}
+/* ===== Diagnostics ===== */
+let DGR=null;
+async function diagRun(){const o=[],ok=(t,v,n)=>o.push([t,v,n||""]),U=location.href.split("#")[0].replace(/[^/]*$/,"");
+ ok("সাইটের ঠিকানা",location.origin+location.pathname,"");
+ ok("Version",(document.querySelector("header small")||{}).textContent||"—","");
+ ok("https (secure context)",window.isSecureContext?"হ্যাঁ ✅":"না ❌",window.isSecureContext?"":"http ঠিকানায় passphrase কাজ করবে না");
+ ok("crypto.subtle",(window.crypto&&crypto.subtle)?"আছে ✅":"নেই ❌","");
+ const F=async(p,lbl)=>{try{const r=await fetch(p+"?d="+Date.now(),{cache:"no-store"});ok(lbl,r.ok?("পাওয়া গেছে ✅ ("+(r.headers.get("content-length")||"?")+" bytes)"):("পাওয়া যায়নি ❌ HTTP "+r.status),r.ok?"":p+" GitHub-এ আছে কি না দেখুন")}catch(e){ok(lbl,"পাওয়া যায়নি ❌",String(e.message||e))}};
+ await F("sec/data.bin","sec/data.bin");await F("sec/p0.bin","sec/p0.bin");await F("sec/p12.bin","sec/p12.bin");
+ await F("app111.json","app111.json (app নাম ও আইকন)");await F("i111-512.png","i111-512.png (নতুন আইকন)");
+ try{const r=await fetch("app111.json?d="+Date.now(),{cache:"no-store"}),j=await r.json();ok("manifest-এর নাম",j.name||"—",j.name==="111"?"":"পুরোনো manifest চলছে");ok("manifest-এর আইকন",(j.icons||[]).map(x=>x.src).join(", "),"")}catch(e){}
+ ok("পুরোনো manifest.json","(থাকলেও সমস্যা নেই)","");
+ ok("Service worker",navigator.serviceWorker?((await navigator.serviceWorker.getRegistrations()).length+"টি নিবন্ধিত"):"নেই","");
+ ok("Installed app হিসেবে চলছে",window.matchMedia("(display-mode: standalone)").matches?"হ্যাঁ":"না","");
+ ok("সুরক্ষিত অংশ",typeof SEC_ST==="undefined"?"—":(SEC_ST==="ok"?"খোলা ✅":"বন্ধ 🔒"),typeof SEC_MSG!=="undefined"?SEC_MSG:"");
+ ok("Firebase",(window.FB&&FB.ok)?"যুক্ত ✅":"যুক্ত নয় ❌","");
+ ok("Log in",me?(me.name||me.email)+" · "+me.role:"করা হয়নি","");
+ ok("Parcel রেকর্ড",me?((S.g.parcel||[]).length+"টি (নতুন ধরনের "+pcl().length+"টি)"):"log in দরকার","");
+ DGR=o;draw()}
+function diagv(){return `<div class="c"><h2>🔧 Diagnostics — সমস্যা খোঁজা</h2><p class="mu"><small>কোনো গোপন তথ্য দেখানো হয় না। ফল দেখে বোঝা যাবে কোন ফাইলটি GitHub-এ ওঠেনি।</small></p>
+ <button class="b p" onclick="diagRun()">▶ পরীক্ষা চালান</button>
+ ${DGR?`<table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px">${DGR.map(r=>`<tr style="border-top:1px solid var(--bd)"><td style="padding:6px;width:34%"><b>${E(r[0])}</b></td><td style="padding:6px">${E(r[1])}${r[2]?`<br><small class="mu">${E(r[2])}</small>`:""}</td></tr>`).join("")}</table>
+ <button class="b" style="margin-top:8px" onclick="navigator.clipboard&&navigator.clipboard.writeText(DGR.map(r=>r[0]+': '+r[1]+(r[2]?' — '+r[2]:'')).join('\\n')).then(()=>alert('কপি হয়েছে — চ্যাটে পেস্ট করুন'))">📋 ফল কপি করুন</button>`:""}</div>
+ <div class="c"><h3>🧩 সাধারণ দুটি সমস্যা</h3>
+ <h4 style="margin:10px 0 2px">১. Passphrase মিলছে না</h4><ul style="margin:4px 0 10px 18px;font-size:13.5px;line-height:1.7">
+ <li>উপরের পরীক্ষায় <b>sec/data.bin</b> ও <b>sec/p0.bin</b> “পাওয়া গেছে ✅” দেখাচ্ছে কি না দেখুন। না দেখালে GitHub-এ <code>sec</code> ফোল্ডারটি ঠিকভাবে ওঠেনি।</li>
+ <li>“https (secure context)” ❌ হলে সাইটের https ঠিকানা দিয়ে খুলুন।</li>
+ <li>Passphrase লেখার সময় 👁 বোতামে চাপ দিয়ে দেখে নিন কী লেখা হলো। বড় হাতের অক্ষর, ফাঁকা জায়গা বা দাঁড়ি থাকলেও এখন নিজে থেকেই ঠিক হয়ে যায়; কিন্তু অক্ষর বাদ পড়লে বা বেশি হলে মিলবে না।</li></ul>
+ <h4 style="margin:10px 0 2px">২. App-এ এখনো পুরোনো নাম/আইকন</h4><ul style="margin:4px 0 0 18px;font-size:13.5px;line-height:1.7">
+ <li>উপরে “manifest-এর নাম” <b>111</b> দেখালে সাইট ঠিক আছে — সমস্যা শুধু আগে install করা app-এ।</li>
+ <li>Chrome-এ <code>chrome://apps</code> খুলে পুরোনো app-এ ডান-ক্লিক → Remove from Chrome। Windows-এর Start menu-তেও খুঁজে Uninstall করুন।</li>
+ <li>তারপর সাইট খুলে Ctrl+Shift+R চাপুন, এরপর ঠিকানার ঘরের Install চিহ্নে চাপ দিন।</li>
+ <li>ফোনে: app সরিয়ে ফোন একবার restart দিন, তারপর আবার “Add to Home screen”।</li></ul></div>`}
+/* ===== Mastery Track — PLC (Level 1–5) ===== */
+const MST_PLC={id:"plc",ic:"🧠",t:"PLC — Programmable Logic Controller",
+ sub:"শূন্য থেকে expert। Pipeline station-এর RTU, ESD ও pump house logic বোঝা, পড়া, পরীক্ষা করা ও সমস্যা খোঁজা।",
+ lv:[
+{t:"Level 1 — ভিত্তি",d:"PLC কী, কী দিয়ে তৈরি, কীভাবে চিন্তা করে।",ls:[
+{t:"PLC কী এবং কেন এল",m:12,b:[
+["p","PLC হলো শিল্পকারখানার জন্য তৈরি একটি বিশেষ কম্পিউটার, যা মাঠের যন্ত্র থেকে সংকেত নেয়, আগে থেকে লেখা যুক্তি (logic) অনুযায়ী সিদ্ধান্ত নেয়, এবং valve, motor, alarm-কে চালায়। নামের অর্থ: Programmable (প্রোগ্রাম বদলানো যায়), Logic (যুক্তি), Controller (নিয়ন্ত্রক)।"],
+["h","PLC-র আগে কী ছিল"],
+["p","আগে এই কাজ হতো relay দিয়ে। একটি pump শুরু-বন্ধ, একটি interlock, একটি timer — প্রতিটির জন্য আলাদা relay, আলাদা তার। ৫০টি শর্তের একটি panel-এ শত শত relay ও হাজার হাজার তার থাকত। সমস্যা তিনটি: (১) যুক্তি বদলাতে হলে তার খুলে আবার লাগাতে হতো, (২) relay-র যান্ত্রিক অংশ ক্ষয়ে নষ্ট হতো, (৩) কোথায় ভুল তা খুঁজে বের করা ছিল দুঃস্বপ্ন।"],
+["p","১৯৬৮ সালে General Motors এই তিনটি সমস্যার সমাধান চেয়ে একটি দরপত্র দেয়। ফল হিসেবে এল প্রথম PLC (Modicon 084)। মূল ধারণা: তার দিয়ে নয়, সফটওয়্যার দিয়ে যুক্তি তৈরি হবে — কিন্তু যুক্তিটি দেখতে হবে relay circuit-এর মতোই, যাতে technician-রা সহজে পড়তে পারেন। সেই কারণেই ladder logic আজও PLC-র প্রধান ভাষা।"],
+["h","Pipeline-এ PLC কোথায় কাজ করে"],
+["u",["SV station-এর RTU: MOV-এর open/close আদেশ, limit ও torque switch পড়া, pressure/temperature পাঠানো।","ESD system: নির্দিষ্ট শর্তে নিজে থেকেই valve বন্ধ করা বা pump থামানো (এটি সাধারণত আলাদা safety PLC)।","Pump house ও tank farm: pump-এর start/stop interlock, level alarm, MOV line-up।","Fire & gas: detector থেকে সংকেত নিয়ে alarm ও suppression চালানো।","Utility: DG-র AMF ক্রম, UPS ও charger-এর status সংগ্রহ।"]],
+["b","মনে রাখার কথা","PLC নিজে কিছু 'জানে' না। সে কেবল input পড়ে, লেখা যুক্তি চালায়, output লেখে — সেকেন্ডে বহুবার। যুক্তি যতটা ঠিক, PLC ততটাই ঠিক।"],
+["h","PLC, DCS ও RTU — পার্থক্য"],
+["t",[["বিষয়","PLC","DCS","RTU"],
+["মূল কাজ","দ্রুত discrete ও interlock logic","বড় process-এর নিয়ন্ত্রণ ও নিয়মিত control loop","দূরের unmanned site থেকে তথ্য পাঠানো ও আদেশ নেওয়া"],
+["গতি","খুব দ্রুত (ms)","মাঝারি","ধীর চললেও চলে"],
+["কোথায়","Machine, skid, ESD, pump house","Refinery, large plant","Pipeline SV station, wellhead"],
+["যোগাযোগ","সাধারণত তারে","Redundant network","Radio, fiber, satellite — কম bandwidth-এও চলে"]]],
+["p","আজকাল সীমারেখা ঝাপসা: অনেক RTU আসলে ভেতরে একটি PLC, আর অনেক PLC-তে DCS-এর মতো সুবিধা আছে। তাই নাম নিয়ে না আটকে, কোন যন্ত্রটি কোন কাজ করছে সেটি বুঝুন।"]],
+q:[["PLC-র আগে এই কাজ কী দিয়ে হতো?",["Relay ও তার","কম্পিউটার","হাতে"],0],
+["ESD system সাধারণত কোনটি?",["সাধারণ PLC","আলাদা safety PLC","শুধু relay"],1]],
+task:"আপনার station-এর একটি panel খুলে দেখুন (permit নিয়ে) — ভেতরে PLC/RTU-র CPU module-টি কোনটি, আর relay কোনগুলো। দুটির ছবি তুলে পার্থক্য নিজের ভাষায় দুই লাইনে লিখুন।"},
+
+{t:"PLC-র অংশগুলো",m:14,b:[
+["p","যেকোনো PLC খুললে পাঁচটি মূল অংশ পাবেন। নাম ও চেহারা brand-ভেদে বদলায়, কাজ বদলায় না।"],
+["o",["<b>Power Supply (PS):</b> 230 V AC বা 24 V DC নিয়ে ভেতরের 5 V / 3.3 V তৈরি করে। এর LED নিভে থাকলে পুরো rack মৃত। Pipeline station-এ সাধারণত battery-backed 24 V DC দেওয়া হয়, যাতে grid গেলেও PLC চলে।",
+"<b>CPU:</b> মস্তিষ্ক। প্রোগ্রাম ও তথ্য রাখে, scan চালায়। সামনে RUN / STOP / ERROR LED এবং অনেক সময় একটি key switch থাকে।",
+"<b>I/O module:</b> মাঠের সাথে সংযোগ। DI (digital input), DO (digital output), AI (analog input), AO (analog output)।",
+"<b>Backplane / rack:</b> যে ভিত্তিতে module বসে এবং নিজেদের মধ্যে কথা বলে। Slot নম্বরই পরে address-এর অংশ হয়।",
+"<b>Communication module:</b> Ethernet, Modbus, HART, serial — SCADA বা অন্য যন্ত্রের সাথে কথা বলার পথ।"]],
+["h","LED দেখে ৮০% বোঝা যায়"],
+["t",[["LED","সবুজ/জ্বলন্ত","নিভে/লাল"],
+["PS","বিদ্যুৎ ঠিক","Supply বা fuse দেখুন"],
+["RUN","প্রোগ্রাম চলছে","CPU STOP-এ — কেউ থামিয়েছে বা fault"],
+["ERR / FAULT","—","Diagnostics পড়ুন, নোট করুন"],
+["I/O channel","ঐ channel-এ সংকেত আছে","সংকেত নেই — মাঠ না card, পরীক্ষা করুন"],
+["COM / LINK","যোগাযোগ চলছে","Cable, switch বা দূরের যন্ত্র দেখুন"]]],
+["w","CPU-র key switch RUN থেকে সরানো বা program download করা — দুটোই plant বন্ধ করে দিতে পারে। Permit ও control room-এর অনুমতি ছাড়া কখনো নয়।"],
+["h","Memory"],
+["u",["<b>Program memory:</b> আপনার লেখা যুক্তি। বিদ্যুৎ গেলেও থাকে।","<b>Data memory:</b> চলতি মান — input, output, timer, counter। অধিকাংশ বিদ্যুৎ গেলে মুছে যায়।","<b>Retentive memory:</b> ইচ্ছা করে ধরে রাখা মান — যেমন মোট running hour। বিদ্যুৎ গেলেও থাকে।"]],
+["b","মাঠের অভিজ্ঞতা","অনেক 'PLC fail' আসলে power supply বা একটি loose terminal। যন্ত্র বদলানোর আগে সবসময় supply voltage মেপে দেখুন।"]],
+q:[["RUN LED নিভে আছে — প্রথমে কী ভাববেন?",["CPU পুড়ে গেছে","CPU STOP mode-এ বা fault","I/O card নষ্ট"],1],
+["Running hour-এর মতো মান কোথায় রাখা হয়?",["Data memory","Retentive memory","Program memory"],1]],
+task:"আপনার RTU/PLC panel-এর সব LED-র একটি ছবি তুলুন এবং প্রতিটি LED-র অর্থ লিখে একটি ছোট তালিকা বানান। পরে fault-এর সময় এটিই প্রথম কাজে লাগবে।"},
+
+{t:"Scan cycle — PLC কীভাবে চিন্তা করে",m:14,b:[
+["p","PLC এক লাইন করে প্রোগ্রাম চালায় না যেমন সাধারণ কম্পিউটার করে। সে একটি নির্দিষ্ট চক্র বারবার ঘোরায়। এই চক্রটিই <b>scan cycle</b>, আর একবার ঘুরতে যত সময় লাগে তা <b>scan time</b> (সাধারণত ৫–৫০ ms)।"],
+["o",["<b>Input scan:</b> সব input terminal-এর অবস্থা একসাথে পড়ে একটি ছবিতে (input image table) জমা করে।",
+"<b>Program execution:</b> প্রোগ্রাম উপর থেকে নিচে চালায় — কিন্তু মাঠ থেকে নয়, ঐ জমা করা ছবি থেকে পড়ে। ফল লেখে output image table-এ।",
+"<b>Output update:</b> output image table থেকে আসল output terminal-এ লেখে।",
+"<b>Housekeeping:</b> communication, diagnostics, watchdog reset।"]],
+["h","কেন এটি জানা জরুরি"],
+["u",["<b>মাঝপথে input বদলালে PLC দেখে না।</b> ঐ scan-এ সে পুরোনো ছবিই ব্যবহার করবে। তাই খুব ছোট (scan time-এর চেয়ে কম সময়ের) pulse হারিয়ে যেতে পারে — এজন্য pulse input-এর জন্য বিশেষ fast input বা latch ব্যবহার হয়।","<b>প্রোগ্রামের ক্রম গুরুত্বপূর্ণ।</b> একই bit দুই জায়গায় লিখলে শেষেরটিই টিকবে। একে বলে duplicate coil — এটি বড় ভুলের উৎস।","<b>Watchdog:</b> scan time নির্দিষ্ট সীমার বেশি হলে CPU নিজেই fault দিয়ে থেমে যায়, যাতে আটকে যাওয়া প্রোগ্রাম বিপদ না ঘটায়।"]],
+["x","হিসাব করুন","Scan time ২০ ms মানে PLC সেকেন্ডে ৫০ বার পুরো যুক্তি যাচাই করে। একটি pressure switch যদি ১০ ms-এর জন্য চেপে ছেড়ে দেয়, PLC সেটি ধরতেও পারে, না-ও পারে। তাই trip-এর মতো গুরুত্বপূর্ণ সংকেত কখনো ক্ষণস্থায়ী pulse হিসেবে রাখা হয় না — হয় ধরে রাখা হয় (latched), নয় সময় দিয়ে নিশ্চিত করা হয়।"],
+["b","সহজ উপমা","PLC হলো সেই পরীক্ষক যিনি ঘরে ঢুকে সবার খাতার একটি ছবি তোলেন, বাইরে গিয়ে ছবি দেখে নম্বর দেন, তারপর ফিরে এসে ফল টাঙান। ছবি তোলার পর কেউ খাতা বদলালে তিনি জানবেন না।"]],
+q:[["Scan cycle-এর প্রথম ধাপ কোনটি?",["Output update","Input scan","Housekeeping"],1],
+["Scan time খুব বেশি হয়ে গেলে কী হয়?",["কিছুই না","Watchdog fault, CPU থেমে যেতে পারে","Output দ্বিগুণ হয়"],1],
+["একই output coil প্রোগ্রামে দুইবার লিখলে?",["দুটোই কাজ করে","শেষেরটি টেকে","CPU fail করে"],1]],
+task:"আপনার PLC/RTU-র engineering software বা HMI-তে scan time কত তা খুঁজে বের করে লিখে রাখুন। না পেলে manual-এ typical scan time দেখুন।"},
+
+{t:"I/O — মাঠের সাথে সংযোগ",m:16,b:[
+["p","PLC-র সব জ্ঞান আসে I/O দিয়ে। চার ধরনের I/O মনে রাখলেই চলবে।"],
+["t",[["ধরন","কী বোঝে/করে","Pipeline-এ উদাহরণ"],
+["DI — Digital Input","চালু না বন্ধ (1/0)","MOV-এর open limit switch, ESD push button, gas detector-এর alarm contact"],
+["DO — Digital Output","চালু বা বন্ধ করা","MOV open command, alarm horn, solenoid valve"],
+["AI — Analog Input","একটি মান (4–20 mA, 1–5 V, RTD)","Pressure transmitter, temperature transmitter, level transmitter"],
+["AO — Analog Output","একটি মান পাঠানো","Control valve-এর position command, VFD-র speed"]]],
+["h","Sinking ও Sourcing — যেখানে অনেকে আটকায়"],
+["p","DC circuit-এ current কোন দিকে যায়, তা দিয়ে এই দুটি নাম। <b>Sourcing</b> যন্ত্র current দেয় (+ দিক), <b>sinking</b> যন্ত্র current নেয় (− দিক)। নিয়ম সহজ: একটি sourcing output-এর সাথে sinking input মেলে, আর sinking output-এর সাথে sourcing input। দুটোই sourcing হলে circuit সম্পূর্ণ হয় না এবং কিছুই কাজ করে না — অথচ কোনো যন্ত্র নষ্ট হয় না, তাই ভুলটি খুঁজে পেতে সময় লাগে।"],
+["h","Dry contact ও wet contact"],
+["u",["<b>Dry contact:</b> শুধু একটি switch — নিজে কোনো voltage দেয় না। PLC নিজের 24 V দিয়ে পরীক্ষা করে। Limit switch, pressure switch সাধারণত dry।","<b>Wet contact:</b> contact-এর সাথেই voltage আসে। তখন PLC-র input card ঐ voltage সহ্য করার উপযোগী হতে হবে।"]],
+["w","কখনো দুটি আলাদা উৎসের 24 V একসাথে করবেন না (যেমন PLC-র 24 V আর panel-এর আলাদা 24 V)। Earth loop ও ক্ষতিকর current তৈরি হয়। একটি circuit-এর জন্য একটিই reference রাখুন।"],
+["h","Analog input-এর তিনটি জরুরি কথা"],
+["o",["<b>2-wire না 4-wire:</b> 2-wire transmitter একই দুই তারে বিদ্যুৎ নেয় ও সংকেত পাঠায় (loop powered)। 4-wire-এর আলাদা supply থাকে। কার্ডটি loop power দেয় কি না, না দিলে বাইরে থেকে 24 V দিতে হবে।",
+"<b>250 Ω resistor:</b> অনেক card ভেতরেই current-কে voltage-এ বদলায়। HART communicator লাগাতে loop-এ অন্তত ২৫০ Ω প্রতিরোধ লাগে — না থাকলে HART কথা বলবে না।",
+"<b>Shield একদিকে মাটিতে:</b> instrument cable-এর shield শুধু panel দিকে earth করুন, মাঠ দিকে খোলা রাখুন। দুই দিকে করলে shield দিয়ে current বইবে এবং reading-এ noise আসবে।"]],
+["b","Resolution কী","একটি 12-bit AI card 4–20 mA-কে ০ থেকে ৪০৯৫ ভাগে ভাগ করে। অর্থাৎ ০–১০০ bar range-এ সবচেয়ে ছোট পার্থক্য ≈ ০.০২৪ bar। Custody metering-এর মতো কাজে এই resolution-ই সীমা ঠিক করে দেয়।"]],
+q:[["2-wire transmitter বলতে কী বোঝায়?",["দুটি আলাদা তার সংকেতের","একই দুই তারে বিদ্যুৎ ও সংকেত","দুটি transmitter"],1],
+["HART communicator কাজ করতে loop-এ কত প্রতিরোধ লাগে?",["অন্তত ২৫০ Ω","১০ Ω","প্রয়োজন নেই"],0],
+["Instrument cable-এর shield কোথায় earth করবেন?",["দুই দিকে","শুধু এক দিকে (panel)","কোথাও না"],1]],
+task:"একটি pressure transmitter-এর loop ধরে পুরো পথ আঁকুন: transmitter → JB → marshalling → AI card-এর slot ও channel। প্রতিটি terminal নম্বর লিখুন। এটিই আপনার প্রথম loop folder পাতা।"}]},
+
+{t:"Level 2 — যুক্তি পড়া",d:"Ladder পড়া, timer-counter, scaling ও panel-এর ভেতর।",ls:[
+{t:"Ladder logic পড়তে শেখা",m:18,b:[
+["p","Ladder logic দেখতে একটি মইয়ের মতো: দুই পাশে দুটি খাড়া দাগ (power rail), মাঝে অনুভূমিক ধাপ (rung)। বাঁ দিক থেকে কল্পিত বিদ্যুৎ ডান দিকে যেতে চায়। পথে সব শর্ত পূরণ হলে ডান পাশের coil চালু হয়।"],
+["h","তিনটি মৌলিক চিহ্ন"],
+["t",[["চিহ্ন","নাম","কখন পথ খোলে"],
+["-| |-","NO contact (Examine if closed)","যে bit-টি দেখছে, সেটি 1 হলে"],
+["-|/|-","NC contact (Examine if open)","যে bit-টি দেখছে, সেটি 0 হলে"],
+["-( )-","Coil (output)","বাঁ দিকের সব শর্ত মিললে 1 হয়"]]],
+["w","সবচেয়ে বড় ভুল বোঝাবুঝি: ladder-এর NC contact মানে মাঠের NC switch নয়। ladder-এর চিহ্ন বলে <i>প্রোগ্রাম কী খুঁজছে</i>; মাঠের NO/NC বলে <i>switch-এর গঠন কী</i>। একটি মাঠের NC switch ঠিক থাকলে PLC-র input bit 1 থাকে — তাই প্রোগ্রামে তা দেখা হয় NO contact দিয়ে।"],
+["h","পাশাপাশি ও সিরিজ"],
+["u",["সিরিজে বসানো contact = <b>AND</b>। সবগুলো মিললে তবেই পথ।","পাশাপাশি (branch) বসানো contact = <b>OR</b>। যেকোনো একটি মিললেই পথ।"]],
+["x","একটি বাস্তব rung","<b>Pump চালু:</b> Start push button (NO) — Stop push button (NC) — Low level alarm (NC) — ESD trip (NC) — ( Pump run )।<br>অর্থ: Start চাপলে, Stop না চাপা থাকলে, level কম না হলে এবং ESD না থাকলে pump চলবে।"],
+["h","Seal-in (latch) — মনে রাখার কৌশল"],
+["p","Push button ছেড়ে দিলে pump বন্ধ হয়ে যাবে — কারণ Start contact আবার 0। তাই Start-এর পাশে একটি branch-এ ঐ coil-এরই contact বসানো হয়। একবার coil চালু হলে সে নিজেই নিজের পথ ধরে রাখে। একে বলে seal-in বা latch। Stop চাপলে সিরিজের NC খুলে যায়, পথ ভাঙে, coil নিভে যায়, এবং seal-in-ও শেষ।"],
+["c","Start ──┬── /Stop ── /LowLvl ── /ESD ──( PumpRun )\n        │\n PumpRun┘   ← seal-in branch"],
+["b","পড়ার নিয়ম","অচেনা ladder পড়ার সময় ডান দিক থেকে শুরু করুন: coil-টি কী চালায়? তারপর বাঁয়ে এসে দেখুন কোন কোন শর্ত তাকে আটকাচ্ছে। শর্তগুলোই আসল গল্প।"]],
+q:[["সিরিজে বসানো তিনটি contact কোন যুক্তি?",["OR","AND","NOT"],1],
+["Seal-in branch কেন দেওয়া হয়?",["গতি বাড়াতে","Push button ছাড়ার পরও চালু রাখতে","Alarm দিতে"],1],
+["Ladder-এর -|/|- মানে কী?",["মাঠের switch NC","Bit 0 হলে পথ খোলে","Coil বন্ধ"],1]],
+task:"আপনার station-এর একটি logic (যেমন MOV open command বা pump interlock) কাগজে ladder আকারে আঁকুন — অন্তত ৪টি শর্ত সহ। পারলে engineering software-এ আসলটির সাথে মিলিয়ে দেখুন।"},
+
+{t:"Timer ও Counter",m:14,b:[
+["p","Interlock-এর অর্ধেক কাজই সময় আর গোনা দিয়ে। চারটি নাম জানলেই বেশিরভাগ প্রোগ্রাম পড়া যায়।"],
+["t",[["নাম","পুরো কথা","আচরণ","Pipeline-এ ব্যবহার"],
+["TON","Timer On-Delay","Input চালু থাকলে গুনতে শুরু করে; সময় শেষে output 1","Alarm নিশ্চিত করা — gas detector ৩ সেকেন্ড টানা থাকলে তবেই trip"],
+["TOF","Timer Off-Delay","Input বন্ধ হলে গোনা শুরু; সময় পর্যন্ত output 1 থাকে","Pump বন্ধের পরও কিছুক্ষণ fan চালানো"],
+["RTO","Retentive Timer","Input বন্ধ হলেও জমা সময় মনে রাখে","মোট চলার ঘণ্টা গোনা"],
+["CTU","Count Up","প্রতিটি pulse-এ ১ বাড়ে","Pig-এর pass গোনা, pump-এর start সংখ্যা"]]],
+["h","তিনটি মান"],
+["u",["<b>PRE (Preset):</b> লক্ষ্য — কত সময় বা কত গোনা।","<b>ACC (Accumulated):</b> এ পর্যন্ত কত হয়েছে।","<b>DN (Done):</b> ACC ≥ PRE হলে 1 হয়।"]],
+["x","Debounce — বাস্তব সমস্যা","একটি limit switch চাপার সময় যান্ত্রিকভাবে কয়েকবার কাঁপে (bounce)। সরাসরি গুনলে একবারের বদলে তিনবার গোনা হতে পারে। সমাধান: switch-এর পর একটি TON (৫০–১০০ ms) বসিয়ে নিশ্চিত করা, তারপর গোনা।"],
+["x","MOV-এর travel time","MOV-কে open আদেশ দেওয়ার পর যদি নির্দিষ্ট সময়ের (যেমন ৬০ সেকেন্ড) মধ্যে open limit না আসে, তবে একটি TON শেষ হয়ে 'MOV failed to open' alarm দেয়। এটিই valve আটকে যাওয়া ধরার সবচেয়ে সাধারণ উপায়। তাই travel time-এর সেটিং খুব কম দিলে মিথ্যা alarm আসবে, খুব বেশি দিলে সমস্যা দেরিতে জানা যাবে।"],
+["b","পরীক্ষার টিপ","Timer-এর PRE মান বদলানো মানে plant-এর আচরণ বদলানো। যেকোনো setting বদলের আগে তা MOC (Management of Change) নিয়মে লিখে রাখুন — কে, কখন, কেন, কার অনুমোদনে।"]],
+q:[["Gas alarm ৩ সেকেন্ড টানা থাকলে trip — কোন timer?",["TOF","TON","RTO"],1],
+["RTO-র বিশেষত্ব কী?",["খুব দ্রুত","Input বন্ধ হলেও জমা সময় মনে রাখে","গুনতে পারে না"],1],
+["MOV travel time alarm কী ধরে?",["Valve আটকে যাওয়া","বিদ্যুৎ বিভ্রাট","Gas leak"],0]],
+task:"আপনার station-এর MOV-র travel time setting কত তা বের করুন এবং valve-টি আসলে open/close হতে কত সেকেন্ড নেয় তা ঘড়ি ধরে মাপুন। দুটি মান পাশাপাশি লিখে রাখুন।"},
+
+{t:"Analog scaling — mA থেকে bar",m:16,b:[
+["p","AI card মাঠের 4–20 mA-কে একটি সংখ্যায় (raw count) বদলায়। প্রোগ্রামকে সেই সংখ্যাকে আবার আসল এককে (bar, °C, m³/h) ফেরাতে হয়। এটিই scaling, আর এটি I&E engineer-এর সবচেয়ে বেশি ব্যবহৃত হিসাব।"],
+["h","মূল সূত্র"],
+["c","EU = EU_min + (Raw − Raw_min) × (EU_max − EU_min) / (Raw_max − Raw_min)"],
+["p","এখানে EU = engineering unit (যেমন bar), Raw = card-এর কাঁচা সংখ্যা।"],
+["x","উদাহরণ ১ — mA থেকে bar","একটি PT-র range ০–১০০ bar, output 4–20 mA। এখন ১২ mA পড়ছে।<br>শতকরা = (১২ − ৪) ÷ (২০ − ৪) = ৮ ÷ ১৬ = ০.৫ = ৫০%<br>চাপ = ০ + ০.৫ × (১০০ − ০) = <b>৫০ bar</b>।"],
+["x","উদাহরণ ২ — raw count থেকে bar","12-bit card, 4–20 mA = raw ০–৪০৯৫। এখন raw ৩০৭২।<br>শতকরা = ৩০৭২ ÷ ৪০৯৫ = ০.৭৫<br>চাপ = ০.৭৫ × ১০০ = <b>৭৫ bar</b>, আর তখন current = ৪ + ০.৭৫ × ১৬ = <b>১৬ mA</b>।"],
+["x","উদাহরণ ৩ — উল্টো দিকে","Range −৫০ থেকে +১৫০ °C, এখন ৫০ °C। শতকরা = (৫০ − (−৫০)) ÷ (১৫০ − (−৫০)) = ১০০ ÷ ২০০ = ৫০% → <b>১২ mA</b>।"],
+["h","দুটি ফাঁদ"],
+["u",["<b>Square root:</b> DP transmitter দিয়ে flow মাপলে flow ∝ √DP। Transmitter-এ square root করা আছে না PLC-তে, তা না জানলে হিসাব দ্বিগুণ হয়ে যায়। একবারই করতে হবে, দুইবার নয়।","<b>Range বদলানো:</b> কেউ transmitter-এর range ০–১০০ থেকে ০–১৬০ bar করলে PLC-র scaling-ও বদলাতে হবে। না বদলালে SCADA-তে ভুল মান দেখাবে অথচ সবকিছু 'স্বাভাবিক' মনে হবে। এটি নীরব এবং বিপজ্জনক ভুল।"]],
+["b","দ্রুত মুখস্থ","4 mA = 0%, 8 mA = 25%, 12 mA = 50%, 16 mA = 75%, 20 mA = 100%। মাঠে এই পাঁচটি মান মনে থাকলে calibration দ্রুত যাচাই করা যায়।"]],
+q:[["০–৬০ bar range-এ ৮ mA মানে কত চাপ?",["১৫ bar","২০ bar","৩০ bar"],0],
+["Flow ∝ √DP — square root কোথায় করা উচিত?",["Transmitter ও PLC দুই জায়গায়","যেকোনো এক জায়গায়","কোথাও না"],1],
+["Transmitter-এর range বদলালে কী করতে হবে?",["কিছু না","PLC/SCADA-র scaling-ও বদলাতে হবে","শুধু tag বদলাতে হবে"],1]],
+task:"আপনার station-এর তিনটি transmitter-এর range লিখুন, বর্তমান mA মাপুন (বা HART-এ দেখুন), হাতে হিসাব করে engineering unit বের করুন এবং SCADA-র মানের সাথে মিলিয়ে দেখুন। পার্থক্য ০.৫%-এর বেশি হলে নোট করুন।"},
+
+{t:"PLC panel-এর ভেতরে",m:14,b:[
+["p","প্রোগ্রাম যত ভালোই হোক, panel-এর কাজ খারাপ হলে system অবিশ্বস্ত হবে। একটি ভালো panel-এর গঠন উপর থেকে নিচে এরকম।"],
+["o",["<b>Incomer ও protection:</b> MCB/MCCB, surge protection device।",
+"<b>Power supply:</b> 24 V DC, প্রায়ই redundant (দুটি PSU + diode module)।",
+"<b>CPU ও I/O rack।</b>",
+"<b>Marshalling terminal:</b> মাঠের তার এখানে আসে, তারপর ছোট তারে card-এ যায়। Field cable সরাসরি card-এ নয় — এতে card বদলানো সহজ ও নিরাপদ হয়।",
+"<b>IS barrier / isolator:</b> hazardous area-র loop-এর জন্য (নীল terminal)।",
+"<b>Relay ও interposing relay:</b> PLC-র ছোট output দিয়ে বড় load চালাতে।",
+"<b>Earth bar:</b> আলাদা দুটি — power earth ও instrument/clean earth।"]],
+["h","তিনটি নিয়ম যা ভাঙলে পরে ভুগতে হয়"],
+["u",["<b>Segregation:</b> 230 V AC-র তার আর 4–20 mA-র তার একই trunking-এ নয়। অন্তত আলাদা ducting, সম্ভব হলে আলাদা দিক।","<b>Ferrule:</b> প্রতিটি তারের দুই প্রান্তে একই নম্বর। Ferrule ছাড়া panel মানে পরবর্তী মানুষটির জন্য ফাঁদ।","<b>Spare:</b> অন্তত ২০% spare I/O ও spare terminal। ভবিষ্যতে যন্ত্র যোগ করতে হবেই।"]],
+["w","IS (intrinsically safe) loop-এর তার কখনো সাধারণ loop-এর সাথে এক terminal strip-এ রাখবেন না, এবং IS circuit-এ সাধারণ multimeter ছাড়া অন্য যন্ত্র সংযোগ করার আগে নিশ্চিত হোন তা অনুমোদিত কি না। নীল রং মানেই সতর্কতা।"],
+["b","Panel-এর নথি","প্রতিটি panel-এর দরজার ভেতরে একটি pocket-এ থাকা উচিত: GA drawing, wiring diagram, I/O list ও terminal schedule-এর সর্বশেষ revision। না থাকলে সেটিই আপনার প্রথম কাজ।"]],
+q:[["Field cable সরাসরি I/O card-এ না এনে marshalling-এ আনা হয় কেন?",["সস্তা বলে","Card বদলানো সহজ ও নিরাপদ হয়","সুন্দর দেখায়"],1],
+["IS loop-এর terminal সাধারণত কোন রঙের?",["লাল","নীল","সবুজ"],1]],
+task:"আপনার একটি panel-এর ভেতরের ছবি তুলে উপরের ৭টি অংশ চিহ্নিত করুন। কোনটি নেই তা তালিকা করে রাখুন — পরে AMC বা upgrade-এর সময় কাজে লাগবে।"}]},
+
+{t:"Level 3 — মাঠের কাজ",d:"Loop check, force, troubleshooting, backup ও Modbus।",ls:[
+{t:"Loop checking ও force — নিরাপদে",m:16,b:[
+["p","Loop check মানে মাঠের যন্ত্র থেকে SCADA-র পর্দা পর্যন্ত পুরো পথ একবার প্রমাণ করা। Commissioning-এ এটি বাধ্যতামূলক, আর যেকোনো card বা transmitter বদলানোর পরেও করতে হয়।"],
+["h","AI loop check — ধাপে ধাপে"],
+["o",["Permit নিন এবং control room-কে জানান কোন tag-এ কাজ হবে; দরকার হলে alarm/trip inhibit করান (লিখিতভাবে)।",
+"Transmitter-এর জায়গায় একটি calibrator দিয়ে 4, 8, 12, 16, 20 mA দিন।",
+"প্রতিটি ধাপে তিন জায়গায় মান মিলিয়ে দেখুন: transmitter display, PLC-র raw/EU মান, SCADA-র পর্দা।",
+"পার্থক্য থাকলে কোথায় তা আলাদা করুন: মাঠ–JB (তার), JB–marshalling (তার), card (scaling/raw), SCADA (tag ও range)।",
+"ফল লিখে স্বাক্ষর করুন — as-found ও as-left দুটোই।"]],
+["h","DO loop check"],
+["p","Output-এর ক্ষেত্রে আসল যন্ত্র নড়বে, তাই ঝুঁকি বেশি। নিয়ম: আগে final element (যেমন MOV) যান্ত্রিকভাবে isolate বা de-clutch করুন, তারপর আদেশ দিন এবং relay-র ক্লিক ও terminal-এ voltage দেখে নিশ্চিত হোন।"],
+["h","Force — শক্তিশালী কিন্তু বিপজ্জনক"],
+["p","Force মানে PLC-কে বাধ্য করা যে একটি input বা output-এর আসল অবস্থা যাই হোক, সে একটি নির্দিষ্ট মান ধরে নেবে। পরীক্ষার জন্য দারুণ, ভুলে রেখে দিলে ভয়ংকর।"],
+["u",["Force দেওয়ার আগে: permit, control room-এর অনুমতি, এবং একটি <b>force register</b>-এ লিখুন (tag, মান, কে, কখন, কেন)।","Force চলাকালে panel-এ একটি দৃশ্যমান ট্যাগ ঝোলান।","কাজ শেষে সব force সরিয়ে CPU-র force list খালি আছে কি না পর্দায় দেখে নিন।","Shift শেষে হস্তান্তরের সময় কোনো force বাকি থাকলে তা অবশ্যই উল্লেখ করুন।"]],
+["w","বিশ্বের বহু বড় দুর্ঘটনার কারণ ছিল পরীক্ষার পর ফিরিয়ে না দেওয়া একটি bypass বা force। 'পরে মনে করে সরাবো' — এই ভাবনাটিই দুর্ঘটনার শুরু।"],
+["b","শূন্যের নিচে","4 mA-র নিচে (যেমন ৩.৬ mA) মান এলে সেটি সাধারণত তার ছেঁড়া বা transmitter fault। একে বলে live zero-র সুবিধা। PLC-তে এই 'under-range' আলাদা alarm হিসেবে রাখা উচিত, কারণ তখন মান ০% দেখালেও বাস্তবে কিছুই জানা নেই।"]],
+q:[["Loop check-এ কোন পাঁচটি বিন্দু দেওয়া হয়?",["0,25,50,75,100%","শুধু 0 ও 100%","যেকোনো তিনটি"],0],
+["Force দেওয়ার পর সবচেয়ে জরুরি কাজ কী?",["ছবি তোলা","কাজ শেষে সব force সরানো ও যাচাই করা","SCADA restart"],1],
+["৩.৬ mA পড়ছে — এর অর্থ কী?",["চাপ শূন্য","Under-range: তার ছেঁড়া বা fault","স্বাভাবিক"],1]],
+task:"একটি AI loop-এর ৫-বিন্দু check করে as-found/as-left সহ একটি calibration sheet পূরণ করুন (permit নিয়ে, control room-কে জানিয়ে)। Sheet-টি Maintenance History-তে তুলে রাখুন।"},
+
+{t:"Troubleshooting — ধাপে ধাপে",m:18,b:[
+["p","ভালো troubleshooter-রা যন্ত্র বদলান না, তাঁরা পথটি ভাগ করেন। এই পদ্ধতিকে বলে half-split: পুরো পথের মাঝখানে গিয়ে দেখুন সমস্যা কোন অর্ধেকে, তারপর সেই অর্ধেকের মাঝখানে যান।"],
+["h","একটি সাধারণ কাঠামো"],
+["o",["<b>লক্ষণ লিখুন:</b> কোন tag, কখন শুরু, কী বদলেছিল আগে (বৃষ্টি? বিদ্যুৎ গিয়েছিল? কেউ কাজ করেছিল?)।",
+"<b>সহজে দেখা যায় এমন জিনিস:</b> LED, fuse, breaker, terminal ঢিলা কি না, পানি ঢুকেছে কি না।",
+"<b>পথ ভাগ করুন:</b> transmitter → JB → marshalling → card → প্রোগ্রাম → SCADA। মাঝখানে (marshalling) মেপে দেখুন।",
+"<b>প্রমাণ নিন:</b> অনুমান নয়, মাপা মান। Multimeter, calibrator, HART।",
+"<b>একবারে একটি জিনিস বদলান,</b> এবং প্রতিবার ফল দেখুন।",
+"<b>মূল কারণ লিখুন</b> (5 Why), শুধু 'card বদলেছি' নয়।"]],
+["h","সবচেয়ে বেশি দেখা যায় এমন কারণ"],
+["t",[["লক্ষণ","সম্ভাব্য কারণ","যেভাবে নিশ্চিত হবেন"],
+["একটি AI সবসময় ০% বা under-range","তার ছেঁড়া, loop power নেই, transmitter বন্ধ","Marshalling-এ loop current মাপুন"],
+["একটি AI সবসময় ১০০%","Short circuit, বা card channel নষ্ট","Field disconnect করে দেখুন — তবু ১০০% হলে card"],
+["মান কাঁপছে (noisy)","Shield দুই দিকে earth, power cable-এর পাশে, loose terminal","Shield খুলে দেখুন, terminal টাইট দিন"],
+["সব I/O একসাথে গেল","Power supply বা fuse","PSU-র output voltage মাপুন"],
+["মাঝে মাঝে communication যায়","Fiber/connector নোংরা, converter গরম, earth সমস্যা","Error counter দেখুন, OTDR/light level মাপুন"],
+["বৃষ্টির পর সমস্যা","JB-তে পানি, gland ঢিলা","JB খুলে ভেতরে দেখুন"]]],
+["x","বাস্তব ধাঁচের উদাহরণ","SCADA-তে একটি PT-র মান হঠাৎ ০। Field-এ গিয়ে দেখা গেল transmitter display ঠিকই ৪২ bar দেখাচ্ছে। তাহলে সমস্যা transmitter-এ নয়। Marshalling-এ loop current মেপে পাওয়া গেল ০ mA → অর্থাৎ পথ ভাঙা। JB খুলে দেখা গেল একটি terminal-এ পানি ঢুকে ক্ষয় হয়েছে। সমাধান: terminal পরিষ্কার ও শক্ত করা, gland ঠিক করা। মূল কারণ: cable gland-এর sealing — শুধু terminal নয়, gland-ও ঠিক না করলে আবার হবে।"],
+["b","সোনার নিয়ম","যেটি বদলেছে, সমস্যা সেখানেই। 'কিছুই বদলায়নি' শুনলে আরও ভালো করে জিজ্ঞাসা করুন — প্রায়ই কিছু একটা বদলেছিল।"]],
+q:[["Half-split পদ্ধতির মূল কথা কী?",["সব যন্ত্র বদলানো","পথের মাঝখানে মেপে অর্ধেক বাদ দেওয়া","manual পড়া"],1],
+["Field disconnect করার পরও AI ১০০% দেখাচ্ছে — কোথায় সমস্যা?",["Transmitter","Card/channel","তার"],1],
+["Reading কাঁপছে — প্রথম কী দেখবেন?",["CPU বদলাবেন","Shield ও terminal","SCADA restart"],1]],
+task:"গত ছয় মাসের তিনটি সমস্যা বেছে নিয়ে প্রতিটির জন্য ৫টি 'কেন' লিখে মূল কারণ বের করুন। Problem Log-এ তুলে রাখুন।"},
+
+{t:"Backup, restore ও version control",m:12,b:[
+["p","একটি PLC-র সবচেয়ে মূল্যবান জিনিস তার ধাতব বাক্স নয় — ভেতরের প্রোগ্রাম। Backup না থাকলে একটি CPU নষ্ট হলে plant কয়েক দিন বন্ধ থাকতে পারে, কারণ যুক্তি আবার নতুন করে লিখতে হবে।"],
+["h","কী কী backup রাখবেন"],
+["u",["PLC/RTU-র সম্পূর্ণ প্রোগ্রাম (source project file, শুধু compiled নয়)।","CPU ও module-এর firmware version-এর তালিকা।","SCADA/HMI-র project ও graphics।","Network configuration-এর নথি (তবে password বা গোপন তথ্য সাইটে নয়, নিরাপদ জায়গায়)।","I/O list, loop folder ও alarm setpoint তালিকা।"]],
+["h","নিয়ম"],
+["o",["প্রতিটি পরিবর্তনের পর নতুন backup — এবং আগেরটি মুছবেন না।",
+"নামকরণে তারিখ ও কারণ রাখুন: <code>SV05_RTU_2026-11-17_MOV-timer-change.zip</code>।",
+"অন্তত দুই জায়গায় রাখুন: একটি site-এ, একটি site-এর বাইরে।",
+"বছরে অন্তত একবার <b>restore পরীক্ষা</b> করুন — spare CPU-তে backup ফিরিয়ে দেখুন আসলেই চলে কি না। যে backup কখনো ফিরিয়ে দেখা হয়নি, সেটি backup নয়, আশা।",
+"কে কোন version চালাচ্ছে তা একটি register-এ লিখুন।"]],
+["w","PLC প্রোগ্রাম বা SCADA project-এর ফাইল কখনো public GitHub বা অনিরাপদ cloud-এ রাখবেন না। এতে plant-এর নিয়ন্ত্রণ-কাঠামো প্রকাশ পায়।"],
+["b","MOC-এর সাথে যোগ","প্রতিটি program পরিবর্তন একটি MOC নম্বর পাওয়া উচিত: কী বদলাল, কেন, ঝুঁকি কী, কে অনুমোদন দিল, পরীক্ষা কীভাবে হলো, backup নেওয়া হয়েছে কি না।"]],
+q:[["কোন backup-কে বিশ্বাস করা যায়?",["যেটি একবার restore করে দেখা হয়েছে","যেটি বড় ফাইল","যেটি নতুন"],0],
+["Backup কোথায় রাখা উচিত নয়?",["Site-এর server","Public GitHub","বাইরের নিরাপদ জায়গা"],1]],
+task:"আপনার সব PLC/RTU-র একটি তালিকা বানান: নাম, brand, model, firmware version, শেষ backup-এর তারিখ ও কোথায় রাখা। ফাঁকা ঘরগুলোই আপনার করণীয় তালিকা।"},
+
+{t:"Modbus — যে ভাষায় যন্ত্ররা কথা বলে",m:16,b:[
+["p","Flow computer, UPS, battery charger, power meter, gas detector panel — এরা সবাই PLC/SCADA-কে তথ্য দেয়, আর সবচেয়ে বেশি ব্যবহৃত পথ হলো Modbus। সহজ, খোলা এবং প্রায় সব যন্ত্রে আছে।"],
+["h","দুটি রূপ"],
+["t",[["","Modbus RTU","Modbus TCP"],
+["পথ","RS-485 তার (2 বা 4 তার)","Ethernet"],
+["গতি","৯৬০০–১১৫২০০ bps","অনেক দ্রুত"],
+["ঠিকানা","Slave ID (১–২৪৭)","IP + Unit ID"],
+["সাধারণ ভুল","Baud/parity না মেলা, A-B উল্টো, termination resistor নেই","IP সংঘাত, port বন্ধ"]]],
+["h","চারটি তথ্যভাণ্ডার"],
+["t",[["ধরন","পড়া/লেখা","কী রাখে","Function code"],
+["Coil","পড়া ও লেখা","1 bit — চালু/বন্ধ","01 পড়া, 05/15 লেখা"],
+["Discrete input","শুধু পড়া","1 bit — status","02"],
+["Input register","শুধু পড়া","16 bit — মাপা মান","04"],
+["Holding register","পড়া ও লেখা","16 bit — setting ও মান","03 পড়া, 06/16 লেখা"]]],
+["h","সবচেয়ে বড় ফাঁদ: ঠিকানার অফসেট"],
+["p","নথিতে লেখা থাকে 40001, কিন্তু যন্ত্রে দিতে হয় 0। কারণ 4xxxx হলো holding register-এর পুরোনো নামকরণ, আর প্রকৃত address শূন্য থেকে গোনা হয়। অর্থাৎ 40001 → address 0, 40002 → address 1। অনেক ঘণ্টা নষ্ট হয় এই এক জায়গায়।"],
+["x","32-bit মান পড়া","একটি flow computer-এ মোট প্রবাহ 32-bit float হিসেবে দুটি register-এ (যেমন 40011 ও 40012) থাকে। পড়ার সময় দুটি একসাথে নিয়ে জোড়া লাগাতে হয়। কোনটি আগে — এটিই <b>byte/word order</b> (big-endian না little-endian, 'word swap' আছে কি না)। ভুল হলে মান উদ্ভট দেখায় (যেমন ১২০ m³/h-এর বদলে 3.4e+38)। সমাধান: নথি দেখে word order ঠিক করুন, অথবা জানা একটি মান (যেমন ০) দিয়ে মিলিয়ে নিন।"],
+["b","মাঠে পরীক্ষা","একটি laptop-এ Modbus poll ধরনের সফটওয়্যার দিয়ে সরাসরি যন্ত্র থেকে register পড়ে দেখুন। যদি সেখানে ঠিক আসে কিন্তু SCADA-তে ভুল, তবে সমস্যা mapping-এ; যদি সেখানেও ভুল, তবে যন্ত্র বা তারে।"]],
+q:[["নথিতে 40003 লেখা — যন্ত্রে সাধারণত কত address দেবেন?",["40003","3","2"],2],
+["RS-485-এ termination resistor না থাকলে কী হয়?",["কিছু না","দীর্ঘ লাইনে communication error","গতি বাড়ে"],1],
+["32-bit float উদ্ভট দেখাচ্ছে — সম্ভাব্য কারণ?",["Byte/word order ভুল","Baud rate","Slave ID"],0]],
+task:"আপনার station-এর একটি Modbus যন্ত্র (UPS, charger বা power meter) বেছে নিয়ে তার register map-এর একটি সরল তালিকা বানান: কোন register-এ কী, কোন function code, কী একক। এটিই পরে troubleshooting-এর ভিত্তি।"}]},
+
+{t:"Level 4 — উন্নত",d:"Redundancy, safety PLC ও SIL, cause & effect, alarm ও নিরাপত্তা।",ls:[
+{t:"Redundancy — একটি নষ্ট হলেও চলবে",m:14,b:[
+["p","Pipeline কখনো থামানো যায় না বলে গুরুত্বপূর্ণ অংশগুলো জোড়ায় রাখা হয়। একটি নষ্ট হলে অন্যটি কাজ চালিয়ে যায়।"],
+["t",[["কোথায়","কীভাবে","কী বোঝায়"],
+["Power supply","দুটি PSU, diode-OR করা","একটি গেলেও 24 V থাকে"],
+["CPU","Hot standby — দুটি CPU, একটি active","Active fail করলে standby মুহূর্তে নেয়"],
+["Network","Ring বা dual path","একটি fiber কাটা গেলেও পথ থাকে"],
+["I/O","গুরুত্বপূর্ণ সংকেত দুটি card-এ ভাগ","একটি card গেলে সবকিছু হারায় না"],
+["Sensor","2oo3 ভোটিং","তিনটির দুটি মিললে বিশ্বাস করা হয়"]]],
+["h","ভোটিং (voting) সহজ ভাষায়"],
+["u",["<b>1oo1:</b> একটি sensor, একটি সিদ্ধান্ত। সস্তা, কিন্তু ঐ একটি fail করলেই হয় মিথ্যা trip, নয় trip না হওয়া।","<b>1oo2:</b> দুটির যেকোনো একটি trip চাইলে trip। নিরাপদ, কিন্তু মিথ্যা trip বেশি।","<b>2oo2:</b> দুটিই চাইলে তবে trip। মিথ্যা trip কম, কিন্তু একটি fail করলে সুরক্ষা হারায়।","<b>2oo3:</b> তিনটির দুটি চাইলে trip। সবচেয়ে ভারসাম্যপূর্ণ — তাই গুরুত্বপূর্ণ জায়গায় এটিই ব্যবহার হয়।"]],
+["x","কেন 2oo3 ভালো","তিনটি pressure transmitter আছে। একটি নষ্ট হয়ে ভুল করে উচ্চ চাপ দেখাচ্ছে। 1oo2 হলে অকারণে plant trip করত। 2oo3-এ বাকি দুটি স্বাভাবিক বলায় trip হয় না, কিন্তু একটি 'transmitter deviation' alarm আসে — অর্থাৎ নিরাপত্তাও থাকল, উৎপাদনও থামল না, আর সমস্যা জানাও গেল।"],
+["b","Redundancy মানেই নিরাপত্তা নয়","দুটি CPU থাকলেও যদি দুটোই একই ভুল প্রোগ্রাম চালায়, ভুলটি দ্বিগুণ হয়। Redundancy যন্ত্রের fail সামলায়, নকশার ভুল নয়।"]],
+q:[["2oo3 মানে কী?",["তিনটির দুটি মিললে কাজ","দুটির তিনটি","যেকোনো একটি"],0],
+["Hot standby CPU-র সুবিধা কী?",["দ্রুত চলে","Active fail করলে চালিয়ে নেয়","কম বিদ্যুৎ"],1]],
+task:"আপনার station-এ কোন কোন অংশ redundant আছে তার তালিকা বানান (PSU, CPU, network, sensor)। যেখানে নেই অথচ গুরুত্বপূর্ণ, সেগুলো আলাদা করে লিখুন — এটিই improvement proposal-এর ভিত্তি।"},
+
+{t:"Safety PLC ও SIL",m:18,b:[
+["p","সাধারণ PLC চালায় (control), safety PLC রক্ষা করে (protect)। দুটির দর্শন আলাদা। Control PLC-র লক্ষ্য plant চালু রাখা; safety PLC-র লক্ষ্য বিপদে নিরাপদভাবে থামানো — এমনকি নিজের একটি অংশ নষ্ট হলেও।"],
+["h","কয়েকটি শব্দ"],
+["t",[["শব্দ","অর্থ"],
+["SIS","Safety Instrumented System — পুরো সুরক্ষা ব্যবস্থা"],
+["SIF","Safety Instrumented Function — একটি নির্দিষ্ট সুরক্ষা কাজ, যেমন 'উচ্চ চাপে ESDV বন্ধ করা'"],
+["SIL","Safety Integrity Level — ঐ কাজটি কতটা নির্ভরযোগ্য হতে হবে (SIL 1 থেকে SIL 4)"],
+["PFD","Probability of Failure on Demand — দরকারের সময় কাজ না করার সম্ভাবনা"],
+["Proof test","নির্দিষ্ট সময় পরপর পুরো SIF পরীক্ষা করে লুকানো fault বের করা"]]],
+["h","SIL সহজ করে"],
+["t",[["SIL","PFD (চাহিদার সময় fail হওয়ার সম্ভাবনা)","সরল অর্থ"],
+["SIL 1","১০⁻¹ – ১০⁻²","১০–১০০ বারে একবার fail করতে পারে"],
+["SIL 2","১০⁻² – ১০⁻³","১০০–১০০০ বারে একবার"],
+["SIL 3","১০⁻³ – ১০⁻⁴","১০০০–১০০০০ বারে একবার"]]],
+["p","Pipeline-এর অধিকাংশ ESD function সাধারণত SIL 1 বা SIL 2-তে পড়ে। SIL কোনো যন্ত্রের গায়ে লেখা সংখ্যা নয় — এটি পুরো loop-এর (sensor + logic solver + final element) মিলিত বৈশিষ্ট্য। একটি SIL 3 PLC-র সাথে একটি সাধারণ valve লাগালে loop-টি SIL 3 হয় না।"],
+["h","তিনটি অংশ, তিনটি দুর্বলতা"],
+["u",["<b>Sensor:</b> সাধারণত সবচেয়ে বেশি fail করে। তাই voting ব্যবহার হয়।","<b>Logic solver (safety PLC):</b> সবচেয়ে নির্ভরযোগ্য অংশ, কিন্তু সবচেয়ে দামি।","<b>Final element (valve):</b> সবচেয়ে অবহেলিত। বছরের পর বছর না নড়লে valve আটকে যায়। এজন্য <b>partial stroke test</b> করা হয় — valve-কে ১০–২০% নাড়িয়ে দেখা যে সে নড়ে, অথচ প্রবাহ বন্ধ হয় না।"]],
+["h","Bypass ব্যবস্থাপনা"],
+["o",["Bypass শুধু লিখিত অনুমোদনে, নির্দিষ্ট সময়ের জন্য।","Bypass চালু থাকলে control room-এ তা স্পষ্ট দেখাতে হবে (alarm বা তালিকা)।","Bypass-এর সময় বিকল্প সুরক্ষা রাখতে হবে — যেমন একজন মানুষ সরাসরি নজর রাখবেন।","সময় শেষে নিজে থেকেই মনে করিয়ে দেওয়ার ব্যবস্থা।","প্রতিটি bypass register-এ লেখা।"]],
+["w","Safety PLC-র প্রোগ্রাম বা setpoint বদলানো সাধারণ পরিবর্তন নয়। এর জন্য আলাদা অনুমোদন, পুনরায় যাচাই (re-validation) ও নথি লাগে।"]],
+q:[["SIL কীসের বৈশিষ্ট্য?",["শুধু PLC-র","পুরো loop-এর (sensor+logic+valve)","শুধু valve-এর"],1],
+["Partial stroke test কেন করা হয়?",["Valve পরিষ্কার করতে","Valve নড়ে কি না দেখতে, প্রবাহ না থামিয়ে","চাপ কমাতে"],1],
+["SIF-এর কোন অংশ সবচেয়ে বেশি fail করে?",["Sensor","Logic solver","কোনোটিই না"],0]],
+task:"আপনার station-এর ESD function-গুলোর একটি তালিকা করুন: কোন sensor → কোন logic → কোন valve, setpoint কত, শেষ proof test কবে। যেগুলোর proof test-এর তারিখ জানা নেই, সেগুলো চিহ্নিত করুন।"},
+
+{t:"Cause & Effect থেকে যুক্তি",m:14,b:[
+["p","Plant-এর সব সুরক্ষা যুক্তি একটি ছকে লেখা থাকে — Cause & Effect (C&E) matrix। বাঁ পাশে কারণ (cause), উপরে ফল (effect), আর ঘরে ক্রস চিহ্ন বোঝায় ঐ কারণে ঐ ফলটি ঘটবে।"],
+["t",[["Cause ↓ / Effect →","ESDV বন্ধ","Pump trip","Alarm","DG start"],
+["উচ্চ চাপ (PAHH)","✕","✕","✕",""],
+["নিম্ন চাপ (PALL)","","✕","✕",""],
+["Gas detect (২টি detector)","✕","✕","✕",""],
+["Fire detect","✕","✕","✕",""],
+["Grid fail","","","✕","✕"]]],
+["h","C&E কেন এত গুরুত্বপূর্ণ"],
+["u",["এটিই নিরাপত্তা যুক্তির একমাত্র অনুমোদিত সত্য। প্রোগ্রাম C&E অনুসরণ করবে, উল্টোটা নয়।","Commissioning-এ প্রতিটি ঘর আলাদা করে পরীক্ষা করা হয় — একে বলে C&E test।","পরিবর্তন হলে আগে C&E বদলাবে (অনুমোদনসহ), তারপর প্রোগ্রাম।"]],
+["x","পরীক্ষা কীভাবে হয়","'উচ্চ চাপ' সারিটি পরীক্ষা করতে: calibrator দিয়ে PT-তে trip setpoint-এর উপরে সংকেত দিন → দেখুন ESDV সত্যি বন্ধ হচ্ছে, pump trip করছে এবং alarm আসছে। তিনটি ফলের তিনটিই আলাদা করে দেখে নোট করুন। একটি না হলে সেটি একটি finding — বন্ধ না করে ছেড়ে দেওয়া যাবে না।"],
+["b","Reset দর্শন","Trip-এর পর কীভাবে ফেরা যাবে তাও C&E-তে থাকা উচিত: নিজে থেকেই (auto reset) না মানুষ হাতে করবে (manual reset)। নিরাপত্তা trip প্রায় সবসময় manual reset হওয়া উচিত, যাতে কেউ কারণ না দেখে plant আবার চালু করতে না পারে।"]],
+q:[["প্রোগ্রাম ও C&E-র মধ্যে কোনটি মূল?",["প্রোগ্রাম","C&E matrix","SCADA"],1],
+["নিরাপত্তা trip-এর reset কেমন হওয়া উচিত?",["Auto","Manual","যেকোনো"],1]],
+task:"আপনার station-এর C&E matrix-টি জোগাড় করুন। না থাকলে বিদ্যমান logic থেকে একটি খসড়া বানান এবং ঊর্ধ্বতনের কাছে যাচাইয়ের জন্য দিন।"},
+
+{t:"Alarm management ও নিরাপত্তা",m:16,b:[
+["p","একটি control room-এ যদি মিনিটে ১০টি alarm আসে, operator কোনোটিই পড়েন না। এতে alarm থাকা আর না থাকা সমান। এজন্য আলাদা নিয়ম তৈরি হয়েছে — EEMUA 191 ও ISA 18.2।"],
+["h","ভালো alarm-এর শর্ত"],
+["u",["<b>প্রতিটি alarm-এর একটি কাজ থাকতে হবে।</b> Operator যদি কিছুই করতে না পারেন, তবে সেটি alarm নয়, তথ্য।","<b>যথেষ্ট সময় থাকতে হবে</b> কাজটি করার জন্য।","<b>অগ্রাধিকার থাকতে হবে</b> — সব alarm সমান নয়। সাধারণত ৩টি স্তর, এবং উচ্চ স্তরের alarm মোট সংখ্যার ৫%-এর কম হওয়া উচিত।","<b>স্থির অবস্থায় হার কম:</b> লক্ষ্য গড়ে ঘণ্টায় ৬টির কম; ১২টির বেশি হলে ব্যবস্থা দরকার।"]],
+["h","চারটি সাধারণ রোগ ও ওষুধ"],
+["t",[["রোগ","কী হয়","সমাধান"],
+["Chattering","একই alarm বারবার আসে-যায়","Deadband ও on-delay দিন"],
+["Standing alarm","সবসময় জ্বলে থাকে","কারণ ঠিক করুন বা setpoint পুনর্বিবেচনা"],
+["Alarm flood","এক ঘটনায় শত শত alarm","Suppression: মূল কারণটি এলে ফলগুলো চাপা দিন"],
+["Nuisance","কাজের দরকার নেই","Alarm থেকে তথ্যে নামিয়ে দিন"]]],
+["h","নিরাপত্তা (cyber) — ভিত্তি"],
+["p","IEC 62443 হলো শিল্প নিয়ন্ত্রণ ব্যবস্থার নিরাপত্তার মান। পাঁচটি সহজ অভ্যাস, যা কোনো টাকা ছাড়াই করা যায়:"],
+["o",["Control network আর অফিস network আলাদা রাখুন; প্রয়োজনে firewall ও DMZ।",
+"USB drive নিয়ন্ত্রণ করুন — সংক্রমণের সবচেয়ে সাধারণ পথ।",
+"Default password বদলান, এবং password কখনো panel-এর গায়ে বা কোনো সাধারণ নথিতে লিখবেন না।",
+"কে কোন laptop engineering network-এ লাগাতে পারবে তা নির্দিষ্ট করুন।",
+"Remote access থাকলে তা দুই-স্তরের যাচাই ও লগসহ।"]],
+["w","এই সাইটে বা অন্য কোনো প্রকাশ্য জায়গায় কখনো IP address, password, network diagram বা SCADA-র আসল configuration রাখবেন না। শেখার জন্য সবসময় কাল্পনিক উদাহরণ ব্যবহার করুন।"]],
+q:[["একটি alarm বৈধ হওয়ার মূল শর্ত কী?",["শব্দ জোরে হওয়া","Operator-এর কিছু করার থাকা","লাল রং"],1],
+["Chattering alarm-এর সমাধান কী?",["Alarm মুছে দেওয়া","Deadband ও on-delay","Setpoint বাড়ানো"],1],
+["Default password নিয়ে নিয়ম কী?",["রেখে দিন","বদলান এবং নিরাপদে রাখুন","panel-এ লিখে রাখুন"],1]],
+task:"একটি shift-এর alarm log নিন। মোট কতটি alarm, সবচেয়ে বেশি আসা ৫টি কোনগুলো, এবং তার মধ্যে কতটিতে operator আসলে কিছু করেছেন — এই তিনটি হিসাব বের করুন।"}]},
+
+{t:"Level 5 — Expert",d:"Project lifecycle, নথি, সাক্ষাৎকার ও ৩০ দিনের পরিকল্পনা।",ls:[
+{t:"Project lifecycle — FDS থেকে SAT",m:16,b:[
+["p","একজন expert শুধু যন্ত্র বোঝেন না, প্রকল্পের ভাষাও বোঝেন। নতুন PLC/SCADA ব্যবস্থা কেনা থেকে চালু হওয়া পর্যন্ত পথটি এরকম।"],
+["o",["<b>URS (User Requirement Specification):</b> ব্যবহারকারী কী চান — সরল ভাষায়।",
+"<b>FDS (Functional Design Specification):</b> ব্যবস্থাটি কী কী করবে — I/O সংখ্যা, logic, alarm, report। এটিই পরে পরীক্ষার ভিত্তি।",
+"<b>DDS (Detailed Design):</b> কীভাবে করবে — panel drawing, I/O list, loop diagram, network।",
+"<b>FAT (Factory Acceptance Test):</b> সরবরাহকারীর কারখানায় simulator দিয়ে সব logic পরীক্ষা। এখানেই ভুল ধরা সবচেয়ে সস্তা।",
+"<b>Installation ও loop check:</b> সাইটে বসানো ও প্রতিটি loop প্রমাণ করা।",
+"<b>SAT (Site Acceptance Test):</b> আসল যন্ত্রের সাথে পুরো ব্যবস্থার পরীক্ষা, C&E সহ।",
+"<b>Commissioning ও handover:</b> নথি, প্রশিক্ষণ, spare, backup বুঝে নেওয়া।"]],
+["h","FAT-এ যা করতেই হবে"],
+["u",["প্রতিটি I/O point আলাদা করে ধরে দেখা (point-to-point)।","প্রতিটি C&E ঘর পরীক্ষা।","Power fail ও recovery পরীক্ষা — বিদ্যুৎ গিয়ে ফিরলে ব্যবস্থাটি নিরাপদ অবস্থায় ফেরে কি না।","Redundancy পরীক্ষা — active CPU খুলে দেখুন standby নেয় কি না।","সব punch point লিখিতভাবে, বন্ধ হওয়ার তারিখসহ।"]],
+["b","সবচেয়ে বড় পরামর্শ","FAT-এ যা ছাড় দেবেন, SAT-এ তা দ্বিগুণ কষ্ট দেবে, আর commissioning-এ চারগুণ। 'পরে সাইটে ঠিক করে নেব' — এই কথাটিই প্রকল্প দেরি করানোর প্রধান কারণ।"]],
+q:[["পরীক্ষার ভিত্তি হিসেবে কোন নথি কাজ করে?",["FDS","Invoice","Manual"],0],
+["FAT কোথায় হয়?",["সাইটে","সরবরাহকারীর কারখানায়","অফিসে"],1]],
+task:"আপনার station-এর একটি ব্যবস্থার (যেমন RTU) FDS বা নথি খুঁজে বের করুন। না থাকলে বর্তমান ব্যবস্থা দেখে একটি সংক্ষিপ্ত 'as-built FDS' লিখুন — ২ পাতার মধ্যে।"},
+
+{t:"নথি — একজন expert-এর স্বাক্ষর",m:12,b:[
+["p","যে কাজের নথি নেই, সে কাজ হয়নি ধরে নেওয়া হয়। একটি PLC ব্যবস্থার ন্যূনতম নথিগুচ্ছ নিচে।"],
+["t",[["নথি","কী থাকে","কেন দরকার"],
+["I/O list","প্রতিটি tag, ধরন, rack/slot/channel, range, alarm setpoint","সবকিছুর মূল তালিকা"],
+["Loop folder","একটি loop-এর P&ID, loop diagram, datasheet, calibration record","এক জায়গায় পুরো গল্প"],
+["Logic narrative","সাধারণ ভাষায় প্রতিটি logic কী করে","নতুন কেউ এসে বুঝতে পারবেন"],
+["C&E matrix","কারণ ও ফল","নিরাপত্তার সত্য"],
+["Alarm list","Tag, setpoint, priority, করণীয়","Operator-এর হাতিয়ার"],
+["Spare list","কোন card-এর কয়টি spare, কোথায়","Downtime কমায়"]]],
+["h","Tag নামকরণ"],
+["p","ISA-5.1 অনুযায়ী প্রথম অক্ষর মাপা জিনিস, পরেরগুলো কাজ। যেমন PT = Pressure Transmitter, PIT = Pressure Indicating Transmitter, PSHH = Pressure Switch High High, FQI = Flow Quantity Indicator (totalizer)। একই নিয়ম সারা সাইটে মানলে যে কেউ tag দেখে কাজ বুঝে ফেলবেন।"],
+["b","ছোট অভ্যাস, বড় ফল","প্রতিটি কাজের পর পাঁচ মিনিট দিয়ে নথি হালনাগাদ করুন। ছয় মাস পর এই পাঁচ মিনিটই আপনাকে পাঁচ ঘণ্টা বাঁচাবে — এবং সাক্ষাৎকারে এই অভ্যাসটিই আপনাকে আলাদা করবে।"]],
+q:[["PSHH-এর অর্থ কী?",["Pressure Switch High High","Pump Start High","Pressure Sensor Hot"],0],
+["Loop folder-এ কী থাকে?",["শুধু datasheet","P&ID, loop diagram, datasheet ও calibration record","শুধু ছবি"],1]],
+task:"যেকোনো একটি loop-এর জন্য সম্পূর্ণ loop folder তৈরি করুন এবং এই সাইটের Documents অংশে তুলে রাখুন। এরপর প্রতি সপ্তাহে একটি করে যোগ করুন।"},
+
+{t:"সাক্ষাৎকারের প্রস্তুতি",m:14,b:[
+["p","Oil & gas খাতের I&E সাক্ষাৎকারে PLC নিয়ে যে প্রশ্নগুলো প্রায় নিশ্চিতভাবে আসে, সেগুলো এবং উত্তরের কাঠামো।"],
+["h","দশটি প্রশ্ন"],
+["o",["PLC-র scan cycle ব্যাখ্যা করুন। — চারটি ধাপ বলুন, তারপর বলুন কেন input image table থাকে।",
+"Sinking ও sourcing-এর পার্থক্য? — current-এর দিক দিয়ে ব্যাখ্যা করুন, একটি উদাহরণ দিন।",
+"4–20 mA কেন, 0–20 নয়? — live zero, তার ছেঁড়া শনাক্ত করা যায়।",
+"DP দিয়ে flow মাপলে square root কেন? — flow ∝ √DP; একবারই করতে হবে।",
+"PLC ও safety PLC-র পার্থক্য? — control বনাম protect, certification, diagnostics, de-energize to trip।",
+"SIL কী এবং কীসের উপর নির্ভর করে? — পুরো loop; sensor, logic, final element।",
+"2oo3 ভোটিং কেন ব্যবহার হয়? — মিথ্যা trip ও নিরাপত্তার ভারসাম্য।",
+"Force দেওয়ার নিয়ম কী? — permit, register, tag, যাচাই করে সরানো।",
+"Modbus-এ 40001 মানে কী? — holding register, offset শূন্য থেকে।",
+"একটি transmitter-এর মান SCADA-তে ভুল — কীভাবে খুঁজবেন? — half-split পদ্ধতিটি ধাপে ধাপে বলুন।"]],
+["h","উত্তরের কাঠামো (STAR)"],
+["p","<b>S</b>ituation — কী অবস্থা ছিল। <b>T</b>ask — আপনার দায়িত্ব কী ছিল। <b>A</b>ction — আপনি কী করলেন, ধাপে ধাপে। <b>R</b>esult — ফল কী হলো, সংখ্যা দিয়ে। প্রতিটি কারিগরি উত্তরের শেষে নিজের একটি বাস্তব অভিজ্ঞতা জুড়ে দিন — এটিই মুখস্থ উত্তর আর অভিজ্ঞ প্রকৌশলীর পার্থক্য।"],
+["b","নিরাপত্তা প্রথমে","যেকোনো উত্তরে permit, isolation ও control room-কে জানানোর কথা নিজে থেকে বললে সাক্ষাৎকারে বড় নম্বর পাওয়া যায়। আন্তর্জাতিক কোম্পানিগুলো দক্ষতার আগে নিরাপত্তা-সংস্কৃতি দেখে।"]],
+q:[["4–20 mA-তে 4 mA কেন?",["সস্তা","Live zero — তার ছেঁড়া ধরা যায়","বেশি নিখুঁত"],1],
+["STAR-এর R কী?",["Reason","Result","Review"],1]],
+task:"উপরের দশটি প্রশ্নের উত্তর নিজের ভাষায় লিখুন, প্রতিটির সাথে আপনার IBFPL-এর একটি বাস্তব উদাহরণ জুড়ে। সপ্তাহে একবার জোরে বলে অনুশীলন করুন।"},
+
+{t:"৩০ দিনের হাতে-কলমে পরিকল্পনা",m:10,b:[
+["p","পড়া শেষ হলে জ্ঞান স্থায়ী হয় না; হাতে কাজ করলে হয়। নিচের পরিকল্পনাটি আপনার নিজের station-এ করার জন্য।"],
+["t",[["সপ্তাহ","কাজ","ফল"],
+["১","সব PLC/RTU panel-এর ছবি, LED-র অর্থ, এবং একটি সম্পূর্ণ I/O list তৈরি","I/O list v1"],
+["২","৫টি loop-এর loop folder; ৩টি AI-র ৫-বিন্দু check","Loop folder ×5"],
+["৩","C&E matrix সংগ্রহ বা খসড়া; ESD function তালিকা ও শেষ proof test-এর তারিখ","C&E ও ESD register"],
+["৪","সব backup নেওয়া ও একটি restore পরীক্ষা; alarm log বিশ্লেষণ; শীর্ষ ৫ alarm-এর সমাধান প্রস্তাব","Backup register + alarm report"]]],
+["h","প্রতিদিনের ৩০ মিনিট"],
+["u",["১০ মিনিট — এই track-এর একটি পাঠ পড়া।","১০ মিনিট — মাঠে বা panel-এ একটি জিনিস নিজের চোখে মিলিয়ে দেখা।","১০ মিনিট — যা শিখলেন তা এক অনুচ্ছেদে লিখে রাখা।"]],
+["b","ছয় মাস পর","এই নিয়মে চললে ছয় মাস পর আপনার হাতে থাকবে: সম্পূর্ণ I/O list, ২৫টির বেশি loop folder, হালনাগাদ C&E, backup register, alarm বিশ্লেষণ এবং নিজের লেখা ২০০টির বেশি নোট। আন্তর্জাতিক সাক্ষাৎকারে এই নথিগুলোই আপনার সবচেয়ে বড় প্রমাণ।"]],
+q:[["হাতে-কলমে শেখার সবচেয়ে বড় প্রমাণ কী?",["সার্টিফিকেট","নিজের তৈরি নথি ও রেকর্ড","বইয়ের সংখ্যা"],1]],
+task:"আজই সপ্তাহ ১ শুরু করুন। এই সাইটের Maintenance History ও Documents অংশে প্রতিটি কাজের ফল তুলে রাখুন, যাতে ছয় মাস পর পুরো প্রমাণ এক জায়গায় থাকে।"}]}]};
+
+/* ===== Mastery Track — framework ===== */
+const MST_SOON=[
+{id:"scada",ic:"🖥",t:"SCADA — Supervisory Control and Data Acquisition",sub:"HMI, tag database, trend, alarm, historian, report, redundancy ও ABB SCADAvantage।",
+ out:["SCADA কী, কোন অংশে কী — server, client, front-end, historian","Tag database ও addressing: কীভাবে একটি field মান পর্দায় আসে","HMI নকশার নিয়ম: রং, hierarchy, situational awareness (ISA-101)","Trend ও historian: sampling, compression, কীভাবে পুরোনো তথ্য বিশ্লেষণ করবেন","Alarm ব্যবস্থাপনা SCADA-র দিক থেকে: priority, shelving, suppression","Command ও interlock: select-before-operate, confirm, timeout","Communication: Modbus, IEC 60870-5-104, DNP3, OPC — কোনটি কোথায়","Redundancy ও failover: dual server, hot standby, time sync (NTP)","Report ও KPI: দৈনিক receipt, uptime, loss হিসাব","নিরাপত্তা: user role, audit trail, remote access","সমস্যা খোঁজা: tag bad quality, stale data, time drift","ABB SCADAvantage-এর গঠন ও IBFPL-এ এর ভূমিকা"]},
+{id:"fc",ic:"🧮",t:"Flow Computer ও Custody Transfer Metering",sub:"Coriolis, prover, meter factor, API MPMS, VCF ও দুই প্রান্তের হিসাব মেলানো।",
+ out:["Custody transfer কী এবং কেন এত কড়াকড়ি","Flow meter-এর ধরন: Coriolis, turbine, ultrasonic, PD — কোনটি কখন","Coriolis-এর কাজ করার নীতি, zero, density ও two-phase সমস্যা","Flow computer কী করে: pulse/Modbus গ্রহণ, correction, totalizer","API MPMS পরিচিতি — কোন অধ্যায় কীসের জন্য","VCF ও CTL/CPL: তাপমাত্রা ও চাপের জন্য আয়তন সংশোধন, ১৫ °C standard","Mass, standard volume ও observed volume — তিনটির সম্পর্ক ও হিসাব","Proving: কেন, কীভাবে, meter factor ও repeatability","Uncertainty ও loss/gain: অনুমোদিত সীমা, কীভাবে বিশ্লেষণ করবেন","Ticket ও report: parcel হিসাব দুই প্রান্তে কীভাবে মেলানো হয়","Troubleshooting: zero drift, pulse হারানো, density ভুল, time sync","IBFPL-এর parcel হিসাবে এই সবকিছুর প্রয়োগ"]},
+{id:"lds",ic:"💧",t:"LDS — Leak Detection System",sub:"Mass balance, pressure wave, RTTM, API 1130/1175, false alarm কমানো।",
+ out:["Leak detection-এর প্রয়োজন ও নিয়ন্ত্রক কাঠামো (API 1130, 1175)","পদ্ধতিগুলো: mass/volume balance, pressure wave, RTTM, statistical, external","Mass balance কীভাবে কাজ করে এবং কেন instrument-এর নির্ভুলতা এত জরুরি","Pressure wave (negative pressure wave): তত্ত্ব, গতি, সময় থেকে অবস্থান বের করা","RTTM ও model-based পদ্ধতি: hydraulic model, tuning","Sensitivity, reliability, accuracy ও robustness — চারটির ভারসাম্য","False alarm-এর কারণ ও কমানোর উপায়","Shut-in ও slack line অবস্থায় leak detection-এর সীমা","Alarm এলে প্রথম ১৫ মিনিটে করণীয়","LDS-এর কর্মক্ষমতা পরীক্ষা ও নথি","ABB SCADAvantage LDS-এর গঠন","IBFPL-এ LDS ও parcel হিসাবের সম্পর্ক"]},
+{id:"pids",ic:"📡",t:"PIDS — Pipeline Intrusion Detection System",sub:"Fiber optic DAS, waterfall পড়া, event শ্রেণিবিন্যাস, illegal tapping শনাক্ত।",
+ out:["PIDS কী এবং কেন pipeline-এ দরকার","Fiber optic sensing-এর মূল নীতি: Rayleigh scattering, OTDR থেকে DAS","DAS interrogator-এর গঠন ও sensing fiber","Waterfall display পড়া: সময়, দূরত্ব ও শক্তি","Event-এর ধরন: হাঁটা, গাড়ি, খোঁড়া, drilling, যান্ত্রিক কাজ","Classification ও machine learning-এর ভূমিকা, false alarm কমানো","Calibration ও walk test: কীভাবে দূরত্ব মেলানো হয়","Alarm এলে করণীয় ও মাঠে দল পাঠানোর প্রক্রিয়া","Fiber-এর যত্ন: splice, OTDR trace, attenuation budget","PIDS ও LDS একসাথে কীভাবে কাজ করে","কর্মক্ষমতা পরিমাপ ও নথি","IBFPL-এ PIDS — Fotech ব্যবস্থার ভূমিকা"]}];
+const MST=[MST_PLC,...MST_SOON];
+let mstS=null,mstL=null,mstQ={};
+const mstKey=()=>"mst_v1";
+function mstLd(){try{return JSON.parse(localStorage.getItem(mstKey())||"{}")}catch(e){return{}}}
+function mstSv(d){try{localStorage.setItem(mstKey(),JSON.stringify(d))}catch(e){}}
+function mstDone(s,l){const d=mstLd();return !!(d.d&&d.d[s+"/"+l])}
+function mstTg(s,l){const d=mstLd();d.d=d.d||{};const k=s+"/"+l;if(d.d[k])delete d.d[k];else d.d[k]={t:new Date().toISOString().slice(0,10)};mstSv(d);draw()}
+function mstScore(s,l,v){const d=mstLd();d.q=d.q||{};const k=s+"/"+l;if(!d.q[k]||v>d.q[k])d.q[k]=v;mstSv(d)}
+function mstStat(sub){if(typeof sub==="string")sub=MST.find(x=>x.id===sub)||{};let t=0,n=0;(sub.lv||[]).forEach((L,i)=>L.ls.forEach((x,j)=>{t++;if(mstDone(sub.id,i+"."+j))n++}));return{t,n,pc:t?Math.round(n/t*100):0}}
+function mstAll(){let t=0,n=0;MST.forEach(s=>{const r=mstStat(s);t+=r.t;n+=r.n});return{t,n,pc:t?Math.round(n/t*100):0}}
+const mstB=b=>{const E2=E;switch(b[0]){
+ case"p":return `<p style="font-size:14.5px;line-height:1.75;margin:8px 0">${b[1]}</p>`;
+ case"h":return `<h4 style="margin:16px 0 4px;color:var(--g)">${E2(b[1])}</h4>`;
+ case"u":return `<ul style="margin:6px 0 10px 20px;font-size:14px;line-height:1.8">${b[1].map(x=>`<li>${x}</li>`).join("")}</ul>`;
+ case"o":return `<ol style="margin:6px 0 10px 20px;font-size:14px;line-height:1.8">${b[1].map(x=>`<li>${x}</li>`).join("")}</ol>`;
+ case"t":return `<div style="overflow-x:auto;margin:8px 0"><table style="width:100%;border-collapse:collapse;font-size:13.5px">${b[1].map((r,i)=>`<tr style="${i?"border-top:1px solid var(--bd)":"background:#eef2f7"}">${r.map(c=>`<${i?"td":"th"} style="padding:6px;text-align:left;vertical-align:top">${c}</${i?"td":"th"}>`).join("")}</tr>`).join("")}</table></div>`;
+ case"b":return `<div style="background:#eef6ff;border-left:4px solid #1d6ff2;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.7"><b>💡 ${E2(b[1])}</b><br>${b[2]}</div>`;
+ case"x":return `<div style="background:#f3fbf5;border-left:4px solid #0f7a3d;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.7"><b>🧮 ${E2(b[1])}</b><br>${b[2]}</div>`;
+ case"w":return `<div style="background:#fff1f3;border-left:4px solid #e11d48;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.7"><b>⚠ সতর্কতা:</b> ${b[1]}</div>`;
+ case"c":return `<pre style="background:#0f1c33;color:#d7e6ff;border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:13px;line-height:1.6;margin:10px 0">${E2(b[1])}</pre>`;
+ default:return ""}};
+function mstAns(s,l,i,c,n){const k=s+"/"+l;mstQ[k]=mstQ[k]||{};mstQ[k][i]=c;const sub=MST.find(x=>x.id===s),[a,b2]=l.split(".").map(Number),L=sub.lv[a].ls[b2];
+ if(Object.keys(mstQ[k]).length===L.q.length){const sc=L.q.filter((q,j)=>mstQ[k][j]===q[2]).length;mstScore(s,l,Math.round(sc/L.q.length*100))}draw()}
+function mstOpen(s,l){mstS=s;mstL=l;mstQ[s+"/"+l]={};draw();window.scrollTo(0,0)}
+function mstv(){
+ if(mstS&&mstL!=null){const sub=MST.find(x=>x.id===mstS),[a,b2]=mstL.split(".").map(Number),L=sub.lv[a].ls[b2],k=mstS+"/"+mstL,ans=mstQ[k]||{},
+  all=sub.lv.flatMap((lv,i)=>lv.ls.map((x,j)=>[i+"."+j,x.t])),idx=all.findIndex(x=>x[0]===mstL),done=mstDone(mstS,mstL),sv=(mstLd().q||{})[k];
+  return `<div class="c"><button class="b" onclick="mstL=null;draw()">← ${E(sub.t.split(" — ")[0])}</button>
+  <p class="mu" style="margin:8px 0 2px"><small>${E(sub.lv[a].t)} · পাঠ ${b2+1}/${sub.lv[a].ls.length} · ⏱ ${L.m} মিনিট</small></p><h2 style="margin:0 0 8px">${E(L.t)}</h2>
+  ${L.b.map(mstB).join("")}
+  ${L.task?`<div style="background:#fffaf0;border:1px solid #f0c36d;border-radius:10px;padding:12px;margin:14px 0"><b>🛠 হাতে-কলমে কাজ</b><p style="font-size:14px;line-height:1.75;margin:6px 0 0">${E(L.task)}</p></div>`:""}
+  ${L.q&&L.q.length?`<h4 style="margin:16px 0 6px;color:var(--g)">📝 কুইজ${sv!=null?` <span class="tg ${sv>=70?"good":"fair"}">সেরা স্কোর ${sv}%</span>`:""}</h4>
+   ${L.q.map((q,i)=>`<div style="border:1px solid var(--bd);border-radius:10px;padding:10px;margin-bottom:8px"><b style="font-size:14px">${i+1}. ${E(q[0])}</b><div style="margin-top:6px">${q[1].map((o,j)=>{const picked=ans[i]!=null,right=j===q[2],mine=ans[i]===j;
+     return `<button class="b" style="display:block;width:100%;text-align:left;margin:3px 0;${picked?(right?"background:#e8f8ee;border-color:#0f7a3d":(mine?"background:#fde8ec;border-color:#b4143a":"")):""}" ${picked?"":`onclick="mstAns('${mstS}','${mstL}',${i},${j})"`}>${E(o)}${picked&&right?" ✅":""}${picked&&mine&&!right?" ❌":""}</button>`}).join("")}</div></div>`).join("")}`:""}
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+   <button class="b ${done?"g":"p"}" onclick="mstTg('${mstS}','${mstL}')">${done?"✅ পড়া হয়েছে":"পড়া হয়েছে চিহ্নিত করুন"}</button>
+   ${idx>0?`<button class="b" onclick="mstOpen('${mstS}','${all[idx-1][0]}')">← আগের পাঠ</button>`:""}
+   ${idx<all.length-1?`<button class="b" onclick="mstOpen('${mstS}','${all[idx+1][0]}')">পরের পাঠ →</button>`:""}</div></div>`}
+ if(mstS){const sub=MST.find(x=>x.id===mstS);
+  if(!sub.lv)return `<div class="c"><button class="b" onclick="mstS=null;draw()">← সব বিষয়</button><h2 style="margin:10px 0 2px">${sub.ic} ${E(sub.t)}</h2><p class="mu">${E(sub.sub)}</p>
+   <div style="background:#fffaf0;border:1px solid #f0c36d;border-radius:10px;padding:12px;margin:10px 0"><b>এই বিষয়ের পাঠ এখনো লেখা হচ্ছে।</b><br><small class="mu">নিচে পরিকল্পিত পাঠের তালিকা — একই গভীরতায় লেখা হবে।</small></div>
+   <ol style="margin:6px 0 0 20px;font-size:14px;line-height:1.9">${sub.out.map(x=>`<li>${E(x)}</li>`).join("")}</ol></div>`;
+  const st=mstStat(sub.id);
+  return `<div class="c"><button class="b" onclick="mstS=null;draw()">← সব বিষয়</button><h2 style="margin:10px 0 2px">${sub.ic} ${E(sub.t)}</h2><p class="mu">${E(sub.sub)}</p>
+   <div class="bar"><i style="width:${st.pc}%;background:#0f7a3d"></i></div><small class="mu">${st.n} / ${st.t} পাঠ শেষ (${st.pc}%)</small></div>
+   ${sub.lv.map((lv,i)=>`<div class="c"><h3>${E(lv.t)}</h3><p class="mu"><small>${E(lv.d)}</small></p>
+    ${lv.ls.map((x,j)=>{const d=mstDone(sub.id,i+"."+j),sc=(mstLd().q||{})[sub.id+"/"+i+"."+j];
+     return `<div class="row" onclick="mstOpen('${sub.id}','${i}.${j}')"><span>${d?"✅":"⬜"} <b>${E(x.t)}</b><br><small class="mu">⏱ ${x.m} মিনিট${x.q?` · ${x.q.length}টি প্রশ্ন`:""}${sc!=null?` · স্কোর ${sc}%`:""}</small></span><span>›</span></div>`}).join("")}</div>`).join("")}`}
+ const A=mstAll();
+ return `<div class="c"><h2>🎓 Mastery Track — শূন্য থেকে Expert</h2>
+  <p class="mu">PLC, SCADA, Flow Computer, LDS ও PIDS — পাঁচটি বিষয়ে ধাপে ধাপে গভীর প্রশিক্ষণ। প্রতিটি পাঠে ব্যাখ্যা, বাস্তব উদাহরণ, কুইজ ও মাঠে করার কাজ আছে। অগ্রগতি জমা থাকে এবং সব device-এ মিলে যায়।</p>
+  <div class="bar"><i style="width:${A.pc}%;background:#0f7a3d"></i></div><small class="mu">সব মিলিয়ে ${A.n} / ${A.t} পাঠ শেষ (${A.pc}%)</small></div>
+  ${MST.map(s=>{const st=s.lv?mstStat(s.id):null;
+   return `<div class="c" style="cursor:pointer" onclick="mstS='${s.id}';draw()"><div style="display:flex;gap:12px;align-items:flex-start"><div style="font-size:34px">${s.ic}</div><div style="flex:1"><h3 style="margin:0 0 2px">${E(s.t)}</h3><p class="mu" style="margin:0 0 6px;font-size:13.5px">${E(s.sub)}</p>
+   ${st?`<div class="bar" style="margin:4px 0"><i style="width:${st.pc}%;background:#0f7a3d"></i></div><small class="mu">${s.lv.length} স্তর · ${st.t} পাঠ · ${st.pc}% শেষ</small>`:`<span class="tg fair">পাঠ লেখা হচ্ছে · ${s.out.length}টি পরিকল্পিত</span>`}</div><div style="font-size:22px;color:var(--mu)">›</div></div></div>`}).join("")}
+  <div class="c"><h3>📅 কীভাবে এগোবেন</h3><ol style="margin:6px 0 0 20px;font-size:14px;line-height:1.9">
+  <li>প্রতিদিন ৩০ মিনিট: ১০ মিনিট পড়া, ১০ মিনিট মাঠে মিলিয়ে দেখা, ১০ মিনিট নিজের ভাষায় লেখা।</li>
+  <li>প্রতিটি পাঠের শেষে কুইজ দিন; ৭০%-এর কম পেলে আবার পড়ুন।</li>
+  <li>হাতে-কলমে কাজটি করে ফল Maintenance History বা Documents-এ তুলে রাখুন।</li>
+  <li>একটি স্তর শেষ হলে পরের স্তরে যান — ক্রম মেনে চললে ভিত্তি মজবুত হয়।</li></ol></div>`}
 /* ===== 111 Engineering Intelligence Platform — shell, sidebar, dashboard, cloud sync ===== */
-const UI_G=[["Dashboard","🏠",["dash"]],["Inventory Dashboard","📦",["invd"]],["Digital Twin","🛰",["map","flow"]],["Equipment Command Center","⚙️",["stn","eq","ast"]],["Engineering Visuals","📐",["conn","pid","ie","calc"]],["Operations","🛢",["parcel","dgm","rd","ho","wo","pm","ptw","inc","fs"]],["Management Analytics","📊",["kpi","an","bill","val","exec","amc"]],["Knowledge Center","🌍",["ibfpl","sop","emg","case","proj","lib","help"]],["Oil Price Analytics","💧",["oil"]],["Learning Hub","🎓",["acad","learn","plan","trn"]],["Reports","📄",["rp","hs","docs","forms"]],["Admin & Settings","🔧",["inv","rq","ap","lv","dir","notice","vlt","us"]]];
+const UI_G=[["Dashboard","🏠",["dash"]],["Inventory Dashboard","📦",["invd"]],["Digital Twin","🛰",["map","flow"]],["Equipment Command Center","⚙️",["stn","eq","ast"]],["Engineering Visuals","📐",["conn","pid","ie","calc"]],["Operations","🛢",["parcel","dgm","rd","ho","wo","pm","ptw","inc","fs"]],["Management Analytics","📊",["kpi","an","bill","val","exec","amc"]],["Knowledge Center","🌍",["ibfpl","sop","emg","case","proj","lib","help"]],["Oil Price Analytics","💧",["oil"]],["Learning Hub","🎓",["mst","acad","learn","plan","trn"]],["Reports","📄",["rp","hs","docs","forms"]],["Admin & Settings","🔧",["inv","rq","ap","lv","dir","notice","vlt","us","diag"]]];
 const uiOpen={};
 function uiGo(t){tab=t;document.body.classList.remove("nvo");draw();window.scrollTo(0,0)}
 function uiTg(i){uiOpen[i]=!document.querySelector('#nv .sg[data-i="'+i+'"]').classList.contains("op");draw()}
@@ -1393,7 +1892,7 @@ function uiNav(sc){const nv=document.getElementById("nv");if(!nv||nv.dataset.ui=
  nv.innerHTML=h;nv.scrollTop=sc||0}
 
 /* ---- cloud sync for data that used to live only in this browser ---- */
-const KV_SH=["oil_v1","dg_v1","bill_v1","net_v1","health_v1"],KV_CONF={};let KV_APPLY=false,KV_ON=false,KV_UN=null;const KV_T={};
+const KV_SH=["oil_v1","dg_v1","bill_v1","net_v1","health_v1","mst_v1"],KV_CONF={};let KV_APPLY=false,KV_ON=false,KV_UN=null;const KV_T={};
 const kvDoc=k=>k==="plan_v1"?(me?"plan_"+me.id:null):k,kvKey=id=>id.startsWith("plan_")?(me&&id==="plan_"+me.id?"plan_v1":null):(KV_SH.includes(id)?id:null);
 const kvCan=k=>!!me&&(k==="plan_v1"||can("apr"));
 function kvPush(k){if(!KV_ON||!kvCan(k)||!window.FB||!window.FB.ok)return;clearTimeout(KV_T[k]);KV_T[k]=setTimeout(()=>{const v=localStorage.getItem(k),id=kvDoc(k);if(v==null||!id)return;const ts=Date.now();try{KV_APPLY=true;localStorage.setItem("kvt_"+k,ts)}finally{KV_APPLY=false}(window.FB.setq||window.FB.set)("kvs",id,{d:v,ts,u:me.name||me.email||""})},900)}
@@ -1470,7 +1969,11 @@ function dashX(){const eq=uiEq(),lk=`<span title="Login / unlock required">🔒<
 <div class="g"><h3>🌍 Global Knowledge Center</h3><div style="display:flex;gap:10px;align-items:center">${UI_GLOBE}<div style="flex:1">${li("case","Case Studies","●")}${li("lib","Standards","●")}${li("sop","Best Practices","●")}${li("ibfpl","Guidelines","●")}</div></div><div style="margin-top:6px"><button class="lnk" onclick="uiGo('proj')">Explore →</button> <button class="lnk" onclick="uiGo('emg')">Emergency →</button></div></div>
 <div class="g"><h3>💧 Oil Price Analytics</h3><div class="kv" onclick="uiGo('oil')"><span>Brent Crude</span><b>${pr("brent")}</b></div><div class="kv" onclick="uiGo('oil')"><span>WTI Crude</span><b>${pr("wti")}</b></div><div class="kv" onclick="uiGo('oil')"><span>Dubai / Oman</span><b>${pr("dubai")}</b></div><div class="kv" onclick="uiGo('oil')"><span>Diesel — BD retail</span><b>${bdp("bd_d")}</b></div><p class="mu2">${op.upd?"Manually updated · "+E(op.upd):"Reference values · "+(typeof OP_D!=="undefined"?E(OP_D):"")+" · not live"}</p><button class="lnk" onclick="uiGo('oil')">Open Oil Price Analytics →</button></div></div>
 <div class="g"><h3>⚙️ Equipment Command Center</h3>${eq?`<div class="m2"><div><p class="mu2">By station (quantity) · health H / A / C</p>${STNS.map(s=>{const r=hl.st[s[0]]||{H:0,A:0,C:0};return bar(s[0]==="dt"?"Saidpur DT (at SV-05)":s[1].split(" (")[0].split(" — ")[0],eq.st[s[0]].q,stMax,`uiStn('${s[0]}')`,` <small class="mu2">🟢${r.H} 🟡${r.A} 🔴${r.C}</small>`)}).join("")}</div><div><p class="mu2">By category (quantity)</p>${Object.entries(eq.cat).sort((a,b)=>b[1]-a[1]).map(([c,n])=>bar(c,n,ctMax,`uiCat('${c.replace(/'/g,"\\'")}')`)).join("")}</div></div><p class="mu2" style="margin-top:8px">আনুমানিক মূল্য (দরপত্র নয়): <b>${(()=>{const x=STNS.reduce((p,s)=>[p[0]+eqpStn(s[0]).a,p[1]+eqpStn(s[0]).b],[0,0]);return eqpU(x[0])+" – "+eqpU(x[1])})()}</b> <button class="lnk" onclick="uiGo('val')">বিস্তারিত →</button></p>`:`<p class="mu2">Station-wise and category-wise equipment is in the protected area.</p><button class="lnk" onclick="uiGo('stn')">🔒 Unlock / Log in</button>`}</div>
-<div class="r3b"><div class="g"><h3>🎓 Six-Month Learning Roadmap</h3>${pl?`<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg viewBox="0 0 100 100" style="width:96px"><circle cx="50" cy="50" r="40" fill="none" stroke="#0b1c3d" stroke-width="12"/><circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="12" stroke-linecap="round" stroke-dasharray="${pl.pc*2.513} 251.3" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">${pl.pc}%</text></svg><div><b>${pl.ok} / ${pl.tot} weeks done</b><div class="mu2">${pl.start?"Started "+E(pl.start):"Start date not set"}</div><button class="lnk" style="margin-top:4px" onclick="uiGo('plan')">Continue Learning →</button></div></div>`:""}<div style="margin-top:6px"><button class="lnk" onclick="uiGo('acad')">Academy →</button> <button class="lnk" onclick="uiGo('learn')">Pro Course →</button></div></div>
+<div class="r3b"><div class="g"><h3>🎓 Mastery Track</h3>${(()=>{const A=mstAll();return `<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg viewBox="0 0 100 100" style="width:92px;flex:none"><circle cx="50" cy="50" r="40" fill="none" stroke="#0b1c3d" stroke-width="12"/><circle cx="50" cy="50" r="40" fill="none" stroke="#22d3ee" stroke-width="12" stroke-linecap="round" stroke-dasharray="${A.pc*2.513} 251.3" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">${A.pc}%</text></svg><div><b>${A.n} / ${A.t} পাঠ শেষ</b><div class="mu2">PLC · SCADA · Flow Computer · LDS · PIDS</div><button class="lnk" style="margin-top:4px" onclick="uiGo('mst')">পড়া শুরু করুন →</button></div></div>`})()}</div>
+<div class="g"><h3>🎓 Six-Month Learning Roadmap</h3>${pl?`<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg viewBox="0 0 100 100" style="width:96px"><circle cx="50" cy="50" r="40" fill="none" stroke="#0b1c3d" stroke-width="12"/><circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="12" stroke-linecap="round" stroke-dasharray="${pl.pc*2.513} 251.3" transform="rotate(-90 50 50)"/><text x="50" y="57" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">${pl.pc}%</text></svg><div><b>${pl.ok} / ${pl.tot} weeks done</b><div class="mu2">${pl.start?"Started "+E(pl.start):"Start date not set"}</div><button class="lnk" style="margin-top:4px" onclick="uiGo('plan')">Continue Learning →</button></div></div>`:""}<div style="margin-top:6px"><button class="lnk" onclick="uiGo('acad')">Academy →</button> <button class="lnk" onclick="uiGo('learn')">Pro Course →</button></div></div>
+<div class="g"><h3>📦 Parcels — HSD Receipt</h3>${me?(()=>{const P=pcl(),O=pold(),T=P.reduce((a,x)=>a+tqf(x),0),C=P.reduce((a,x)=>a+(hasC(x)?+x.cm:0),0),Lg=T-C,n=(v,d)=>(+v||0).toLocaleString("en-IN",{maximumFractionDigits:d??3});
+ return `<div class="m3"><div class="mini" onclick="uiGo('parcel')"><small>Parcels</small><b class="mv">${P.length+O.length}</b><div class="mu2" style="margin:0">${P.length} বিস্তারিত · ${O.length} পুরোনো</div></div><div class="mini" onclick="uiGo('parcel')"><small>Transmitted</small><b class="mv">${n(T,0)}</b><div class="mu2" style="margin:0">MT (বিস্তারিত রেকর্ড)</div></div><div class="mini" onclick="uiGo('parcel')"><small>Loss / Gain</small><b class="mv" style="color:${Lg>0?"#fca5a5":"#86efac"}">${n(Lg)}</b><div class="mu2" style="margin:0">MT${C?" · "+(Lg/C*100).toFixed(3)+"%":""}</div></div></div>
+ <div style="margin-top:8px"><button class="lnk" onclick="uiGo('parcel')">সব Parcel →</button> <button class="lnk" onclick="uiGo('rp')">Report →</button></div>`})():`<p class="mu2">Log in করলে parcel-এর হিসাব দেখা যাবে।</p>`}</div>
 <div class="g"><h3>📣 Recent Updates</h3>${me?(lg.map(l=>`<div class="kv" style="cursor:default"><span>${E(l.x)}</span><span class="mu2" style="white-space:nowrap">${E(l.t||"")}</span></div>`).join("")||`<p class="mu2">No activity yet.</p>`):`<p class="mu2">Log in to see recent activity.</p>`}${me?`<button class="lnk" style="margin-top:8px" onclick="uiGo('hs')">History →</button>`:""}${can("admin")?` <button class="lnk" style="margin-top:8px;background:#0f7a3d" onclick="bk()">💾 Full backup</button>`:""}</div>
 <div class="g ban"><div class="b1">One Platform.<br>Complete Engineering Solution.</div><span class="b2">Powering Your Engineering Excellence</span></div></div>
 <div style="text-align:right"><button class="lnk" style="padding:10px 16px;font-size:15px" onclick="uiGo('invd')">Next page: Inventory &amp; Asset Dashboard →</button></div></div>`}
@@ -1484,14 +1987,14 @@ window.addEventListener("fbready",()=>{if(window.FB&&window.FB.ok)window.FB.onAu
 const SEC_W={"s":"Jdxwbw5RnV5meKUAw2CEag==","i":"VPcr4ksWEWvEVXj1","c":"76FxeG9f7muLXL4R5u5pUv6WpAu6pjfIAtzuF43HIF7r1SNEWugtyy/vYsW/A6IV"},SEC_TABS=["stn","bill","sop","pid","emg","map","exec"];let SEC_IDX={},SEC_K=null,SEC_RAW=null,SEC_ST="lock",SEC_MSG="",SEC_TRY=null;const SEC_IMG={};
 const sb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0)),sb64e=u=>btoa(String.fromCharCode(...u));
 async function secDec(u){return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},SEC_K,u.slice(12)))}
-async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwk77kne")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
-async function secPw(p){p=String(p||"").replace(/^[\s'"“”‘’]+/,"").replace(/[\s।.,'"“”‘’]+$/,"");SEC_MSG="যাচাই হচ্ছে…";let raw;try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveKey"]),wk=await crypto.subtle.deriveKey({name:"PBKDF2",salt:sb64(SEC_W.s),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);raw=new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:sb64(SEC_W.i)},wk,sb64(SEC_W.c)))}catch(e){SEC_MSG=window.isSecureContext===false?"এই ঠিকানায় (https নয়) খোলা যাবে না — সাইটের https ঠিকানা ব্যবহার করুন।":"Passphrase মিলছে না — বানান, ছোট হাতের অক্ষর ও হাইফেন (-) দেখে আবার লিখুন।";draw();return}
+async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwk988vr")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
+async function secPw(p){const raw0=String(p||"");p=raw0.normalize("NFKC").toLowerCase().replace(/[\u2010-\u2015\u2212\uFF0D]/g,"-").replace(/[^a-z0-9-]/g,"");SEC_MSG="যাচাই হচ্ছে…";let raw;try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveKey"]),wk=await crypto.subtle.deriveKey({name:"PBKDF2",salt:sb64(SEC_W.s),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);raw=new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:sb64(SEC_W.i)},wk,sb64(SEC_W.c)))}catch(e){SEC_MSG=(window.isSecureContext===false||!crypto.subtle)?"এই ঠিকানায় (https নয়) খোলা যাবে না — সাইটের https ঠিকানা ব্যবহার করুন।":("Passphrase মিলছে না। আপনি লিখেছেন "+p.length+"টি অক্ষর"+(p!==raw0?" (পরিষ্কার করার পর)":"")+" — সঠিকটিতে ৩৩টি অক্ষর থাকার কথা। নিচের 🔧 পরীক্ষা চালিয়ে দেখুন।");draw();return}
 try{await secImport(raw)}catch(e){SEC_MSG="Passphrase ঠিক আছে, কিন্তু sec/data.bin ফাইল পাওয়া যায়নি বা পুরোনো। GitHub-এ নতুন sec ফোল্ডারটি upload করুন।";draw()}}
 function secAuto(){if(SEC_ST==="ok"||!me||!F||!F.get||SEC_TRY===me.id)return;SEC_TRY=me.id;F.get("secure","main").then(d=>{if(d&&d.k)return secImport(sb64(d.k));SEC_MSG="আপনার account-এ এখনো অনুমতি দেওয়া হয়নি।";draw()}).catch(()=>{SEC_MSG="আপনার account এখনো Admin-এর অনুমোদন (Verify) পায়নি।";draw()})}
 function secShare(){if(!SEC_RAW||!me||me.role!=="admin")return;F.set("secure","main",{k:sb64e(SEC_RAW),at:Date.now(),by:me.id});SEC_MSG="Verified user-দের জন্য চালু করা হয়েছে।";draw()}
-function secv(){secAuto();return `<div class="c" style="max-width:520px;margin:20px auto;text-align:center"><div style="font-size:44px">🔒</div><h2>সুরক্ষিত অংশ</h2><p class="mu">এই অংশ শুধু Admin-এর অনুমোদিত (Verified) ব্যবহারকারীরা দেখতে পারেন।</p>${me?`<p>Log in আছে: <b>${E(me.name||me.email||"")}</b></p>`:`<p><b>আগে Log In করুন।</b> নতুন হলে Register করে Admin-এর অনুমোদনের অপেক্ষা করুন।</p>`}${SEC_MSG?`<p style="color:#b02a37">${E(SEC_MSG)}</p>`:""}<details style="margin-top:14px;text-align:left"><summary>Admin passphrase দিয়ে খুলুন</summary><div style="display:flex;gap:6px;margin-top:8px"><input id="sec_pw" type="password" placeholder="Admin passphrase" style="flex:1" onkeydown="if(event.key==='Enter')secPw(this.value)"><button class="b" onclick="secPw(document.getElementById('sec_pw').value)">খুলুন</button></div></details></div>`}
+function secv(){secAuto();return `<div class="c" style="max-width:520px;margin:20px auto;text-align:center"><div style="font-size:44px">🔒</div><h2>সুরক্ষিত অংশ</h2><p class="mu">এই অংশ শুধু Admin-এর অনুমোদিত (Verified) ব্যবহারকারীরা দেখতে পারেন।</p>${me?`<p>Log in আছে: <b>${E(me.name||me.email||"")}</b></p>`:`<p><b>আগে Log In করুন।</b> নতুন হলে Register করে Admin-এর অনুমোদনের অপেক্ষা করুন।</p>`}${SEC_MSG?`<p style="color:#b02a37">${E(SEC_MSG)}</p>`:""}<details style="margin-top:14px;text-align:left"><summary>Admin passphrase দিয়ে খুলুন</summary><div style="display:flex;gap:6px;margin-top:8px"><input id="sec_pw" type="password" placeholder="Admin passphrase" style="flex:1" onkeydown="if(event.key==='Enter')secPw(this.value)"><button class="b" onclick="const i=document.getElementById('sec_pw');i.type=i.type==='password'?'text':'password'">👁</button><button class="b" onclick="secPw(document.getElementById('sec_pw').value)">খুলুন</button></div><p class="mu"><small>বড়-ছোট হাতের অক্ষর, ফাঁকা জায়গা ও দাঁড়ি নিজে থেকেই ঠিক করে নেওয়া হয়।</small></p><button class="b" onclick="tab='diag';draw()">🔧 পরীক্ষা করুন (Diagnostics)</button></details></div>`}
 function secBar(){return SEC_ST==="ok"&&me&&me.role==="admin"?`<div class="c" style="background:#eef7f0"><small>🔓 সুরক্ষিত তথ্য খোলা আছে।</small> <button class="b" onclick="secShare()">Verified user-দের জন্য চালু / হালনাগাদ করুন</button> ${SEC_MSG?`<small>${E(SEC_MSG)}</small>`:""}</div>`:""}
-const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwk77kne").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
+const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwk988vr").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
 function secImgs(){if(!SEC_K)return;document.querySelectorAll("img[data-sec]").forEach(async im=>{const k=im.dataset.sec;if(im.dataset.done)return;im.dataset.done=1;try{if(!SEC_IMG[k]){const ix=SEC_IDX[k];if(!ix)throw 0;const b=await secPack(ix[0]);SEC_IMG[k]=URL.createObjectURL(new Blob([await secDec(b.slice(ix[1],ix[1]+ix[2]))],{type:"image/jpeg"}))}im.src=SEC_IMG[k]}catch(e){im.style.display="none"}})}
 draw();
 window.addEventListener("fbready",()=>{F=window.FB;if(!F.ok){$("#mn").innerHTML='<div class="c"><h3>Firebase setup দরকার</h3><p>ফাইলের শুরুতে firebaseConfig-এ নিজের Firebase তথ্য বসান।</p></div>';return}
