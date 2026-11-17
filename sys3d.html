@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>111 — System 3D</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#071226;color:#e8f0ff;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+#cv{position:fixed;inset:0}
+#hud{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg,#071226cc,#071226f2);border-top:1px solid #23457f;padding:10px 12px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(6px)}
+#tt{position:fixed;top:0;left:0;right:0;padding:10px 12px;background:linear-gradient(180deg,#071226e6,#07122600);font-weight:700}
+#tt small{font-weight:400;opacity:.8;display:block;font-size:12px}
+.b{border:1px solid #2d5aa8;background:#102a55;color:#dce9ff;border-radius:9px;padding:8px 13px;font:inherit;font-size:14px;cursor:pointer;margin:2px}
+.b.p{background:#1d6ff2;border-color:#1d6ff2;color:#fff}.b.g{background:#0f7a3d;border-color:#0f7a3d;color:#fff}
+#st{font-size:14.5px;line-height:1.6;margin:6px 0 8px;min-height:3em}
+#bar{height:5px;background:#0e2447;border-radius:4px;overflow:hidden;margin-bottom:8px}#bar i{display:block;height:100%;background:linear-gradient(90deg,#22d3ee,#1d6ff2);transition:width .3s}
+#lg{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;opacity:.85;margin-top:6px}
+#lg i{display:inline-block;width:16px;height:4px;vertical-align:middle;border-radius:2px}
+#err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;text-align:center}
+</style></head><body>
+<canvas id="cv"></canvas>
+<div id="tt">111 — পুরো সিস্টেম 3D<small>মাঠ → প্যানেল → কন্ট্রোল রুম → আবার মাঠ · টেনে ঘোরান, দুই আঙুলে zoom</small></div>
+<div id="err"><div><h2>3D চালু হয়নি</h2><p>এই browser-এ WebGL নেই বা <code>three.min.js</code> ফাইলটি পাওয়া যায়নি। index.html-এর পাশে three.min.js আছে কি না দেখুন।</p></div></div>
+<div id="hud">
+ <div id="bar"><i style="width:0%"></i></div>
+ <div id="st">…</div>
+ <div>
+  <button class="b" onclick="go(-1)">◀ আগের</button>
+  <button class="b g" id="pb" onclick="play()">▶ Play</button>
+  <button class="b" onclick="go(1)">পরের ▶</button>
+  <button class="b" id="vb" onclick="vtg()">🔇 কণ্ঠ বন্ধ</button>
+  <button class="b" onclick="cam(0)">🔄 ভিউ</button>
+  <span id="ct" style="font-size:12.5px;opacity:.8;margin-left:6px"></span>
+ </div>
+ <div id="lg"><span><i style="background:#22c55e"></i> মাপা মান (field → control)</span><span><i style="background:#f59e0b"></i> আদেশ (control → field)</span><span><i style="background:#ef4444"></i> ESD hard-wired</span><span><i style="background:#a855f7"></i> fibre</span><span><i style="background:#b45309"></i> AC power</span><span><i style="background:#eab308"></i> DC power</span></div>
+</div>
+<script src="three.min.js"></script>
+<script>
+if(!window.THREE){document.getElementById("err").style.display="flex"}else{
+const S=new THREE.Scene();S.background=new THREE.Color(0x071226);S.fog=new THREE.Fog(0x071226,60,190);
+const C=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,500);
+const R=new THREE.WebGLRenderer({canvas:document.getElementById("cv"),antialias:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));R.setSize(innerWidth,innerHeight);
+addEventListener("resize",()=>{C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix();R.setSize(innerWidth,innerHeight)});
+S.add(new THREE.HemisphereLight(0xbcd7ff,0x14243f,1.05));
+const dl=new THREE.DirectionalLight(0xffffff,.85);dl.position.set(30,50,25);S.add(dl);
+// ground
+const g=new THREE.Mesh(new THREE.PlaneGeometry(220,140),new THREE.MeshLambertMaterial({color:0x14402a}));g.rotation.x=-Math.PI/2;g.position.y=-.05;S.add(g);
+const grid=new THREE.GridHelper(220,44,0x1d3b70,0x16304f);grid.position.y=.01;S.add(grid);
+// label sprites
+function label(t,x,y,z,col,sz){const c=document.createElement("canvas"),k=4;c.width=512;c.height=96;const x2=c.getContext("2d");
+ x2.font="bold 44px system-ui,Segoe UI,sans-serif";x2.textAlign="center";x2.textBaseline="middle";
+ x2.lineWidth=9;x2.strokeStyle="rgba(5,12,28,.92)";x2.strokeText(t,256,50);x2.fillStyle=col||"#eaf2ff";x2.fillText(t,256,50);
+ const tx=new THREE.CanvasTexture(c);tx.minFilter=THREE.LinearFilter;
+ const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,depthTest:false}));
+ sp.scale.set((sz||7)*(512/96)/k*1.1,(sz||7)/k*1.1,1);sp.position.set(x,y,z);S.add(sp);return sp}
+function room(x,z,w,d,col,t){const f=new THREE.Mesh(new THREE.BoxGeometry(w,.5,d),new THREE.MeshLambertMaterial({color:col}));f.position.set(x,.25,z);S.add(f);
+ const wl=new THREE.Mesh(new THREE.BoxGeometry(w,9,d),new THREE.MeshLambertMaterial({color:col,transparent:true,opacity:.14,depthWrite:false}));wl.position.set(x,4.75,z);S.add(wl);
+ const e=new THREE.LineSegments(new THREE.EdgesGeometry(wl.geometry),new THREE.LineBasicMaterial({color:0x8fc0ff,transparent:true,opacity:.5}));e.position.copy(wl.position);S.add(e);
+ if(t)label(t,x,11.5,z,"#bfe3ff",8)}
+function box(x,y,z,w,h,d,col,t,lc){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshLambertMaterial({color:col}));
+ m.position.set(x,y+h/2,z);S.add(m);
+ const e=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:0x9fc3ff,transparent:true,opacity:.35}));e.position.copy(m.position);S.add(e);
+ if(t)label(t,x,y+h+2.2,z,lc,6.5);return m}
+function pipe(x1,z1,x2,z2,y,r,col){const a=new THREE.Vector3(x1,y,z1),b=new THREE.Vector3(x2,y,z2),d=b.clone().sub(a),len=d.length();
+ const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,16),new THREE.MeshLambertMaterial({color:col}));
+ m.position.copy(a).add(d.clone().multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());S.add(m);return m}
+// ---- scene layout ----
+pipe(-95,22,95,22,.9,1.5,0xb9c6d6);            // main pipeline
+label("Pipeline",-78,4.6,22,"#cfe0ff",6);
+box(-58,0,22,7,5,7,0x0f766e,"MOV");
+box(-78,0,12,4,4,4,0x0a7d2c,"PT / TT");
+box(-66,0,10,4,4,4,0xb45309,"Gas det.");
+box(-50,0,8,6,4,5,0x475569,"Field JB");
+// panel room
+room(-20,4,26,18,0x12325e,"Panel Room");
+box(-28,0,0,6,6,5,0x334155,"Marshalling");
+box(-18,0,0,6,6,5,0x1d6ff2,"RTU / PLC");
+box(-8,0,0,6,6,5,0x991b1b,"ESD PLC");
+box(-18,0,10,6,5,5,0x7c3aed,"Telecom");
+// control room
+room(34,4,30,20,0x1b1d52,"Control Room");
+box(26,0,0,7,6,5,0x4c1d95,"SCADA server");
+box(38,0,0,8,5,5,0x4c1d95,"HMI desk");
+box(48,0,0,6,5,5,0x334155,"Historian");
+// power block
+box(-20,0,-26,14,8,12,0x92400e,"Substation 11/0.415 kV");
+box(0,0,-26,10,7,8,0x7c2d12,"DG + AMF");
+box(16,0,-26,10,6,8,0xa16207,"Battery + UPS");
+box(34,0,-26,10,6,8,0x1e3a5f,"LT Panel");
+label("মাঠ (Hazardous area)",-66,13,30,"#fca5a5",7);
+label("নিরাপদ এলাকা",-20,15,-6,"#bfe3ff",7);
+label("বিদ্যুৎ",8,13,-34,"#fdba74",7);
+// ---- signal routes ----
+function route(pts,col){const v=pts.map(p=>new THREE.Vector3(p[0],p[1],p[2]));
+ const cu=new THREE.CatmullRomCurve3(v,false,"catmullrom",.05);
+ const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(cu.getPoints(80)),new THREE.LineBasicMaterial({color:col,transparent:true,opacity:.45}));
+ S.add(line);const dots=[];for(let i=0;i<4;i++){const d=new THREE.Mesh(new THREE.SphereGeometry(1.25,14,14),new THREE.MeshBasicMaterial({color:col}));d.visible=false;S.add(d);dots.push(d)}
+ return{cu,line,dots,col}}
+const RT={
+ f_jb : route([[-78,3,12],[-62,3,11],[-50,3,9]],0x22c55e),
+ jb_mar: route([[-50,3,8],[-40,2,4],[-28,4,0]],0x22c55e),
+ mar_rtu: route([[-28,4,0],[-23,4,0],[-18,4,0]],0x22c55e),
+ rtu_tel: route([[-18,4,0],[-18,4,6],[-18,4,10]],0x22c55e),
+ tel_scada: route([[-18,5,10],[5,9,8],[26,4,0]],0xa855f7),
+ scada_hmi: route([[26,4,0],[32,4,0],[38,4,0]],0x22c55e),
+ cmd_back: route([[38,5,0],[8,10,8],[-18,5,8]],0xf59e0b),
+ rtu_mov: route([[-18,3,-2],[-35,3,8],[-58,3,19]],0xf59e0b),
+ esd: route([[-8,3,0],[-30,2,10],[-58,2,20]],0xef4444),
+ pw1: route([[-20,4,-20],[-20,3,-10],[-20,3,-4]],0xb45309),
+ pw2: route([[0,4,-22],[-10,3,-18],[-20,3,-6]],0xb45309),
+ dc1: route([[16,3,-22],[0,4,-10],[-18,3,-3]],0xeab308),
+ dc2: route([[16,4,-22],[26,4,-14],[30,4,-5]],0xeab308)
+};
+// ---- steps ----
+const ST=[
+ {t:"এটি একটি সাধারণ pipeline station-এর সাজানো ছবি। বাঁ পাশে মাঠ, মাঝে প্যানেল রুম, ডান পাশে কন্ট্রোল রুম, আর পেছনে বিদ্যুতের অংশ। আঙুল বা মাউস দিয়ে টেনে ঘুরিয়ে দেখুন।",r:[],c:[0,0,120]},
+ {t:"মাঠে pressure ও temperature transmitter process-এর মান মাপে এবং তাকে ৪ থেকে ২০ মিলি-অ্যাম্পিয়ারের একটি কারেন্টে বদলায়। শূন্য শতাংশ মানে ৪ মিলি-অ্যাম্পিয়ার, একশো শতাংশ মানে ২০।",r:["f_jb"],c:[-66,14,60]},
+ {t:"প্রতিটি field cable আগে Field Junction Box-এ আসে। এখানেই বৃষ্টির পানি বা ঢিলা terminal সবচেয়ে বেশি সমস্যা করে।",r:["f_jb","jb_mar"],c:[-54,10,58]},
+ {t:"এরপর multi-core cable প্যানেল রুমের Marshalling cabinet-এ যায়। Intrinsically safe loop হলে এখানে barrier বা isolator পার হয়।",r:["jb_mar","mar_rtu"],c:[-26,4,58]},
+ {t:"Marshalling থেকে ছোট তারে RTU বা PLC-র analog input card-এ যায়। কার্ডের ২৫০ ওহম কারেন্টকে ভোল্টেজে বদলায়, ADC তাকে সংখ্যা করে, আর PLC scaling করে আসল এককে আনে।",r:["mar_rtu"],c:[-16,2,50]},
+ {t:"PLC মানটিকে Modbus বা DNP3 প্যাকেট বানিয়ে Telecom panel-এ দেয়, আর সেখান থেকে optical fibre দিয়ে কন্ট্রোল রুমে যায়।",r:["rtu_tel","tel_scada"],c:[2,6,86]},
+ {t:"SCADA server মানটি tag database-এ লেখে। HMI-তে mimic ও alarm দেখায়, historian-এ trend জমা হয়, আর রিপোর্টে দৈনিক হিসাব তৈরি হয়।",r:["tel_scada","scada_hmi"],c:[34,4,58]},
+ {t:"এবার উল্টো দিক। Operator পর্দায় valve-এ ক্লিক করে OPEN বাছেন, তারপর আলাদা করে confirm করেন। Command packet fibre দিয়ে আবার RTU-তে ফেরে।",r:["cmd_back"],c:[8,6,92]},
+ {t:"RTU নিজের logic-এ interlock যাচাই করে digital output দেয়। Interposing relay টানে, contactor চালু হয়, motor ঘোরে এবং MOV নড়ে। Limit switch চেপে অবস্থা আবার SCADA-তে ফেরত যায়।",r:["rtu_mov"],c:[-34,10,80]},
+ {t:"ESD বা safety system-এর পথ আলাদা এবং সরাসরি তারে। SCADA বা fibre নষ্ট হলেও এটি কাজ করে এবং remote command-এর উপরে অগ্রাধিকার পায়।",r:["esd"],c:[-30,8,80]},
+ {t:"পেছনে বিদ্যুৎ। এগারো কিলোভোল্ট substation থেকে ট্রান্সফরমার হয়ে এলটি প্যানেল, সেখান থেকে প্যানেল রুম ও কন্ট্রোল রুমের সব যন্ত্র চলে।",r:["pw1"],c:[-16,-12,70]},
+ {t:"গ্রিড চলে গেলে AMF প্যানেল ডিজি চালু করে এবং লোড ডিজিতে বদলে দেয়। গ্রিড ও ডিজি কখনো একসাথে বাসে আসে না।",r:["pw2"],c:[-6,-16,70]},
+ {t:"ব্যাটারি ব্যাংক ও ইউপিএস শেষ ভরসা। এসি পুরোপুরি গেলেও RTU, ESD, telecom ও SCADA ডিসি-তে চলতে থাকে, তাই নজরদারি বন্ধ হয় না।",r:["dc1","dc2"],c:[10,-14,70]},
+ {t:"এটাই পুরো চক্র: মাঠ থেকে মান আসে, কন্ট্রোল রুম সিদ্ধান্ত নেয়, আদেশ আবার মাঠে যায়, আর সুরক্ষা ও বিদ্যুৎ সবকিছুকে ধরে রাখে।",r:["f_jb","jb_mar","mar_rtu","rtu_tel","tel_scada","scada_hmi","cmd_back","rtu_mov","esd"],c:[0,0,130]}
+];
+let i=0,playing=false,von=false,voice=null,tm=null;
+function vinit(){if(!window.speechSynthesis)return;const v=speechSynthesis.getVoices();if(!v.length)return;
+ voice=v.find(x=>/^bn/i.test(x.lang))||v.find(x=>/^hi/i.test(x.lang))||v.find(x=>/^en-IN/i.test(x.lang))||v[0]}
+if(window.speechSynthesis){vinit();speechSynthesis.onvoiceschanged=vinit}
+function say(t){if(!von||!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);if(voice){u.voice=voice;u.lang=voice.lang}u.rate=.95;speechSynthesis.speak(u)}catch(e){}}
+function vtg(){von=!von;const b=document.getElementById("vb");b.textContent=von?"🔊 কণ্ঠ চালু":"🔇 কণ্ঠ বন্ধ";b.className=von?"b g":"b";
+ if(von){if(!voice)alert("এই device-এ কোনো কণ্ঠস্বর পাওয়া যায়নি।\\nWindows: Settings → Time & language → Speech → Add voices\\nAndroid: Settings → Accessibility → Text-to-speech");say(ST[i].t)}else try{speechSynthesis.cancel()}catch(e){}}
+let tgt=new THREE.Vector3(0,0,4),look=new THREE.Vector3(0,4,0);
+function cam(n){const s=ST[n==null?i:n];if(s&&s.c){tgt.set(s.c[0],0,s.c[1]);dist=s.c[2]}}
+function show(){const s=ST[i];document.getElementById("st").textContent=s.t;
+ document.getElementById("ct").textContent="ধাপ "+(i+1)+" / "+ST.length;
+ document.getElementById("bar").firstElementChild.style.width=((i+1)/ST.length*100)+"%";
+ for(const k in RT){const on=s.r.indexOf(k)>=0;RT[k].line.material.opacity=on?.95:.12;RT[k].dots.forEach(d=>d.visible=on)}
+ cam();say(s.t)}
+function go(k){playing=false;clearTimeout(tm);document.getElementById("pb").textContent="▶ Play";i=Math.max(0,Math.min(ST.length-1,i+k));show()}
+function play(){if(playing){playing=false;clearTimeout(tm);document.getElementById("pb").textContent="▶ Play";return}
+ playing=true;document.getElementById("pb").textContent="⏸ থামান";const nx=()=>{if(!playing)return;if(i>=ST.length-1){playing=false;document.getElementById("pb").textContent="▶ Play";return}i++;show();tm=setTimeout(nx,von?9000:5200)};tm=setTimeout(nx,von?9000:5200)}
+// orbit
+let drag=false,px=0,py=0,yaw=0,pit=.52,dist=92;
+const cv=document.getElementById("cv");
+cv.addEventListener("pointerdown",e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId)});
+cv.addEventListener("pointermove",e=>{if(!drag)return;yaw-=(e.clientX-px)*.006;pit=Math.max(.12,Math.min(1.35,pit+(e.clientY-py)*.005));px=e.clientX;py=e.clientY});
+cv.addEventListener("pointerup",()=>drag=false);cv.addEventListener("pointercancel",()=>drag=false);
+cv.addEventListener("wheel",e=>{dist=Math.max(35,Math.min(170,dist+e.deltaY*.06));e.preventDefault()},{passive:false});
+let pd=0;cv.addEventListener("touchmove",e=>{if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(pd)dist=Math.max(35,Math.min(170,dist-(d-pd)*.25));pd=d;e.preventDefault()}},{passive:false});
+cv.addEventListener("touchend",()=>pd=0);
+let t0=0;
+function loop(t){requestAnimationFrame(loop);const dt=(t-t0)/1000;t0=t;
+ const s=ST[i];
+ (s.r||[]).forEach(k=>{const r=RT[k];r.dots.forEach((d,n)=>{const u=((t/1000*.28)+n/r.dots.length)%1;const p=r.cu.getPoint(u);d.position.copy(p);d.visible=true})});
+ const r2=dist*Math.cos(pit),cx=tgt.x+Math.sin(yaw)*r2,cz=tgt.z+Math.cos(yaw)*r2,cy=Math.max(9,dist*Math.sin(pit));
+ C.position.lerp(new THREE.Vector3(cx,cy,cz),Math.min(1,dt*2.4));
+ look.lerp(new THREE.Vector3(tgt.x,5,tgt.z),Math.min(1,dt*2.4));C.lookAt(look);
+ R.render(S,C)}
+show();requestAnimationFrame(loop);
+window.go=go;window.play=play;window.vtg=vtg;window.cam=cam;
+}
+</script></body></html>
