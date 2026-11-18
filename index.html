@@ -118,7 +118,7 @@ main{max-width:1040px;width:100%}
 .dx .st{line-height:1.2}
 @media(max-width:700px){.dx .m3,.dx .m2{grid-template-columns:1fr}}
 </style></head><body>
-<header><button class="hb mnu" aria-label="Menu" onclick="document.body.classList.toggle('nvo')">☰</button><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Intelligence Platform<br>Smart • Reliable • Integrated · v17.11.26-10</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
+<header><button class="hb mnu" aria-label="Menu" onclick="document.body.classList.toggle('nvo')">☰</button><span class="logo" id="lg" style="background:none;padding:0"><svg viewBox="0 0 100 100" style="height:50px;width:50px;display:block" aria-label="111"><rect width="100" height="100" rx="20" fill="#c8a80c"/><text x="50" y="68" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-weight="900" font-size="52" fill="#06280f">111</text></svg></span><div style="flex:1;min-width:150px;line-height:1.15"><div class="brandt" style="font-size:24px">111</div><small style="opacity:.85;font-size:11px">Engineering Intelligence Platform<br>Smart • Reliable • Integrated · v18.11.26-11</small></div><span><button class="hb" onclick="tab='gs';draw()">🔍</button><button class="hb" id="ib" style="display:none" onclick="inst()">📲</button><button class="hb" onclick="document.body.classList.toggle('dk')">🌓</button><button class="hb" onclick="bn=!bn;draw()">বাং/EN</button></span><span id="hu"></span></header>
 <nav id="nv"></nav><div id="nvb" onclick="document.body.classList.remove('nvo')"></div><main id="mn"></main><div id="md" onclick="if(event.target.id=='md')cl()"><div id="bx"></div></div>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -146,15 +146,15 @@ const save=()=>draw(),LG=t=>{if(me)F.set("log",uid(),{t:day(),u:me.name,x:t,ts:D
 const can=r=>me&&(r==="req"||r==="staff"||r==="rec"?true:(r==="mgr"||r==="apr")?(me.role==="admin"||me.ap===true):me.role==="admin"),cw=c=>true;
 const bal=i=>+i.qty+S.tx.filter(t=>t.i===i.id).reduce((a,t)=>a+(t.k==="in"?+t.n:-t.n),0);
 const unit=i=>i.unit||"pcs",nm=id=>(S.items.find(x=>x.id===id)||{name:"(deleted)"}).name,st=i=>bal(i)<=0?0:bal(i)<=+i.min?1:2;
-const TS=[["dash","Dashboard"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["val","💰 Equipment Value"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["mst","🎓 Mastery Track"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"],["diag","🔧 Diagnostics"]];
+const TS=[["dash","Dashboard"],["dcl","📋 Daily Checklist"],["parcel","Parcels"],["notice","📢 Notices"],["ibfpl","🏭 Pipeline Guide"],["map","🗺 Map & Distance"],["flow","🎬 3D Flow"],["stn","🏗 Stations"],["conn","🔌 Connections"],["dgm","⛽ DG & Fuel"],["bill","💡 Bills"],["exec","🎯 Executive Brief"],["val","💰 Equipment Value"],["oil","🛢 Oil Price"],["sop","📘 SOP Guide"],["pid","📐 P&ID Guide"],["emg","🚨 Emergency"],["vlt","🔐 Vault"],["calc","🛢 Oil Calculator"],["acad","🎓 Academy"],["learn","📝 Pro Course"],["mst","🎓 Mastery Track"],["plan","🗓 6-Month Plan"],["case","🌍 Case Studies"],["proj","🛢 IBFPL · SPM · CDPL"],["lib","📖 Library"],["eq","Instrument & Electrical"],["ast","Assets"],["ie","🧰 I&E Tools"],["kpi","📊 KPI"],["an","Analytics"],["inv","Items & Stock"],["wo","Work Orders"],["pm","Schedule"],["rd","Rounds"],["fs","Fire & Safety"],["ptw","Permits"],["inc","Problem Log"],["help","🔎 Find Solution"],["lv","Leave"],["dir","👥 Directory"],["amc","AMC & Vendors"],["trn","🎫 Training Records"],["ho","Handover"],["hs","History"],["docs","Documents"],["forms","📄 Forms"],["rp","Report"],["rq","Requisitions"],["ap","✅ Approvals"],["us","Users"],["diag","🔧 Diagnostics"]];
 function cl(){$("#md").classList.remove("on")}function M(h){$("#bx").innerHTML=h;$("#md").classList.add("on");enh()}
 const opt=(a,s)=>a.map(x=>{const v=x.id||x,n=x.name||x;return`<option value="${E(v)}" ${v===s?"selected":""}>${E(n)}</option>`}).join(""),V=id=>$("#"+id).value;
 function draw(){draw0();enh()}
 function draw0(){
 $("#hu").innerHTML=me?`<span class="tg ${RC[me.role][0]}">${E(me.name)} · ${RC[me.role][1]}</span><button class="hb" onclick="out()">Logout</button>`:`<button class="hb p" onclick="login()">Log In</button><button class="hb" onclick="reg()">Register</button>`;
-$("#nv").innerHTML=tabOrder().filter(t=>(t[0]!=="us"||can("admin"))&&(t[0]!=="vlt"||can("admin"))&&(!["ie","sop","pid","emg","kpi","dir","ap","help","notice","forms","inc",...GK,"lv","an","rp"].includes(t[0])||me)).map(t=>`<button class="${t[0]===tab?"on":""}${hd(t[0])?"":" ne"}" onclick="tab='${t[0]}';draw()">${bn&&TB[t[0]]?TB[t[0]]:t[1]}${t[0]==="pm"&&ovd()?" 🔴"+ovd():""}${t[0]==="ap"&&pcn()?" 🔴"+pcn():""}</button>`).join("");
+$("#nv").innerHTML=tabOrder().filter(t=>(t[0]!=="us"||can("admin"))&&(t[0]!=="vlt"||can("admin"))&&(!["dcl","ie","sop","pid","emg","kpi","dir","ap","help","notice","forms","inc",...GK,"lv","an","rp"].includes(t[0])||me)).map(t=>`<button class="${t[0]===tab?"on":""}${hd(t[0])?"":" ne"}" onclick="tab='${t[0]}';draw()">${bn&&TB[t[0]]?TB[t[0]]:t[1]}${t[0]==="pm"&&ovd()?" 🔴"+ovd():""}${t[0]==="ap"&&pcn()?" 🔴"+pcn():""}</button>`).join("");
 const m=$("#mn");
-if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="mst")m.innerHTML=mstv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="val")m.innerHTML=valv();if(tab==="diag")m.innerHTML=diagv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
+if(tab==="dash")m.innerHTML=dash();if(tab==="inv")m.innerHTML=inv();if(tab==="eq")m.innerHTML=eqv();if(tab==="inc")m.innerHTML=incv();if(GK.includes(tab))m.innerHTML=gl(tab);if(tab==="an")m.innerHTML=anv();if(tab==="lv")m.innerHTML=lvv();if(tab==="help")m.innerHTML=hlp();if(tab==="notice")m.innerHTML=ntv();if(tab==="forms")m.innerHTML=frv();if(tab==="dir")m.innerHTML=dirv();if(tab==="ap")m.innerHTML=apv();if(tab==="ie")m.innerHTML=iev();if(tab==="lib")m.innerHTML=libv();if(tab==="kpi")m.innerHTML=kpv();if(tab==="pg")m.innerHTML=pgv();if(tab==="calc")m.innerHTML=calcv();if(tab==="ibfpl")m.innerHTML=ibv();if(tab==="acad")m.innerHTML=acv();if(tab==="learn")m.innerHTML=learnv();if(tab==="mst")m.innerHTML=mstv();if(tab==="rp")m.innerHTML=rpv();if(tab==="ast")m.innerHTML=ast();if(tab==="rq")m.innerHTML=rq();if(tab==="hs")m.innerHTML=hs();if(tab==="us")m.innerHTML=us();if(tab==="map")m.innerHTML=SEC_ST==="ok"?mapv():secv();if(tab==="flow")m.innerHTML=flowv();if(tab==="stn"){m.innerHTML=SEC_ST==="ok"?secBar()+stnv():secv();setTimeout(secImgs,0)}if(tab==="conn")m.innerHTML=connv();if(tab==="dgm")m.innerHTML=dgv();if(tab==="exec")m.innerHTML=SEC_ST==="ok"?execv():secv();if(tab==="val")m.innerHTML=valv();if(tab==="dcl")m.innerHTML=dclv();if(tab==="diag")m.innerHTML=diagv();if(tab==="plan")m.innerHTML=planv();if(tab==="case")m.innerHTML=casev();if(tab==="proj")m.innerHTML=projv();if(tab==="bill")m.innerHTML=SEC_ST==="ok"?billv():secv();if(tab==="oil")m.innerHTML=oilv();if(tab==="sop")m.innerHTML=SEC_ST==="ok"?sopv():secv();if(tab==="pid")m.innerHTML=SEC_ST==="ok"?pidv():secv();if(tab==="vlt")m.innerHTML=vltv();if(tab==="emg")m.innerHTML=SEC_ST==="ok"?emgTop()+gl("emg"):secv();
 }
 function dash(){const low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),tot=CAT.map(c=>S.items.filter(i=>i.cat===c).reduce((a,i)=>a+Math.max(0,bal(i)),0)),T=tot.reduce((a,b)=>a+b,0)||1;
 let o=0;const r=62,C=2*Math.PI*r,arc=tot.map((v,k)=>{const l=v/T*C,e=`<circle cx="90" cy="90" r="${r}" fill="none" stroke="${COL[k]}" stroke-width="26" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-o}" transform="rotate(-90 90 90)"/>`;o+=l;return e}).join("");
@@ -278,7 +278,7 @@ low=S.items.filter(i=>i.type!=="Fixed Asset"&&st(i)<2),od=S.g.pm.filter(x=>ps(x)
 w.document.write(`<html><head><title>Report ${m}</title><style>body{font-family:sans-serif;padding:20px}h1{color:#0b3b1e}h2{border-bottom:1px solid #ccc}</style></head><body><h1>111 Monthly Report — ${E(m)}</h1><p>Generated ${day()} by ${E(me.name)}</p><h2>Summary</h2><p>Items ${S.items.length} · Equipment ${S.eq.length} · Problems this month ${ic.length} · Handover entries ${h.length}</p><h2>Low / out of stock</h2>${T(low.map(i=>`<li>${E(i.name)} (${bal(i)}/${i.min}) — ${E(i.loc)}</li>`))}<h2>Overdue / due-soon maintenance</h2>${T(od.map(x=>`<li>${E(x.eq)} — ${E(x.kind)} — due ${E(due(x)||"?")}</li>`))}<h2>Problems & solutions</h2>${T(ic.map(x=>`<li><b>${E(x.date)} ${E(x.eq)} (${E(x.loc)})</b>: ${E(x.prob)}<br>Solution: ${E(x.act||"—")}<br>Precaution: ${E(x.prev||"—")}</li>`))}<script>print()<\/script></body></html>`);w.document.close()}
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 
-const TB={dash:"ড্যাশবোর্ড",inv:"আইটেম ও স্টক",ast:"অ্যাসেট",calc:"ক্যালকুলেটর",kb:"জ্ঞানভান্ডার",learn:"প্রশিক্ষণ",eq:"ইন্সট্রুমেন্ট ও ইলেকট্রিক্যাল",ie:"I&E টুলস",lib:"লাইব্রেরি",calc:"ক্যালকুলেটর",acd:"একাডেমি",cx:"ক্যালকুলেটর",acd:"শিক্ষা",kpi:"KPI",calc:"ক্যালকুলেটর",ibfpl:"পাইপলাইন গাইড",learn:"প্রশিক্ষণ",calc:"ক্যালকুলেটর",ibfpl:"পাইপলাইন গাইড",acad:"একাডেমি",inc:"সমস্যা লগ",wo:"ওয়ার্ক অর্ডার",rd:"রিডিং",pm:"সময়সূচি",fs:"ফায়ার ও সেফটি",ptw:"পারমিট",amc:"AMC/ওয়ারেন্টি",trn:"প্রশিক্ষণ",ho:"হ্যান্ডওভার",docs:"ডকুমেন্ট",parcel:"পার্সেল",an:"বিশ্লেষণ",rp:"রিপোর্ট",rq:"রিকুইজিশন",hs:"ইতিহাস",us:"ইউজার",lv:"ছুটি",help:"সমাধান খুঁজুন",notice:"নোটিস",forms:"ফর্ম",dir:"পরিচিতি",ap:"অনুমোদন"};
+const TB={dash:"ড্যাশবোর্ড",dcl:"দৈনিক চেকলিস্ট",inv:"আইটেম ও স্টক",ast:"অ্যাসেট",calc:"ক্যালকুলেটর",kb:"জ্ঞানভান্ডার",learn:"প্রশিক্ষণ",eq:"ইন্সট্রুমেন্ট ও ইলেকট্রিক্যাল",ie:"I&E টুলস",lib:"লাইব্রেরি",calc:"ক্যালকুলেটর",acd:"একাডেমি",cx:"ক্যালকুলেটর",acd:"শিক্ষা",kpi:"KPI",calc:"ক্যালকুলেটর",ibfpl:"পাইপলাইন গাইড",learn:"প্রশিক্ষণ",calc:"ক্যালকুলেটর",ibfpl:"পাইপলাইন গাইড",acad:"একাডেমি",inc:"সমস্যা লগ",wo:"ওয়ার্ক অর্ডার",rd:"রিডিং",pm:"সময়সূচি",fs:"ফায়ার ও সেফটি",ptw:"পারমিট",amc:"AMC/ওয়ারেন্টি",trn:"প্রশিক্ষণ",ho:"হ্যান্ডওভার",docs:"ডকুমেন্ট",parcel:"পার্সেল",an:"বিশ্লেষণ",rp:"রিপোর্ট",rq:"রিকুইজিশন",hs:"ইতিহাস",us:"ইউজার",lv:"ছুটি",help:"সমাধান খুঁজুন",notice:"নোটিস",forms:"ফর্ম",dir:"পরিচিতি",ap:"অনুমোদন"};
 Object.assign(SP,{
 wo:{t:"🔧 Work Orders / Job Cards",f:[["eq","Equipment / job title","text"],["loc","Location","loc"],["pri","Priority","sel",["Low","Medium","High","Critical"]],["st","Status","sel",["Open","In progress","Closed"]],["asg","Assigned to","text"],["date","Opened on","date"],["end","Closed on","date"],["dt","Downtime (hours)","num"],["act","Action taken","area"]]},
 rd:{t:"📋 Daily Rounds / Readings",f:[["eq","Parameter (e.g. CP potential, UPS battery V)","text"],["loc","Location","loc"],["val","Reading","num"],["min","Min limit","num"],["max","Max limit","num"],["date","Date","date"],["note","Note","text"]]},
@@ -638,7 +638,7 @@ const UDM=["Introduction to Instrumentation","4-20mA Signals in PLC","Installati
 function qza(i,j){const d=JSON.parse(localStorage.qz||"{}");d[i]=QZ[i][2]===j?j+1:-(j+1);localStorage.qz=JSON.stringify(d);draw()}
 
 
-const hd=k=>{const g=S.g;return({exec:1,val:1,diag:1,mst:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
+const hd=k=>{const g=S.g;return({dcl:1,exec:1,val:1,diag:1,mst:1,plan:1,case:1,bill:1,oil:1,conn:1,dgm:1,stn:1,flow:1,map:1,sop:1,pid:1,emg:1,vlt:1,dash:1,help:1,lib:1,calc:1,acd:1,ibg:1,acad:1,ibfpl:1,learn:1,calc:1,ie:1,kpi:1,forms:1,rp:1,pg:1,parcel:g.parcel.length,notice:g.notice.length,eq:S.eq.length,inv:S.items.length,ast:S.items.some(i=>i.type==="Fixed Asset"),inc:S.inc.length,lv:S.emp.length||S.lv.length,dir:S.emp.length,docs:g.docs.length,wo:g.wo.length,pm:g.pm.length,rd:g.rd.length,fs:g.fs.length,ptw:g.ptw.length,amc:g.amc.length,trn:g.trn.length,ho:g.ho.length,an:S.inc.length+g.wo.length,rq:S.reqs.length,ap:S.ch.length,hs:S.log.length,us:S.users.length})[k]},NVS=a=>[...a].sort((x,y)=>(x[0]==="dash"?-1:y[0]==="dash"?1:0)||((hd(x[0])?0:1)-(hd(y[0])?0:1)));
 /* ---------- Calculators ---------- */
 
 const n3=(v,k=3)=>isFinite(v)?(+v).toLocaleString("en-US",{maximumFractionDigits:k}):"—";
@@ -1609,6 +1609,163 @@ async function diagRun(){const o=[],ok=(t,v,n)=>o.push([t,v,n||""]),U=location.h
  ok("Log in",me?(me.name||me.email)+" · "+me.role:"করা হয়নি","");
  ok("Parcel রেকর্ড",me?((S.g.parcel||[]).length+"টি (নতুন ধরনের "+pcl().length+"টি)"):"log in দরকার","");
  DGR=o;draw()}
+/* ===== Daily E&I Checklist (dcl) — RT Parbatipur ===== */
+const DCL_STN="rtp",DCL_SN="RT Parbatipur",DCL_DOC="IBFPL/E&I/DCL-01 Rev 01";
+const DCL=[
+{eq:"ht",t:"11 kV HT Panel (VCB)",f:[["hv","Incoming voltage","kV",9.9,12.1],["ha","Load current","A",null,null]],c:["No alarm / trip flag","Indication lamps healthy","Breaker spring charged","Clean; no rodent entry"]},
+{eq:"tr",t:"Transformer 315 kVA (11/0.415 kV)",f:[["toil","Oil temperature","°C",null,85]],c:["Oil level between MIN and MAX","Silica gel BLUE (not pink/white)","Breather oil cup at mark","No oil leakage anywhere","Normal hum, no abnormal sound","Buchholz / PRV not operated","Bushings clean, no crack","Body earthing (2 nos.) tight","Clean"]},
+{eq:"ltsw",t:"LT Switchgear & PFI Panel",f:[["lr","Voltage R","V",207,253],["ly","Voltage Y","V",207,253],["lb","Voltage B","V",207,253],["ar","Current R","A",null,null],["ay","Current Y","A",null,null],["ab","Current B","A",null,null],["pf","Power factor","",0.95,1]],c:["Phase current imbalance ≤ 10%","Indication lamps healthy","MCCB / ACB as per normal line-up","No heating, discolouration or smell","PFI stages switching in Auto","PFI: no blown fuse, no bulging capacitor","Clean"]},
+{eq:"pmcc",t:"PMCC (Power & Motor Control Centre)",f:[["dcv","DC supply","V",null,null]],c:["Supply source normal (Grid / DG)","No alarm / trip","All feeders normal","Clean"]},
+{eq:"dg",t:"Diesel Generator 250 kVA",f:[["dgf","Fuel level","L",null,null],["dgb","Battery voltage","V",null,null],["dgh","Engine hours","h",null,null]],c:["Mode selector in AUTO","Lube oil level between L and H","Coolant level between MIN and MAX","Battery charger ON and charging","No fuel / oil / coolant leakage","Exhaust and silencer no leak","Canopy, louvre and air path clear","Clean"]},
+{eq:"amf",t:"DG AMF Panel & Battery Charger",f:[["chv","Charger output","V",null,null]],c:["Charger in float mode","AMF panel in AUTO","No alarm"]},
+{eq:"ups",t:"UPS-1 & UPS-2",f:[["u1o","UPS-1 output","V",225,235],["u1l","UPS-1 load","kVA",null,null],["u2o","UPS-2 output","V",225,235],["u2l","UPS-2 load","kVA",null,null]],c:["UPS-1 online (not on bypass)","UPS-2 online (not on bypass)","No alarm (write alarm code if any)","Load ≤ 80% of rating","Clean"]},
+{eq:"bat",t:"UPS Battery Bank",f:[["btv","Bank voltage","V",null,null],["btt","Terminal temperature","°C",null,null]],c:["Block voltage spread ≤ 0.2 V","No bulging, leakage or corrosion","Terminals tight, jelly applied","Room ventilation working"]},
+{eq:"upsx",t:"ACDB, Cell Booster & Load Bank",f:[],c:["ACDB healthy","No alarm","Clean"]},
+{eq:"ldb",t:"Lighting Distribution Board",f:[],c:["Area and street lighting working","Emergency lighting works on test","Flameproof fittings intact, glands tight"]},
+{eq:"pt",t:"Pressure Transmitter (PT)",f:[["prs","Pipeline pressure","kg/cm²",null,null]],c:["Display ON and readable","Local reading matches SCADA (≤ ±0.5% span)","No impulse line / manifold leak","Enclosure and gland tight","Calibration sticker in date"]},
+{eq:"tt",t:"Temperature Transmitter (TT) + RTD",f:[["tmp","Product temperature","°C",null,null]],c:["Display ON and readable","Local reading matches SCADA","Thermowell no leak","Enclosure and gland tight","Calibration sticker in date"]},
+{eq:"dpt",t:"DPT + Basket Filter",f:[["dp","Filter differential pressure","bar",null,null]],c:["Display ON and readable","Reading matches SCADA","No leak at filter cover / flange","Filter drain valve closed","Enclosure and gland tight"]},
+{eq:"lvl",t:"Level Transmitter (LT)",f:[["lvv","Level reading","",null,null]],c:["Display ON and readable","Reading matches manual dip","Enclosure and gland tight"]},
+{eq:"ft",t:"Coriolis Mass Flow Meter",f:[["flw","Flow rate","",null,null],["tot","Totalizer","",null,null],["den","Density","kg/L",null,null],["ftt","Meter temperature","°C",null,null]],c:["No error / diagnostic code","No zero point or drive gain alarm","No leakage at flanges","Calibration certificate in date"]},
+{eq:"mov",t:"MOV — Rotork (1701, 1702, 1703)",f:[],c:["All selectors in REMOTE","Position matches SCADA indication","No oil / grease leakage","Handwheel disengaged","No local fault / alarm LED","Terminal box and gland tight"]},
+{eq:"mov2",t:"MOV — AUMA",f:[],c:["Selector in REMOTE","Position matches SCADA indication","No oil / grease leakage","No local fault / alarm LED"]},
+{eq:"pcv",t:"Pressure Control Valve (PCV)",f:[["pcvs","Set pressure","kg/cm²",null,null]],c:["No leakage","Hydraulic / instrument air pressure normal","Position as required"]},
+{eq:"srv",t:"Surge Relief Valve (SRV) Skid",f:[],c:["Car seal intact","No passing / leakage","Test certificate in date"]},
+{eq:"psv",t:"PSV / Thermal Relief Valve",f:[],c:["No leakage","Seal intact","Test certificate in date"]},
+{eq:"rec",t:"Scraper (Pig) Receiver",f:[],c:["End closure locked, no leak","Pressure gauge reads zero when idle","Vent and drain valves closed","Safety interlock healthy"]},
+{eq:"pig",t:"Pig Signaller",f:[],c:["Status normal","Flag reset after last pigging"]},
+{eq:"cp",t:"CP T/R Unit — TRU-CP & TRU-UG-VESSEL",f:[["cp1p","Pipeline potential","V",-1.20,-0.85],["cp1v","TRU-CP output voltage","V",null,null],["cp1a","TRU-CP output current","A",0.01,null],["cp2p","Vessel potential","V",-1.20,-0.85],["cp2v","TRU-VESSEL output voltage","V",null,null],["cp2a","TRU-VESSEL output current","A",0.01,null]],c:["TRU-CP in AUTO","TRU-VESSEL in AUTO","No alarm on either unit","Anode cable and connections intact","Clean"]},
+{eq:"cc",t:"Corrosion Monitoring (ER Probe)",f:[["er","ER probe reading","",null,null]],c:["Reading available","No alarm"]},
+{eq:"rmu",t:"CP Remote Monitoring Unit",f:[],c:["Online","Logging data"]},
+{eq:"gd",t:"Hydrocarbon Gas Detector",f:[],c:["Healthy, no fault","No gas alarm","Calibration in date"]},
+{eq:"scada",t:"SCADA Operator Station (ABB)",f:[["alm","Active alarm count","",null,null]],c:["Server A / B running, redundancy healthy","All stations communicating (SV-1…5, DT, RT Saidpur)","Alarms reviewed and acknowledged","Time synchronisation correct","Historian logging","Disk space ≥ 20% free"]},
+{eq:"esd",t:"ESD PLC (Honeywell Safety System)",f:[],c:["CPU in RUN, no fault LED","Redundancy healthy","No I/O module fault","No force / bypass active","Controller battery healthy","ESD armed, not inhibited"]},
+{eq:"pids",t:"PIDS (Commptel)",f:[["pda","Alarm count last 24 h","",null,null]],c:["System status normal","All zones healthy","Fibre loop no break / fault","Event log reviewed","No zone repeating alarms"]},
+{eq:"lds",t:"Leak Detection System (LDS)",f:[],c:["System running","No leak alarm","Imbalance within threshold","Last alarm reviewed and closed"]},
+{eq:"rtu",t:"SCADA Cabinet — PDB, RTU, Server",f:[["rmt","Rack room temperature","°C",22,26],["rmh","Rack room humidity","%",40,60]],c:["PLC-PDB status healthy","SCADA-PDB status healthy","RTU online, no fault","Switches / MOXA ports healthy","Cable dressing tidy, clean"]},
+{eq:"tel",t:"Telecom Rack (SDH, EPABX, CCTV, ACS)",f:[],c:["SDH link up","EPABX working","CCTV all cameras online and recording","Access control system working"]},
+{eq:"pa",t:"Public Address (PA) System",f:[],c:["Working on test"]},
+{eq:"hvac",t:"Precision AC & HVAC Control Panel",f:[["acn","AC units running","nos.",null,null],["act","Room temperature","°C",null,null]],c:["Mode AUTO","Filters clean","Drain line free, no water on floor","No abnormal vibration or noise","Clean"]},
+{eq:"cag",t:"Clean Agent (IG-541) Suppression",f:[["cgp","Cylinder pressure","bar",null,null]],c:["Cylinder pressure in green zone","Not discharged","Panel healthy, not inhibited","Nozzles and pipework intact"]},
+{eq:"fap",t:"Fire Alarm Control Panel & FA-JB",f:[],c:["Panel status normal","No fault, no disabled zone","Battery backup healthy","All zones normal"]},
+{eq:"tgs",t:"Tank Farm SCADA — Tank Gauging & Pump House",f:[["stk","Total stock","",null,null]],c:["Gauging system online","Tank levels match manual dip","Dyke drain valves CLOSED and locked","Tank earthing and bonding connected","Breather / PV valves free","No oil spill or stain in dyke"]},
+{eq:"sump",t:"Sump Pump & Seal Cooler",f:[],c:["Pump in AUTO and working","Sump level normal","No oil layer (skim if present)"]},
+{eq:"sub",t:"Deep Tube Well Submersible Pump",f:[],c:["Working","No alarm","Water available in tank"]},
+{eq:"misc",t:"Rodent Repeller, Loop Box, FTC",f:[],c:["Rodent repeller working","Loop box intact","FTC healthy"]},
+{eq:null,t:"General, Safety & Housekeeping",f:[],c:["Gate, fence and boundary secure","Pipeline ROW inside station undisturbed","Cable trench covers in place","Fire extinguishers: gauge green, seal intact, in date","Eyewash / safety shower flows","First aid box stocked and in date","Sand buckets full and dry","General housekeeping clean"]}
+];
+const DCL_SEV=[["C","Critical","dmg"],["A","Major","fair"],["M","Minor","cod"]];
+let DCL_DT=null,DCL_OPEN={};
+const dclToday=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+function dclLd(){try{return JSON.parse(localStorage.getItem("dcl_v1")||"{}")}catch(e){return{}}}
+function dclPut(d){try{localStorage.setItem("dcl_v1",JSON.stringify(d))}catch(e){}}
+function dclRec(dt){const d=dclLd();return((d[DCL_STN]||{})[dt])||null}
+function dclCur(){const dt=DCL_DT||dclToday();return dclRec(dt)||{t:"",by:me?(me.name||""):"",v:{},x:{},n:"",sub:0}}
+function dclSave(r){const dt=DCL_DT||dclToday(),d=dclLd();if(!d[DCL_STN])d[DCL_STN]={};d[DCL_STN][dt]=r;dclPut(d)}
+function dclBlk(eq){return DCL.find(b=>b.eq===eq)}
+function dclKey(bi,ci){return bi+"."+ci}
+function dclOut(f,v){if(v===""||v==null||isNaN(parseFloat(v)))return false;const n=parseFloat(v);if(f[3]!=null&&n<f[3])return true;if(f[4]!=null&&n>f[4])return true;return false}
+function dclRange(f){if(f[3]!=null&&f[4]!=null)return f[3]+" – "+f[4]+(f[2]?" "+f[2]:"");if(f[3]!=null)return"≥ "+f[3]+(f[2]?" "+f[2]:"");if(f[4]!=null)return"≤ "+f[4]+(f[2]?" "+f[2]:"");return f[2]||"record"}
+function dclSetV(k,v){const r=dclCur();r.v[k]=v;dclSave(r);draw()}
+function dclSetH(k,v){const r=dclCur();r[k]=v;dclSave(r)}
+function dclTog(bi,ci){const r=dclCur(),k=dclKey(bi,ci);if(r.x[k])delete r.x[k];else r.x[k]={s:"A",r:""};dclSave(r);draw()}
+function dclSev(bi,ci,s){const r=dclCur(),k=dclKey(bi,ci);if(r.x[k]){r.x[k].s=s;dclSave(r);draw()}}
+function dclRem(bi,ci,t){const r=dclCur(),k=dclKey(bi,ci);if(r.x[k]){r.x[k].r=t;dclSave(r)}}
+function dclNum(r){const v=r.v||{};let n=0,bad=0;DCL.forEach(b=>b.f.forEach(f=>{const x=v[f[0]];if(x!==""&&x!=null){n++;if(dclOut(f,x))bad++}}));return{n,bad}}
+function dclTot(){let f=0,c=0;DCL.forEach(b=>{f+=b.f.length;c+=b.c.length});return{f,c}}
+function dclSum(r){const x=r.x||{};let C=0,A=0,M=0;Object.values(x).forEach(e=>{if(e.s==="C")C++;else if(e.s==="M")M++;else A++});return{C,A,M,t:C+A+M}}
+function dclSubmit(){const r=dclCur(),dt=DCL_DT||dclToday();
+ const nm=dclNum(r),tt=dclTot();
+ if(nm.n<tt.f&&!confirm(tt.f-nm.n+" টি সংখ্যার ঘর এখনো খালি। তবুও জমা দেবেন?"))return;
+ if(!r.t)r.t=new Date().toTimeString().slice(0,5);
+ if(!r.by)r.by=me?(me.name||""):"";
+ r.sub=Date.now();dclSave(r);
+ // equipment health from exceptions
+ const bad={};Object.keys(r.x||{}).forEach(k=>{const bi=+k.split(".")[0],b=DCL[bi];if(!b||!b.eq)return;const s=r.x[k].s;if(s==="C")bad[b.eq]="C";else if(s==="A"&&bad[b.eq]!=="C")bad[b.eq]="A";else if(!bad[b.eq])bad[b.eq]="M"});
+ DCL.forEach(b=>{if(!b.eq)return;b.f.forEach(f=>{if(dclOut(f,(r.v||{})[f[0]])&&bad[b.eq]!=="C")bad[b.eq]="A"})});
+ const H=hlLd(),dd=dclToday(),un=me?(me.name||""):"";
+ (DCL.map(b=>b.eq).filter(Boolean)).forEach(eq=>{const s=bad[eq]==="C"?"C":(bad[eq]?"A":"H");H[DCL_STN+"/"+eq]={s,d:dd,u:un}});
+ try{localStorage.setItem("health_v1",JSON.stringify(H))}catch(e){}
+ const q=dclSum(r);
+ alert("জমা হয়েছে — "+dt+"\n\nCritical "+q.C+" · Major "+q.A+" · Minor "+q.M+"\nসংখ্যা তোলা হয়েছে "+nm.n+"/"+tt.f+(nm.bad?"\nসীমার বাইরে "+nm.bad+"টি":"")+"\n\nEquipment Health আপডেট হয়েছে।");
+ draw()}
+function dclHp(r){const q=dclSum(r),nm=dclNum(r);let p=100-(q.C*10+q.A*4+q.M*1+nm.bad*4);return Math.max(0,Math.min(100,p))}
+function dclDel(dt){if(!confirm(dt+" তারিখের রেকর্ড মুছে ফেলবেন?"))return;const d=dclLd();if(d[DCL_STN])delete d[DCL_STN][dt];dclPut(d);draw()}
+function dclNew(){const dt=prompt("তারিখ (YYYY-MM-DD)",dclToday());if(!dt||!/^\d{4}-\d{2}-\d{2}$/.test(dt))return;DCL_DT=dt;draw();window.scrollTo(0,0)}
+function dclOpenAll(v){DCL.forEach((b,i)=>DCL_OPEN[i]=v);draw()}
+function dclTgl(i){DCL_OPEN[i]=!DCL_OPEN[i];draw()}
+function dclCsv(){const d=(dclLd()[DCL_STN])||{},ks=Object.keys(d).sort();
+ let rows=[["Date","Time","By","Equipment","Type","Item","Value / Severity","Remark"]];
+ ks.forEach(dt=>{const r=d[dt];DCL.forEach((b,bi)=>{b.f.forEach(f=>{const v=(r.v||{})[f[0]];if(v!==""&&v!=null)rows.push([dt,r.t||"",r.by||"",b.t,"Reading",f[1]+(f[2]?" ("+f[2]+")":""),v,dclOut(f,v)?"OUT OF RANGE ("+dclRange(f)+")":""])});
+  b.c.forEach((c,ci)=>{const e=(r.x||{})[dclKey(bi,ci)];if(e)rows.push([dt,r.t||"",r.by||"",b.t,"NOT OK",c,(DCL_SEV.find(s=>s[0]===e.s)||[])[1]||e.s,e.r||""])})})});
+ const csv=rows.map(r=>r.map(c=>'"'+String(c==null?"":c).replace(/"/g,'""')+'"').join(",")).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["﻿"+csv],{type:"text/csv;charset=utf-8"}));a.download="DCL_"+DCL_STN+"_"+dclToday()+".csv";a.click()}
+function dclPrint(dt){const r=dclRec(dt);if(!r){alert("ঐ তারিখের রেকর্ড নেই।");return}
+ const q=dclSum(r),nm=dclNum(r);
+ let body="";DCL.forEach((b,bi)=>{
+  let rows="";
+  b.f.forEach(f=>{const v=(r.v||{})[f[0]],o=dclOut(f,v);rows+='<tr><td>'+E(f[1])+(f[2]?' <i>('+E(f[2])+')</i>':'')+'</td><td>'+E(dclRange(f))+'</td><td class="'+(o?"bad":"ok")+'">'+(v===""||v==null?"—":E(String(v)))+'</td><td>'+(o?"OUT OF RANGE":"")+'</td></tr>'});
+  b.c.forEach((c,ci)=>{const e=(r.x||{})[dclKey(bi,ci)];rows+='<tr><td>'+E(c)+'</td><td></td><td class="'+(e?"bad":"ok")+'">'+(e?"NOT OK":"OK")+'</td><td>'+(e?E(((DCL_SEV.find(s=>s[0]===e.s)||[])[1]||"")+(e.r?" — "+e.r:"")):"")+'</td></tr>'});
+  body+='<tr class="sec"><td colspan="4">'+(bi+1)+'. '+E(b.t)+'</td></tr>'+rows});
+ const w=window.open("","_blank");if(!w){alert("Popup ব্লক করা আছে।");return}
+ w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>DCL '+E(dt)+'</title><style>'
+ +'body{font:11px/1.35 Arial,sans-serif;margin:14px;color:#000}h1{font-size:15px;margin:0 0 2px;text-align:center}'
+ +'.hd{display:flex;justify-content:space-between;font-size:10px;margin-bottom:6px;border-bottom:1px solid #000;padding-bottom:4px}'
+ +'table{width:100%;border-collapse:collapse}td,th{border:1px solid #666;padding:3px 5px;vertical-align:top}'
+ +'th{background:#e8e8e8;font-size:10px}tr.sec td{background:#dde8f5;font-weight:bold}'
+ +'.ok{text-align:center}.bad{text-align:center;font-weight:bold}'
+ +'.sg{margin-top:16px;display:flex;justify-content:space-between;font-size:10px}'
+ +'.sg div{width:30%;border-top:1px solid #000;padding-top:3px}'
+ +'@media print{@page{size:A4;margin:10mm}}</style></head><body>'
+ +'<h1>DAILY ELECTRICAL &amp; INSTRUMENTATION CHECKLIST</h1>'
+ +'<div class="hd"><span><b>Installation:</b> '+E(DCL_SN)+'</span><span><b>Date:</b> '+E(dt)+' &nbsp; <b>Time:</b> '+E(r.t||"—")+'</span><span><b>Doc:</b> '+E(DCL_DOC)+'</span></div>'
+ +'<div class="hd" style="border:0"><span>Readings recorded: <b>'+nm.n+'</b> &nbsp; Out of range: <b>'+nm.bad+'</b></span><span>Critical <b>'+q.C+'</b> &nbsp; Major <b>'+q.A+'</b> &nbsp; Minor <b>'+q.M+'</b></span><span>Station health: <b>'+dclHp(r)+'%</b></span></div>'
+ +'<table><tr><th style="width:38%">Inspection Parameter</th><th style="width:20%">Standard / Acceptable</th><th style="width:12%">Status</th><th style="width:30%">Remarks</th></tr>'+body+'</table>'
+ +(r.n?'<p><b>Notes:</b> '+E(r.n)+'</p>':'')
+ +'<div class="sg"><div>Inspected by<br><br>'+E(r.by||"")+'</div><div>Verified by<br><br>&nbsp;</div><div>Approved by<br><br>&nbsp;</div></div>'
+ +'</body></html>');w.document.close();setTimeout(()=>w.print(),400)}
+function dclCard(){const dt=dclToday(),r=dclRec(dt);
+ if(!r)return'<div class="alert"><b>📋 আজকের চেকলিস্ট এখনো জমা হয়নি ('+E(dt)+')</b><br><span class="mu">'+DCL_SN+' — দৈনিক E&amp;I চেকলিস্ট</span><button class="b p" onclick="DCL_DT=null;tab=\'dcl\';draw()">এখনই পূরণ করুন →</button></div>';
+ const q=dclSum(r),nm=dclNum(r);
+ return'<div class="c"><h3>📋 আজকের চেকলিস্ট — '+E(dt)+'</h3><div class="kv" style="cursor:default"><span>অবস্থা</span><b>'+(r.sub?'<span class="tg good">জমা হয়েছে '+E(r.t||"")+'</span>':'<span class="tg fair">খসড়া</span>')+'</b></div><div class="kv" style="cursor:default"><span>সংখ্যা তোলা হয়েছে</span><b>'+nm.n+" / "+dclTot().f+(nm.bad?' · <span class="tg dmg">'+nm.bad+' সীমার বাইরে</span>':"")+'</b></div><div class="kv" style="cursor:default"><span>NOT OK</span><b>'+(q.t?'<span class="tg dmg">C '+q.C+'</span> <span class="tg fair">A '+q.A+'</span> <span class="tg cod">M '+q.M+'</span>':'<span class="tg good">কিছু নেই</span>')+'</b></div><button class="lnk" onclick="DCL_DT=null;tab=\'dcl\';draw()">খুলুন →</button></div>'}
+function dclv(){if(!me)return'<div class="c"><h3>🔒 Daily Checklist</h3><p class="mu">এই অংশ দেখতে লগ-ইন করুন।</p><button class="b p" onclick="login()">Log In</button></div>';
+ const dt=DCL_DT||dclToday(),r=dclCur(),hist=Object.keys((dclLd()[DCL_STN])||{}).sort().reverse(),q=dclSum(r),nm=dclNum(r),tt=dclTot(),isT=dt===dclToday();
+ let o='<div class="c"><h2>📋 দৈনিক E&amp;I চেকলিস্ট — '+E(DCL_SN)+'</h2><p class="mu">'+E(DCL_DOC)+' · যা ঠিক আছে তাতে হাত দিতে হবে না। শুধু সংখ্যাগুলো দিন, আর যেটা ঠিক নেই সেটায় চাপ দিন।</p>'
+ +'<div class="kv" style="cursor:default"><span>তারিখ</span><b>'+E(dt)+(isT?' <span class="tg good">আজ</span>':' <span class="tg fair">পুরোনো</span>')+'</b></div>'
+ +'<div class="kv" style="cursor:default"><span>সময়</span><b><input value="'+E(r.t||"")+'" placeholder="HH:MM" style="width:90px;display:inline-block" onchange="dclSetH(\'t\',this.value)"></b></div>'
+ +'<div class="kv" style="cursor:default"><span>পরিদর্শক</span><b><input value="'+E(r.by||"")+'" placeholder="নাম" style="width:180px;display:inline-block" onchange="dclSetH(\'by\',this.value)"></b></div>'
+ +'<div class="kv" style="cursor:default"><span>অগ্রগতি</span><b>সংখ্যা '+nm.n+'/'+tt.f+' · NOT OK '+q.t+' / '+tt.c+'</b></div>'
+ +'<div class="bar"><i style="width:'+Math.round(nm.n/tt.f*100)+'%;background:'+(nm.n>=tt.f?"#16a34a":"#f59e0b")+'"></i></div>'
+ +'<button class="b" onclick="dclNew()">🗓 অন্য তারিখ</button><button class="b" onclick="dclOpenAll(true)">সব খুলুন</button><button class="b" onclick="dclOpenAll(false)">সব বন্ধ</button>'
+ +(r.sub?'<button class="b" onclick="dclPrint(\''+dt+'\')">🖨 প্রিন্ট / PDF</button>':"")
+ +'</div>';
+ if(q.C)o+='<div class="alert"><b style="color:#9f1239">🔴 '+q.C+' টি Critical পাওয়া গেছে</b><br><span class="mu">২৪ ঘণ্টার মধ্যে ব্যবস্থা নিতে হবে এবং ব্যবস্থাপনাকে জানাতে হবে।</span></div>';
+ DCL.forEach((b,bi)=>{
+  const bf=b.f.filter(f=>dclOut(f,(r.v||{})[f[0]])).length,bx=b.c.filter((c,ci)=>(r.x||{})[dclKey(bi,ci)]).length,fill=b.f.filter(f=>{const v=(r.v||{})[f[0]];return v!==""&&v!=null}).length;
+  const bad=bf+bx,open=DCL_OPEN[bi]!==undefined?DCL_OPEN[bi]:(b.f.length>0);
+  o+='<div class="c" style="'+(bad?"border-left:4px solid #e11d48":"")+'">'
+   +'<div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="dclTgl('+bi+')"><b>'+(bi+1)+'. '+E(b.t)+'</b><span>'+(bad?'<span class="tg dmg">'+bad+'</span>':'<span class="tg good">OK</span>')+(b.f.length?' <span class="tg cod">'+fill+'/'+b.f.length+'</span>':"")+' <span class="mu">'+(open?"▾":"▸")+'</span></span></div>';
+  if(open){
+   if(b.f.length){o+='<div style="margin-top:8px">';b.f.forEach(f=>{const v=(r.v||{})[f[0]],out=dclOut(f,v);
+    o+='<div class="kv" style="cursor:default"><span>'+E(f[1])+(f[2]?' <small class="mu">('+E(f[2])+')</small>':'')+((f[3]!=null||f[4]!=null)?'<br><small class="mu">'+E(dclRange(f))+'</small>':'')+'</span><b><input type="number" step="any" inputmode="decimal" value="'+(v==null?"":E(String(v)))+'" style="width:110px;display:inline-block;'+(out?"border-color:#e11d48;background:#fff1f2":"")+'" onchange="dclSetV(\''+f[0]+'\',this.value)">'+(out?' <span class="tg dmg">সীমার বাইরে</span>':"")+'</b></div>'});o+='</div>'}
+   o+='<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px">';
+   b.c.forEach((c,ci)=>{const e=(r.x||{})[dclKey(bi,ci)];
+    o+='<button class="tg '+(e?"dmg":"good")+'" style="border:0;cursor:pointer;text-align:left;max-width:100%" onclick="dclTog('+bi+','+ci+')">'+(e?"✗":"✓")+' '+E(c)+'</button>'});
+   o+='</div>';
+   b.c.forEach((c,ci)=>{const e=(r.x||{})[dclKey(bi,ci)];if(!e)return;
+    o+='<div class="alert" style="margin-top:8px"><b>✗ '+E(c)+'</b><br><span class="mu">গুরুত্ব:</span> '+DCL_SEV.map(s=>'<button class="tg '+(e.s===s[0]?s[2]:"")+'" style="cursor:pointer;'+(e.s===s[0]?"":"opacity:.5")+'" onclick="dclSev('+bi+','+ci+',\''+s[0]+'\')">'+s[1]+'</button>').join(" ")
+     +'<input value="'+E(e.r||"")+'" placeholder="কী পেয়েছেন / কী করতে হবে" onchange="dclRem('+bi+','+ci+',this.value)"></div>'});
+  }
+  o+='</div>'});
+ o+='<div class="c"><h3>📝 সাধারণ মন্তব্য</h3><textarea rows="3" placeholder="অতিরিক্ত কিছু থাকলে লিখুন" onchange="dclSetH(\'n\',this.value)">'+E(r.n||"")+'</textarea>'
+  +'<button class="b p" onclick="dclSubmit()">✅ জমা দিন ও Health আপডেট করুন</button>'
+  +(r.sub?'<button class="b" onclick="dclPrint(\''+dt+'\')">🖨 প্রিন্ট / PDF</button>':"")
+  +'<p class="mu"><small>জমা দিলে প্রতিটি যন্ত্রের Health নিজে থেকেই বসে যাবে — Critical → 🔴, Major/Minor → 🟡, কিছু না থাকলে → 🟢।</small></p></div>';
+ o+='<div class="c"><h3>📚 আগের রেকর্ড</h3><button class="b" onclick="dclCsv()">⬇ CSV</button>'
+  +(hist.length?hist.slice(0,60).map(d=>{const rr=dclRec(d),qq=dclSum(rr),nn=dclNum(rr);
+   return'<div class="row" style="cursor:default"><span><b>'+E(d)+'</b> '+(rr.sub?'<span class="tg good">জমা</span>':'<span class="tg fair">খসড়া</span>')+'<br><small class="mu">'+E(rr.by||"")+(rr.t?" · "+E(rr.t):"")+' · সংখ্যা '+nn.n+'/'+tt.f+'</small></span><span style="text-align:right">'+(qq.t?'<span class="tg dmg">C'+qq.C+'</span> <span class="tg fair">A'+qq.A+'</span> <span class="tg cod">M'+qq.M+'</span>':'<span class="tg good">সব ঠিক</span>')+'<br><b>'+dclHp(rr)+'%</b><br><button class="b" onclick="DCL_DT=\''+d+'\';draw();window.scrollTo(0,0)">খুলুন</button><button class="b" onclick="dclPrint(\''+d+'\')">🖨</button>'+(can("admin")?'<button class="b r" onclick="dclDel(\''+d+'\')">✕</button>':"")+'</span></div>'}).join(""):'<span class="mu">এখনো কোনো রেকর্ড নেই।</span>')+'</div>';
+ return o}
+
 function diagv(){return `<div class="c"><h2>🔧 Diagnostics — সমস্যা খোঁজা</h2><p class="mu"><small>কোনো গোপন তথ্য দেখানো হয় না। ফল দেখে বোঝা যাবে কোন ফাইলটি GitHub-এ ওঠেনি।</small></p>
  <button class="b p" onclick="diagRun()">▶ পরীক্ষা চালান</button>
  ${DGR?`<table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px">${DGR.map(r=>`<tr style="border-top:1px solid var(--bd)"><td style="padding:6px;width:34%"><b>${E(r[0])}</b></td><td style="padding:6px">${E(r[1])}${r[2]?`<br><small class="mu">${E(r[2])}</small>`:""}</td></tr>`).join("")}</table>
@@ -3691,7 +3848,7 @@ function mstv(){
   <li>হাতে-কলমে কাজটি করে ফল Maintenance History বা Documents-এ তুলে রাখুন।</li>
   <li>একটি স্তর শেষ হলে পরের স্তরে যান — ক্রম মেনে চললে ভিত্তি মজবুত হয়।</li></ol></div>`}
 /* ===== 111 Engineering Intelligence Platform — shell, sidebar, dashboard, cloud sync ===== */
-const UI_G=[["Dashboard","🏠",["dash"]],["Inventory Dashboard","📦",["invd"]],["Digital Twin","🛰",["map","flow"]],["Equipment Command Center","⚙️",["stn","eq","ast"]],["Engineering Visuals","📐",["conn","pid","ie","calc"]],["Operations","🛢",["parcel","dgm","rd","ho","wo","pm","ptw","inc","fs"]],["Management Analytics","📊",["kpi","an","bill","val","exec","amc"]],["Knowledge Center","🌍",["ibfpl","sop","emg","case","proj","lib","help"]],["Oil Price Analytics","💧",["oil"]],["Learning Hub","🎓",["mst","acad","learn","plan","trn"]],["Reports","📄",["rp","hs","docs","forms"]],["Admin & Settings","🔧",["inv","rq","ap","lv","dir","notice","vlt","us","diag"]]];
+const UI_G=[["Dashboard","🏠",["dash"]],["Inventory Dashboard","📦",["invd"]],["Digital Twin","🛰",["map","flow"]],["Equipment Command Center","⚙️",["stn","eq","ast"]],["Engineering Visuals","📐",["conn","pid","ie","calc"]],["Operations","🛢",["dcl","parcel","dgm","rd","ho","wo","pm","ptw","inc","fs"]],["Management Analytics","📊",["kpi","an","bill","val","exec","amc"]],["Knowledge Center","🌍",["ibfpl","sop","emg","case","proj","lib","help"]],["Oil Price Analytics","💧",["oil"]],["Learning Hub","🎓",["mst","acad","learn","plan","trn"]],["Reports","📄",["rp","hs","docs","forms"]],["Admin & Settings","🔧",["inv","rq","ap","lv","dir","notice","vlt","us","diag"]]];
 const uiOpen={};
 function uiGo(t){tab=t;document.body.classList.remove("nvo");draw();window.scrollTo(0,0)}
 function uiTg(i){uiOpen[i]=!document.querySelector('#nv .sg[data-i="'+i+'"]').classList.contains("op");draw()}
@@ -3708,7 +3865,7 @@ function uiNav(sc){const nv=document.getElementById("nv");if(!nv||nv.dataset.ui=
  nv.innerHTML=h;nv.scrollTop=sc||0}
 
 /* ---- cloud sync for data that used to live only in this browser ---- */
-const KV_SH=["oil_v1","dg_v1","bill_v1","net_v1","health_v1"],KV_CONF={};let KV_APPLY=false,KV_ON=false,KV_UN=null;const KV_T={};
+const KV_SH=["oil_v1","dg_v1","bill_v1","net_v1","health_v1","dcl_v1"],KV_CONF={};let KV_APPLY=false,KV_ON=false,KV_UN=null;const KV_T={};
 const kvDoc=k=>k==="plan_v1"?(me?"plan_"+me.id:null):k,kvKey=id=>id.startsWith("plan_")?(me&&id==="plan_"+me.id?"plan_v1":null):(KV_SH.includes(id)?id:null);
 const kvCan=k=>!!me&&(k==="plan_v1"||can("apr"));
 function kvPush(k){if(!KV_ON||!kvCan(k)||!window.FB||!window.FB.ok)return;clearTimeout(KV_T[k]);KV_T[k]=setTimeout(()=>{const v=localStorage.getItem(k),id=kvDoc(k);if(v==null||!id)return;const ts=Date.now();try{KV_APPLY=true;localStorage.setItem("kvt_"+k,ts)}finally{KV_APPLY=false}(window.FB.setq||window.FB.set)("kvs",id,{d:v,ts,u:me.name||me.email||""})},900)}
@@ -3723,7 +3880,7 @@ function kvSnap(a){const seen={};let ch=false;a.forEach(r=>{const k=kvKey(r.id);
  if(ch)draw()}
 function kvStart(){if(KV_UN){KV_UN();KV_UN=null}KV_ON=false;if(!me||!window.FB||!window.FB.ok)return;KV_ON=true;KV_UN=window.FB.listen("kvs",kvSnap)}
 function kvAll(){const o={};[...KV_SH,"plan_v1"].forEach(k=>{const v=localStorage.getItem(k);if(v)o[k]=v});return o}
-function kvBanner(){const ks=Object.keys(KV_CONF);if(!ks.length)return"";const nm={oil_v1:"Oil Price",dg_v1:"DG & Fuel",bill_v1:"Electricity Bills",health_v1:"Equipment Health",net_v1:"Internet Bills",plan_v1:"6-Month Plan"};
+function kvBanner(){const ks=Object.keys(KV_CONF);if(!ks.length)return"";const nm={oil_v1:"Oil Price",dg_v1:"DG & Fuel",bill_v1:"Electricity Bills",health_v1:"Equipment Health",dcl_v1:"Daily Checklist",net_v1:"Internet Bills",plan_v1:"6-Month Plan"};
  return `<div class="g" style="border-color:#f0b429"><h3>☁️ Cloud sync — আপনার সিদ্ধান্ত দরকার</h3><p class="mu2">এই device-এর তথ্য ও Cloud-এর তথ্য আলাদা। কোনটি রাখবেন বেছে নিন (অন্যটির একটি কপি এই device-এ রাখা হবে)।</p>${ks.map(k=>`<div class="kv" style="cursor:default"><span><b>${nm[k]||k}</b> <span class="mu2">Cloud: ${E(KV_CONF[k].u||"")} · ${new Date(KV_CONF[k].ts).toLocaleString()}</span></span><span>${kvCan(k)?`<button class="lnk" onclick="kvUse('${k}',0)">এই device-এর তথ্য রাখুন</button> `:""}<button class="lnk" style="background:#0f7a3d" onclick="kvUse('${k}',1)">Cloud-এর তথ্য নিন</button></span></div>`).join("")}</div>`}
 
 
@@ -3770,7 +3927,7 @@ function dashX(){const eq=uiEq(),lk=`<span title="Login / unlock required">🔒<
  const stMax=eq?Math.max(...Object.values(eq.st).map(x=>x.q),1):1,ctMax=eq?Math.max(...Object.values(eq.cat),1):1;
  const lg=(S.log||[]).slice().sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,4);
  const hp=hl.pc,hc=hp==null?"#3b5b8f":hp>=90?"#22c55e":hp>=75?"#f0b429":"#ef4444";
- return `<div class="dx">${kvBanner()}
+ return `<div class="dx">${kvBanner()}${me?dclCard():""}
 <div class="top"><div class="g hero">${UI_HERO}<div class="ht"><div class="h1">111</div><div class="h2">Oil &amp; Gas Engineering<br>Intelligence Platform</div><div class="h3">Explore • Learn • Manage • Excel</div></div></div>
 <div class="r4"><div class="st a" onclick="uiGo('stn')"><span class="si">🏭</span>Pipeline<br>Installations<b>8</b><small>5 SV · DT · 2 RT</small></div>
 <div class="st b" onclick="uiGo('stn')"><span class="si">⚙️</span>Total<br>Equipment<b>${eq?eq.qty.toLocaleString():lk}</b><small>${eq?eq.types+" item types":"Unlock to view"}</small></div>
@@ -3803,14 +3960,14 @@ window.addEventListener("fbready",()=>{if(window.FB&&window.FB.ok)window.FB.onAu
 const SEC_W={"s":"Jdxwbw5RnV5meKUAw2CEag==","i":"VPcr4ksWEWvEVXj1","c":"76FxeG9f7muLXL4R5u5pUv6WpAu6pjfIAtzuF43HIF7r1SNEWugtyy/vYsW/A6IV"},SEC_TABS=["stn","bill","sop","pid","emg","map","exec"];let SEC_IDX={},SEC_K=null,SEC_RAW=null,SEC_ST="lock",SEC_MSG="",SEC_TRY=null;const SEC_IMG={};
 const sb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0)),sb64e=u=>btoa(String.fromCharCode(...u));
 async function secDec(u){return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},SEC_K,u.slice(12)))}
-async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwkd1f28")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
+async function secImport(raw){SEC_K=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);const b=new Uint8Array(await (await fetch("sec/data.bin?v=mwloh2hy")).arrayBuffer());const D=JSON.parse(new TextDecoder().decode(await secDec(b)));PD=D.PD;PD2=D.PD2;MAPN0=D.MAPN0;EMG0=D.EMG0;SOPD=D.SOPD;DOCD=D.DOCD;PIDF=D.PIDF;PIDE=D.PIDE;CEM=D.CEM;PMSD=D.PMSD;PIDL=D.PIDL;STN=D.STN;KROUTE=D.KROUTE;BILL0=D.BILL0;PIMP=D.PIMP;SEC_IDX=D.SECIDX||{};SEC_RAW=raw;SEC_ST="ok";SEC_MSG="";draw()}
 async function secPw(p){const raw0=String(p||"");p=raw0.normalize("NFKC").toLowerCase().replace(/[\u2010-\u2015\u2212\uFF0D]/g,"-").replace(/[^a-z0-9-]/g,"");SEC_MSG="যাচাই হচ্ছে…";let raw;try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveKey"]),wk=await crypto.subtle.deriveKey({name:"PBKDF2",salt:sb64(SEC_W.s),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);raw=new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:sb64(SEC_W.i)},wk,sb64(SEC_W.c)))}catch(e){SEC_MSG=(window.isSecureContext===false||!crypto.subtle)?"এই ঠিকানায় (https নয়) খোলা যাবে না — সাইটের https ঠিকানা ব্যবহার করুন।":("Passphrase মিলছে না। আপনি লিখেছেন "+p.length+"টি অক্ষর"+(p!==raw0?" (পরিষ্কার করার পর)":"")+" — সঠিকটিতে ৩৩টি অক্ষর থাকার কথা। নিচের 🔧 পরীক্ষা চালিয়ে দেখুন।");draw();return}
 try{await secImport(raw)}catch(e){SEC_MSG="Passphrase ঠিক আছে, কিন্তু sec/data.bin ফাইল পাওয়া যায়নি বা পুরোনো। GitHub-এ নতুন sec ফোল্ডারটি upload করুন।";draw()}}
 function secAuto(){if(SEC_ST==="ok"||!me||!F||!F.get||SEC_TRY===me.id)return;SEC_TRY=me.id;F.get("secure","main").then(d=>{if(d&&d.k)return secImport(sb64(d.k));SEC_MSG="আপনার account-এ এখনো অনুমতি দেওয়া হয়নি।";draw()}).catch(()=>{SEC_MSG="আপনার account এখনো Admin-এর অনুমোদন (Verify) পায়নি।";draw()})}
 function secShare(){if(!SEC_RAW||!me||me.role!=="admin")return;F.set("secure","main",{k:sb64e(SEC_RAW),at:Date.now(),by:me.id});SEC_MSG="Verified user-দের জন্য চালু করা হয়েছে।";draw()}
 function secv(){secAuto();return `<div class="c" style="max-width:520px;margin:20px auto;text-align:center"><div style="font-size:44px">🔒</div><h2>সুরক্ষিত অংশ</h2><p class="mu">এই অংশ শুধু Admin-এর অনুমোদিত (Verified) ব্যবহারকারীরা দেখতে পারেন।</p>${me?`<p>Log in আছে: <b>${E(me.name||me.email||"")}</b></p>`:`<p><b>আগে Log In করুন।</b> নতুন হলে Register করে Admin-এর অনুমোদনের অপেক্ষা করুন।</p>`}${SEC_MSG?`<p style="color:#b02a37">${E(SEC_MSG)}</p>`:""}<details style="margin-top:14px;text-align:left"><summary>Admin passphrase দিয়ে খুলুন</summary><div style="display:flex;gap:6px;margin-top:8px"><input id="sec_pw" type="password" placeholder="Admin passphrase" style="flex:1" onkeydown="if(event.key==='Enter')secPw(this.value)"><button class="b" onclick="const i=document.getElementById('sec_pw');i.type=i.type==='password'?'text':'password'">👁</button><button class="b" onclick="secPw(document.getElementById('sec_pw').value)">খুলুন</button></div><p class="mu"><small>বড়-ছোট হাতের অক্ষর, ফাঁকা জায়গা ও দাঁড়ি নিজে থেকেই ঠিক করে নেওয়া হয়।</small></p><button class="b" onclick="tab='diag';draw()">🔧 পরীক্ষা করুন (Diagnostics)</button></details></div>`}
 function secBar(){return SEC_ST==="ok"&&me&&me.role==="admin"?`<div class="c" style="background:#eef7f0"><small>🔓 সুরক্ষিত তথ্য খোলা আছে।</small> <button class="b" onclick="secShare()">Verified user-দের জন্য চালু / হালনাগাদ করুন</button> ${SEC_MSG?`<small>${E(SEC_MSG)}</small>`:""}</div>`:""}
-const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwkd1f28").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
+const SEC_PK={};function secPack(n){return SEC_PK[n]||(SEC_PK[n]=fetch("sec/p"+n+".bin?v=mwloh2hy").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(x=>new Uint8Array(x)))}
 function secImgs(){if(!SEC_K)return;document.querySelectorAll("img[data-sec]").forEach(async im=>{const k=im.dataset.sec;if(im.dataset.done)return;im.dataset.done=1;try{if(!SEC_IMG[k]){const ix=SEC_IDX[k];if(!ix)throw 0;const b=await secPack(ix[0]);SEC_IMG[k]=URL.createObjectURL(new Blob([await secDec(b.slice(ix[1],ix[1]+ix[2]))],{type:"image/jpeg"}))}im.src=SEC_IMG[k]}catch(e){im.style.display="none"}})}
 draw();
 window.addEventListener("fbready",()=>{F=window.FB;if(!F.ok){$("#mn").innerHTML='<div class="c"><h3>Firebase setup দরকার</h3><p>ফাইলের শুরুতে firebaseConfig-এ নিজের Firebase তথ্য বসান।</p></div>';return}
